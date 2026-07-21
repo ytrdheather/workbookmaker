@@ -1,0 +1,23 @@
+HEADER: ('book_name', 'unit_name', 'word_no', 'english', 'meaning', 'synonyms', 'antonyms', 'example')
+TOTAL DATA ROWS: 1200
+
+BOOKS: {'주니어 능률 VOAC 기본': 1200}
+NUM UNITS: 60
+UNIT NAMES (order): ['DAY 01', 'DAY 02', 'DAY 03', 'DAY 04', 'DAY 05', 'DAY 06', 'DAY 07', 'DAY 08', 'DAY 09', 'DAY 10', 'DAY 11', 'DAY 12', 'DAY 13', 'DAY 14', 'DAY 15', 'DAY 16', 'DAY 17', 'DAY 18', 'DAY 19', 'DAY 20', 'DAY 21', 'DAY 22', 'DAY 23', 'DAY 24', 'DAY 25', 'DAY 26', 'DAY 27', 'DAY 28', 'DAY 29', 'DAY 30', 'DAY 31', 'DAY 32', 'DAY 33', 'DAY 34', 'DAY 35', 'DAY 36', 'DAY 37', 'DAY 38', 'DAY 39', 'DAY 40', 'DAY 41', 'DAY 42', 'DAY 43', 'DAY 44', 'DAY 45', 'DAY 46', 'DAY 47', 'DAY 48', 'DAY 49', 'DAY 50', 'DAY 51', 'DAY 52', 'DAY 53', 'DAY 54', 'DAY 55', 'DAY 56', 'DAY 57', 'DAY 58', 'DAY 59', 'DAY 60']
+WORDS PER UNIT: {'DAY 01': 20, 'DAY 02': 20, 'DAY 03': 20, 'DAY 04': 20, 'DAY 05': 20, 'DAY 06': 20, 'DAY 07': 20, 'DAY 08': 20, 'DAY 09': 20, 'DAY 10': 20, 'DAY 11': 20, 'DAY 12': 20, 'DAY 13': 20, 'DAY 14': 20, 'DAY 15': 20, 'DAY 16': 20, 'DAY 17': 20, 'DAY 18': 20, 'DAY 19': 20, 'DAY 20': 20, 'DAY 21': 20, 'DAY 22': 20, 'DAY 23': 20, 'DAY 24': 20, 'DAY 25': 20, 'DAY 26': 20, 'DAY 27': 20, 'DAY 28': 20, 'DAY 29': 20, 'DAY 30': 20, 'DAY 31': 20, 'DAY 32': 20, 'DAY 33': 20, 'DAY 34': 20, 'DAY 35': 20, 'DAY 36': 20, 'DAY 37': 20, 'DAY 38': 20, 'DAY 39': 20, 'DAY 40': 20, 'DAY 41': 20, 'DAY 42': 20, 'DAY 43': 20, 'DAY 44': 20, 'DAY 45': 20, 'DAY 46': 20, 'DAY 47': 20, 'DAY 48': 20, 'DAY 49': 20, 'DAY 50': 20, 'DAY 51': 20, 'DAY 52': 20, 'DAY 53': 20, 'DAY 54': 20, 'DAY 55': 20, 'DAY 56': 20, 'DAY 57': 20, 'DAY 58': 20, 'DAY 59': 20, 'DAY 60': 20}
+
+EMPTY synonyms: 233 / antonyms: 823 / example: 0  (of 1200)
+
+--- sample rows (first 12) ---
+('주니어 능률 VOAC 기본', 'DAY 01', 1, 'fix', '수리하다, 고치다; 고정시키다; (날짜, 장소 등을) 정하다', 'repair, mend', 'break', 'I can fix your broken toy.')
+('주니어 능률 VOAC 기본', 'DAY 01', 2, 'shade', '그늘', 'shadow', 'light', "Let's sit in the shade.")
+('주니어 능률 VOAC 기본', 'DAY 01', 3, 'put on', '~을 입다[신다, 쓰다]', 'wear', 'take off', 'Put on your warm coat.')
+('주니어 능률 VOAC 기본', 'DAY 01', 4, 'bury', '(땅에) 묻다, 매장하다', 'hide', 'dig up', 'The dog will bury the bone.')
+('주니어 능률 VOAC 기본', 'DAY 01', 5, 'cave', '동굴, 굴', 'hole', None, 'The bear lives in a cave.')
+('주니어 능률 VOAC 기본', 'DAY 01', 6, 'useful', '쓸모 있는, 유용한', 'helpful', 'useless', 'This tool is very useful.')
+('주니어 능률 VOAC 기본', 'DAY 01', 7, 'dot', '(동그란) 점', 'spot, point', None, 'Draw a small red dot.')
+('주니어 능률 VOAC 기본', 'DAY 01', 8, 'copy', '복사(본);  복사[복제]하다; 따라 하다, 모방하다', 'repeat', None, 'Do not copy my homework.')
+('주니어 능률 VOAC 기본', 'DAY 01', 9, 'through', '(입구 등을) 통(과)하여; (장소를) 지나서', None, None, 'Walk through the open door.')
+('주니어 능률 VOAC 기본', 'DAY 01', 10, 'oven', '오븐', None, None, 'The cake is in the oven.')
+('주니어 능률 VOAC 기본', 'DAY 01', 11, 'lend', '빌려주다', 'give', 'borrow', 'Can you lend me a pen?')
+('주니어 능률 VOAC 기본', 'DAY 01', 12, 'moment', '(특정한) 순간, 시점; 잠깐, 잠시', 'second', None, 'Wait for a moment, please.')
