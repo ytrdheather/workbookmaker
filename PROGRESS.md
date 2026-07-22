@@ -47,14 +47,21 @@ HTML로 조립하고 헤드리스 Chrome으로 PDF까지 뽑는 도구.
   - ✅ DAY 1~3 샘플 생성 → 레이아웃 승인 완료. 결과물: `output_new/능률VOCA 중등 기본/`
   - ✅ DAY 1~60 전량 생성 완료(2026-07-22). `output_new/능률VOCA 중등 기본/`에
     `..._DAY1-60.pdf`(학생용)·`..._DAY1-60_정답.pdf`(정답), 각 427쪽. 입력: `excel/능률VOCA 중등 기본.xlsx`.
-- 나머지 10종: 대기.
+- **능률VOCA 초등 기본** (406단어 / 32유닛, DAY 01~39 중 32개)
+  - ✅ 전량 생성 완료(2026-07-22). `output_new/능률VOCA 초등 기본/`에 학생용·정답 각 221쪽.
+    입력: `excel/능률VOCA 초등 기본.xlsx`. `--from 1 --to 32 --answer`.
+- 나머지 9종: 대기.
+  - ⚠️ **능률VOCA 중등 필수**: `book_name`이 `능률VOCA [2025]`/`7`로 뒤섞여 있음 → 생성 전 정리 필요.
+  - ⚠️ **Bricks 4800**: `book_name`에 `Bricks Vocabulary 30` 혼입 → 생성 전 정리 필요.
 
 **결과물 출력 규칙:** `output_new/<교재이름>/` 아래에 넣는다.
 
 ## 다음에 할 일
-1. ✅ 능률VOCA 중등 기본 **DAY 1~60 전량 생성** 완료 → 커밋/푸시 완료.
-2. 다음 교재로 이동(초등 기본 등) — 같은 방식으로 `--from 1 --to <끝> --answer`.
-3. 구 `output_new/주니어 능률 VOAC 기본_DAY1-3.*`(폴더 밖 옛 샘플) 정리 여부 결정.
+1. ✅ 능률VOCA 중등 기본 DAY 1~60 전량 생성 → 커밋/푸시 완료.
+2. ✅ 능률VOCA 초등 기본 전량 생성 → 커밋/푸시 완료.
+3. 다음 교재: **능률VOCA 초등 필수**(550단어/32유닛, 데이터 깨끗) 권장.
+   그 뒤 능률VOCA 중등 필수(단, book_name 정리 후), Bricks 시리즈.
+4. ✅ 구 `output_new/주니어 능률 VOAC 기본_DAY1-3.*` 옛 샘플 삭제 완료.
 
 ## 참고
 - 입력 엑셀 헤더: `book_name, unit_name, word_no, english, meaning, synonyms, antonyms, example`
