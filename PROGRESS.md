@@ -10,24 +10,53 @@ HTML로 조립하고 헤드리스 Chrome으로 PDF까지 뽑는 도구.
 - 실행 예: `python build_workbook.py <입력.xlsx> --from 1 --to 60 --answer --out output`
   - `--from/--to` : 생성할 DAY 범위
   - `--answer` : 정답 버전도 함께 생성
-- 유닛 페이지 구성: ①단어 목록 ②4회 쓰기 ③누적 복습 시험(N-2, N-1) ④예문 빈칸 ⑤반의어 고르기 ⑥동의어 고르기
+  - `--out` : 출력 폴더 (파일명은 엑셀 안의 `book_name` 열 값으로 자동 생성)
+- 유닛 페이지 구성(DAY당 6쪽): ①단어 목록 ②4회 쓰기 ③누적 복습 시험(N-2, N-1) ④예문 빈칸 ⑤반의어 고르기 ⑥동의어 고르기
 
-## 지금까지 한 것
-- 전체 파이프라인 완성 (엑셀 → HTML → PDF, 학생용/정답용).
-- 교재 데이터: "주니어 능률 VOAC 기본", 총 1200단어 / DAY 01~60 (하루 20단어).
-- 현재 **DAY 1~3만 샘플 생성**해서 레이아웃 검수 (`output/`, `output_new/`).
-- **예문 빈칸 페이지 레이아웃 확정**: 영어 문장이 먼저 나오고, 문장 뒤에 뜻을 회색으로 표기.
-  줄 간격을 넉넉히(줄 높이 1.7, 항목 간격 17px) 늘려 아이들이 빈칸에 쓸 공간 확보. 20문항이 A4 한 장에 들어감.
+## 작업 환경 셋업 (PC마다 필요)
+> `.claude`(메모리)는 구글 드라이브에 심볼릭 링크로 연결돼 PC 간 동기화됨. 단, **Google Drive Desktop이 켜져 있어야** 함.
 
-## 다음에 할 일 (직장에서 이어서)
-1. **원본 입력 엑셀 파일이 필요함.** 원래 위치에서 사라져서, 현재 DAY1-3 재생성은
-   기존 출력 HTML의 단어표에서 데이터를 역추출해 임시로 진행했음.
-   전체 DAY 1~60을 다시 뽑으려면 원본 1200단어 엑셀(book_name/unit_name/word_no/
-   english/meaning/synonyms/antonyms/example 열)이 있어야 함. → **엑셀 파일 챙겨오기.**
-2. 엑셀 확보 후 `--from 1 --to 60 --answer` 로 전량 생성.
-3. `output` vs `output_new` 두 폴더 정리 (최종본 하나로 통일).
+각 PC에서 이어 작업하려면:
+1. **Python + openpyxl** 설치 (`winget install Python.Python.3.12` → `python -m pip install openpyxl`)
+2. **Chrome**(또는 Edge) 설치 — PDF 렌더용
+3. **폰트 Pretendard** 설치 (Thin~Black)
+4. **GitHub 재인증** — 이 레포 clone 후 push하려면 자격증명 필요
+   - `git`은 있으나 `gh`(GitHub CLI)는 없을 수 있음. device flow 또는 credential manager 사용.
+
+## 데이터 (입력 엑셀) — `excel/` 폴더
+원본 11종을 레포에 포함(공개). 표준 헤더: `book_name, unit_name, word_no, english, meaning, synonym(s), antonym(s), example` (동의어/반의어는 단수·복수 둘 다 인식).
+
+| 파일 | book_name(내부) | 단어 수 | 예상 DAY |
+|---|---|---|---|
+| 능률VOCA 초등 기본 | | 406 | ~21 |
+| 능률VOCA 초등 필수 | | 550 | ~28 |
+| 능률VOCA 중등 기본 | 주니어 능률 VOAC 기본 | 1200 | 60 |
+| 능률VOCA 중등 필수 | | 1128 | ~57 |
+| Bricks Vocabulary 300 | Bricks Vocabulary 300 | 320 | 16 |
+| Bricks Vocabulary 900 | | 999 | 50 |
+| Bricks Vocabulary 1500 | | 300 | 15 |
+| Bricks Vocabulary 2300 | | 375 | ~19 |
+| Bricks Vocabulary 3100 | | 750 | ~38 |
+| Bricks Vocabulary 3900 | | 900 | 45 |
+| Bricks Vocabulary 4800 | | 900 | 45 |
+
+- `Bricks Vocabulary 300.xlsx`는 원래 헤더가 달라(`Unit Name/Number/Word...`) 표준 스키마로 정규화함(320단어, book_name 추가).
+
+## 교재별 진행 (하나씩 순차 처리)
+- **능률VOCA 중등 기본** (= "주니어 능률 VOAC 기본", 1200단어 / DAY 01~60)
+  - ✅ DAY 1~3 샘플 생성 → 레이아웃 승인 완료. 결과물: `output_new/능률VOCA 중등 기본/`
+  - ⬜ DAY 1~60 전량 생성 (다음 작업)
+- 나머지 10종: 대기.
+
+**결과물 출력 규칙:** `output_new/<교재이름>/` 아래에 넣는다.
+
+## 다음에 할 일
+1. 능률VOCA 중등 기본 **DAY 1~60 전량 생성** (`--from 1 --to 60 --answer`, out=`output_new/능률VOCA 중등 기본`).
+2. 커밋/푸시 후 다음 교재로 이동(초등 기본 등).
+3. 구 `output_new/주니어 능률 VOAC 기본_DAY1-3.*`(폴더 밖 옛 샘플) 정리 여부 결정.
 
 ## 참고
 - 입력 엑셀 헤더: `book_name, unit_name, word_no, english, meaning, synonyms, antonyms, example`
-- 폰트: Pretendard(설치 필요), 로고: `source/logo.png`
+- 폰트: Pretendard, 로고: `source/logo.png` (스크립트가 base64로 임베드, 실행 위치 무관)
 - PDF 변환은 Chrome/Edge 헤드리스 사용 (`--print-to-pdf`).
+- 페이지 수 검증: PDF 바이트에서 `/Type /Page` 개수 카운트. 레이아웃 확인: `--screenshot` + `--window-size=794,3400`.
