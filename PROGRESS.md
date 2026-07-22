@@ -50,18 +50,22 @@ HTML로 조립하고 헤드리스 Chrome으로 PDF까지 뽑는 도구.
 - **능률VOCA 초등 기본** (406단어 / 32유닛, DAY 01~39 중 32개)
   - ✅ 전량 생성 완료(2026-07-22). `output_new/능률VOCA 초등 기본/`에 학생용·정답 각 221쪽.
     입력: `excel/능률VOCA 초등 기본.xlsx`. `--from 1 --to 32 --answer`.
-- 나머지 9종: 대기.
-  - ⚠️ **능률VOCA 중등 필수**: `book_name`이 `능률VOCA [2025]`/`7`로 뒤섞여 있음 → 생성 전 정리 필요.
+- **능률VOCA 중등 필수** (1128단어 / 47유닛)
+  - ✅ 전량 생성 완료(2026-07-22). `output_new/능률VOCA 중등 필수/`에 학생용·정답 각 455쪽.
+    입력: `excel/능률VOCA 중등 필수.xlsx`. `--from 1 --to 47 --answer`.
+  - book_name 정리: 사용자가 대부분 수정, 잔여 1줄(DAY 32 'set up' → `7`)을 `능률VOCA 중등 필수`로 교정. 이제 1128줄 통일.
+- 나머지 8종: 대기.
   - ⚠️ **Bricks 4800**: `book_name`에 `Bricks Vocabulary 30` 혼입 → 생성 전 정리 필요.
+  - 참고: 구글드라이브 원본 `능률VOCA 중등 필수.xlsx`는 아직 옛 book_name(`능률VOCA [2025]`). 레포 사본만 정리됨.
 
 **결과물 출력 규칙:** `output_new/<교재이름>/` 아래에 넣는다.
 
 ## 다음에 할 일
 1. ✅ 능률VOCA 중등 기본 DAY 1~60 전량 생성 → 커밋/푸시 완료.
 2. ✅ 능률VOCA 초등 기본 전량 생성 → 커밋/푸시 완료.
-3. 다음 교재: **능률VOCA 초등 필수**(550단어/32유닛, 데이터 깨끗) 권장.
-   그 뒤 능률VOCA 중등 필수(단, book_name 정리 후), Bricks 시리즈.
-4. ✅ 구 `output_new/주니어 능률 VOAC 기본_DAY1-3.*` 옛 샘플 삭제 완료.
+3. ✅ 능률VOCA 중등 필수 전량 생성 → 커밋/푸시 완료. (능률 4종 중 3종 완료)
+4. 다음 교재: **능률VOCA 초등 필수**(550단어/32유닛, 데이터 깨끗) → 이후 Bricks 시리즈.
+5. ✅ 구 `output_new/주니어 능률 VOAC 기본_DAY1-3.*` 옛 샘플 삭제 완료.
 
 ## 참고
 - 입력 엑셀 헤더: `book_name, unit_name, word_no, english, meaning, synonyms, antonyms, example`
