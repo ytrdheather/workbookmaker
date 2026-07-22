@@ -1,0 +1,61 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<title>단어 암기 노트 양식</title><style>@font-face{font-family:'Pretendard';font-style:normal;font-weight:400;src:url('file:///C:/Users/ytrbh/AppData/Local/Microsoft/Windows/Fonts/Pretendard-Regular.ttf') format('truetype');}
+@font-face{font-family:'Pretendard';font-style:normal;font-weight:500;src:url('file:///C:/Users/ytrbh/AppData/Local/Microsoft/Windows/Fonts/Pretendard-Medium.ttf') format('truetype');}
+@font-face{font-family:'Pretendard';font-style:normal;font-weight:600;src:url('file:///C:/Users/ytrbh/AppData/Local/Microsoft/Windows/Fonts/Pretendard-SemiBold.ttf') format('truetype');}
+@font-face{font-family:'Pretendard';font-style:normal;font-weight:700;src:url('file:///C:/Users/ytrbh/AppData/Local/Microsoft/Windows/Fonts/Pretendard-Bold.ttf') format('truetype');}
+@font-face{font-family:'Pretendard';font-style:normal;font-weight:800;src:url('file:///C:/Users/ytrbh/AppData/Local/Microsoft/Windows/Fonts/Pretendard-ExtraBold.ttf') format('truetype');}
+
+@page { size: A4; margin: 12mm 11mm 12mm 11mm; }
+* { box-sizing: border-box; }
+body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:#2f302f; margin:0; font-size:13px; }
+
+.phead { display:flex; align-items:flex-end; justify-content:space-between;
+  border-bottom:3px solid #32bfb6; padding-bottom:6px; margin-bottom:9px; }
+.ph-title { text-align:center; }
+.pt-ko { display:block; font-size:19px; font-weight:800; }
+.pt-en { display:block; font-size:9px; color:#dfc0aa; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.ph-meta { font-size:11px; color:#8a8f8d; text-align:right; line-height:1.9; }
+.nline { display:inline-block; width:78px; border-bottom:1px solid #dfc0aa; margin-left:4px; }
+.ph-left { font-size:11px; color:#8a8f8d; line-height:1.9; }
+
+.guide { background:#eafaf8; border-left:4px solid #32bfb6; padding:7px 11px; margin:0 0 10px;
+  font-size:11.5px; line-height:1.65; border-radius:3px; }
+.guide b { color:#0f6e56; }
+.guide .cpen { color:#c0392b; }
+
+table.nt { width:100%; border-collapse:collapse; table-layout:fixed; }
+table.nt th { background:#32bfb6; color:#fff; font-size:11px; font-weight:700; padding:6px 4px; }
+table.nt col.c-no { width:26px; } table.nt col.c-eng { width:23%; }
+table.nt col.c-spell { width:27%; } table.nt col.c-mark { width:34px; }
+.fold { border-left:1px dashed #94e1da; }
+.th-sub { font-weight:400; font-size:8.5px; opacity:.9; }
+table.nt td { border-bottom:1px solid #e3e3e0; }
+table.nt tr:nth-child(even) td { background:#f4fbfa; }
+.c-no { text-align:center; color:#8a8f8d; font-size:11px; }
+.c-mark { text-align:center; color:#b4b2a9; }
+
+.oadap { margin-top:12px; border:1.5px dashed #dfc0aa; background:#f7efe6; border-radius:6px; padding:9px 11px; }
+.oadap .oa-t { font-size:11.5px; font-weight:800; color:#b06a2c; margin-bottom:8px; }
+.oadap .oa-line { border-bottom:1px solid #d9c3ab; height:20px; margin-bottom:6px; }
+.oadap .oa-line:last-child { margin-bottom:0; }
+.pagelogo { position:fixed; bottom:1mm; right:2mm; width:28mm; height:auto; opacity:.95; }
+
+table.nt td { height:31px; }</style></head>
+<body>
+  <div class="phead">
+    <div class="ph-left">이름 :<span class="nline"></span><br>날짜 :<span class="nline"></span></div>
+    <div class="ph-title"><span class="pt-ko">단어 암기 노트</span>
+      <span class="pt-en">Memorize &amp; Self-Test</span></div>
+    <div class="ph-meta">교재 :<span class="nline"></span><br>범위 :<span class="nline"></span></div>
+  </div>
+  <div class="guide"><b>① 단어</b> — 단어장을 보고 영어 단어를 옮겨 씁니다. &nbsp;<b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다 (모르면 <span class="cpen">다른 색 펜</span>으로 다시). &nbsp;<b>③ 스펠링</b> — 오른쪽 점선을 <b>접어 단어를 가리고</b>, 뜻만 보고 스펠링을 씁니다. &nbsp;<b>④ 모름 □</b> 체크 → 아래 <b>오답 정리</b> 칸에 <b>모르는 것만</b> 다시.</div>
+  <table class="nt">
+    <colgroup><col class="c-no"><col class="c-eng"><col><col class="c-spell"><col class="c-mark"></colgroup>
+    <thead><tr><th class="c-no">No</th><th class="fold">① 단어</th><th class="fold">② 뜻 쓰기<br><span class="th-sub">단어 보고 · 외워서</span></th><th class="fold">③ 스펠링 쓰기<br><span class="th-sub">단어 접어 가리고 · 뜻만 보고</span></th><th class="fold">모름</th></tr></thead>
+    <tbody><tr><td class="c-no">1</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">2</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">3</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">4</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">5</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">6</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">7</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">8</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">9</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">10</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">11</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">12</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">13</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">14</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">15</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">16</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">17</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">18</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">19</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr><tr><td class="c-no">20</td><td class="fold"></td><td class="fold"></td><td class="fold"></td><td class="fold c-mark">□</td></tr></tbody>
+  </table>
+  <div class="oadap">
+    <div class="oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div>
+    <div class="oa-line"></div><div class="oa-line"></div><div class="oa-line"></div><div class="oa-line"></div><div class="oa-line"></div>
+  </div>
+</body></html>
