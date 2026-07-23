@@ -234,16 +234,13 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
 
 
 # ---------------------------------------------------------------- 페이지: 반의어/동의어 고르기
-def page_choice(day_name, words, kind, seed, answer=False):
-    """kind: 'antonyms' or 'synonyms'. 해당 값 있는 단어만 출제."""
-    rnd = random.Random(seed)
-    label = "반의어" if kind == "antonyms" else "동의어"
-    en_label = "Antonym" if kind == "antonyms" else "Synonym"
+def _choice_items(words, kind, rnd, answer):
+    """해당 kind(값 있는 단어)로 4지선다 <li> 항목 리스트 생성."""
     pool = [w for w in words if split_multi(w[kind])]
     all_english = [w["english"] for w in words]
     rnd.shuffle(pool)
     items = []
-    for i, w in enumerate(pool, 1):
+    for w in pool:
         corrects = split_multi(w[kind])
         correct = corrects[0]
         # 오답: 같은 유닛의 다른 english (정답/문제어 제외)
@@ -251,7 +248,6 @@ def page_choice(day_name, words, kind, seed, answer=False):
         distract_pool = [e for e in all_english if e not in avoid]
         rnd.shuffle(distract_pool)
         options = [correct] + distract_pool[:3]
-        # 보기가 4개 안되면 채우기 skip
         rnd.shuffle(options)
         letters = "①②③④"
         opt_html = "".join(
@@ -263,6 +259,14 @@ def page_choice(day_name, words, kind, seed, answer=False):
         <div class="ch-q"><b>{esc(w['english'])}</b> <span class="ch-mean">({esc(w['meaning'])})</span></div>
         <div class="ch-opts">{opt_html}</div>
       </li>""")
+    return items
+
+
+def page_choice(day_name, words, kind, seed, answer=False):
+    """kind: 'antonyms' or 'synonyms'. 해당 값 있는 단어만 출제. (동의어/반의어 각각 한 페이지)"""
+    label = "반의어" if kind == "antonyms" else "동의어"
+    en_label = "Antonym" if kind == "antonyms" else "Synonym"
+    items = _choice_items(words, kind, random.Random(seed), answer)
     if not items:
         items.append('<li class="empty">이 유닛에는 출제할 단어가 부족합니다.</li>')
     return f"""
@@ -270,6 +274,24 @@ def page_choice(day_name, words, kind, seed, answer=False):
     {page_head(day_name, f"{label} 고르기", f"Choose the {en_label}")}
     <p class="guide">각 단어의 <b>{label}</b>를 보기에서 고르세요.</p>
     <ol class="ch">{''.join(items)}</ol>
+  </section>"""
+
+
+def page_choice_merged(day_name, words, seed, answer=False):
+    """동의어+반의어를 한 페이지에. 동의/반의가 적은 교재에서 종이 절약."""
+    sitems = _choice_items(words, "synonyms", random.Random(seed), answer)
+    aitems = _choice_items(words, "antonyms", random.Random(seed + 50), answer)
+    empty = '<li class="empty">출제할 단어가 부족합니다.</li>'
+    syn_html = "".join(sitems) if sitems else empty
+    ant_html = "".join(aitems) if aitems else empty
+    return f"""
+  <section class="page">
+    {page_head(day_name, "동의어 &middot; 반의어 고르기", "Choose Synonym / Antonym")}
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">{syn_html}</ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">{ant_html}</ol>
   </section>"""
 
 
@@ -364,6 +386,8 @@ ol.ch li { margin-bottom:7px; }
 .opt { border:1px solid var(--line); border-radius:5px; padding:4px 12px; font-size:12.5px; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
+.ch-sec { font-size:13px; font-weight:800; color:var(--teal); margin:10px 0 6px; }
+.ch-sec:first-of-type { margin-top:2px; }
 
 /* 암기 노트 (딸기케이크식 4단 자가시험) */
 table.mz { width:100%; border-collapse:collapse; table-layout:fixed; }
@@ -382,7 +406,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
 
 
 # ---------------------------------------------------------------- 유닛 페이지 조립
-def build_unit_pages(units, i, answer=False):
+def build_unit_pages(units, i, answer=False, merge_choice=False):
     """units: [(name, words)]. i: 0-based 현재 유닛 index."""
     name, words = units[i]
     base = (i + 1) * 1000
@@ -398,8 +422,11 @@ def build_unit_pages(units, i, answer=False):
         tname, twords = units[i - 1]
         pages.append(page_review(name, tname, twords, seed=base + 300 + i, answer=answer))
     pages.append(page_fillblank(name, words, seed=base + 4, answer=answer))
-    pages.append(page_choice(name, words, "antonyms", seed=base + 5, answer=answer))
-    pages.append(page_choice(name, words, "synonyms", seed=base + 6, answer=answer))
+    if merge_choice:  # 동의/반의 적은 교재: 한 페이지로 합쳐 종이 절약
+        pages.append(page_choice_merged(name, words, seed=base + 5, answer=answer))
+    else:
+        pages.append(page_choice(name, words, "antonyms", seed=base + 5, answer=answer))
+        pages.append(page_choice(name, words, "synonyms", seed=base + 6, answer=answer))
     return pages
 
 
@@ -436,10 +463,10 @@ def logo_datauri():
     return "data:image/png;base64," + b64
 
 
-def build_html(book_name, units, day_from, day_to, answer=False, title_suffix=""):
+def build_html(book_name, units, day_from, day_to, answer=False, title_suffix="", merge_choice=False):
     body = []
     for i in range(day_from - 1, min(day_to, len(units))):
-        body.extend(build_unit_pages(units, i, answer=answer))
+        body.extend(build_unit_pages(units, i, answer=answer, merge_choice=merge_choice))
     title = f"{book_name}{title_suffix} 워크북" + (" (정답)" if answer else "")
     logo = logo_datauri()
     logo_html = f'<img class="pagelogo" src="{logo}" alt="logo">' if logo else ""
@@ -484,6 +511,25 @@ def html_to_pdf(html_path, pdf_path):
                 + log[-400:])
     finally:
         shutil.rmtree(profile, ignore_errors=True)
+    stamp_page_numbers(out)
+
+
+def stamp_page_numbers(pdf_path):
+    """생성된 PDF의 각 페이지 하단 중앙에 페이지 번호를 찍는다(권마다 1부터).
+    Chrome이 CSS @page 여백박스를 지원하지 않아 fitz로 후처리."""
+    try:
+        import fitz
+    except ImportError:
+        return  # PyMuPDF 없으면 번호 생략(치명적 아님)
+    doc = fitz.open(pdf_path)
+    for i, page in enumerate(doc, 1):
+        r = page.rect
+        txt = str(i)
+        tw = fitz.get_text_length(txt, fontname="helv", fontsize=9)
+        page.insert_text((r.width / 2 - tw / 2, r.height - 18),
+                         txt, fontname="helv", fontsize=9, color=(0.5, 0.5, 0.5))
+    doc.save(pdf_path, incremental=True, encryption=fitz.PDF_ENCRYPT_KEEP)
+    doc.close()
 
 
 # ---------------------------------------------------------------- 분권 범위 계산
@@ -503,16 +549,16 @@ def volume_ranges(total, n):
     return ranges
 
 
-def _emit(out, safe, book_name, units, a, b, vol_tag, title_suffix, answer):
+def _emit(out, safe, book_name, units, a, b, vol_tag, title_suffix, answer, merge_choice=False):
     """한 범위(권)에 대해 학생용(+정답) HTML/PDF 생성."""
-    h = build_html(book_name, units, a, b, answer=False, title_suffix=title_suffix)
+    h = build_html(book_name, units, a, b, answer=False, title_suffix=title_suffix, merge_choice=merge_choice)
     hp = os.path.join(out, f"{safe}{vol_tag}_DAY{a}-{b}.html")
     with open(hp, "w", encoding="utf-8") as f:
         f.write(h)
     html_to_pdf(hp, hp[:-5] + ".pdf")
     print("생성:", hp[:-5] + ".pdf")
     if answer:
-        ha = build_html(book_name, units, a, b, answer=True, title_suffix=title_suffix)
+        ha = build_html(book_name, units, a, b, answer=True, title_suffix=title_suffix, merge_choice=merge_choice)
         hap = os.path.join(out, f"{safe}{vol_tag}_DAY{a}-{b}_정답.html")
         with open(hap, "w", encoding="utf-8") as f:
             f.write(ha)
@@ -530,21 +576,24 @@ def main():
     ap.add_argument("--answer", action="store_true", help="정답 버전도 생성")
     ap.add_argument("--split", type=int, default=0,
                     help="권당 유닛 수로 분권 (예: --split 10). 0이면 단권(--from/--to 사용).")
+    ap.add_argument("--merge-choice", dest="merge_choice", action="store_true",
+                    help="동의어/반의어 고르기를 한 페이지로 합침 (동의/반의 적은 교재 종이 절약).")
     args = ap.parse_args()
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)
     for book_name, units in books.items():
         safe = re.sub(r"[\\/:*?\"<>|]", "_", book_name)
+        mc = args.merge_choice
         if args.split and args.split > 0:
             ranges = volume_ranges(len(units), args.split)
             multi = len(ranges) > 1
             for vi, (a, b) in enumerate(ranges, 1):
                 vol_tag = f"_{vi}권" if multi else ""
                 title_suffix = f" {vi}권" if multi else ""
-                _emit(args.out, safe, book_name, units, a, b, vol_tag, title_suffix, args.answer)
+                _emit(args.out, safe, book_name, units, a, b, vol_tag, title_suffix, args.answer, mc)
         else:
-            _emit(args.out, safe, book_name, units, args.dfrom, args.dto, "", "", args.answer)
+            _emit(args.out, safe, book_name, units, args.dfrom, args.dto, "", "", args.answer, mc)
 
 
 if __name__ == "__main__":

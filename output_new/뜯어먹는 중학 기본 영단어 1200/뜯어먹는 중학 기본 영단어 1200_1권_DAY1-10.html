@@ -84,6 +84,8 @@ ol.ch li { margin-bottom:7px; }
 .opt { border:1px solid var(--line); border-radius:5px; padding:4px 12px; font-size:12.5px; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
+.ch-sec { font-size:13px; font-weight:800; color:var(--teal); margin:10px 0 6px; }
+.ch-sec:first-of-type { margin-top:2px; }
 
 /* 암기 노트 (딸기케이크식 4단 자가시험) */
 table.mz { width:100%; border-collapse:collapse; table-layout:fixed; }
@@ -527,56 +529,49 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 01</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>man</b> <span class="ch-mean">(남자, 사람)</span></div>
-        <div class="ch-opts"><span class="opt ">① go</span><span class="opt ">② there</span><span class="opt ">③ woman</span><span class="opt ">④ way</span></div>
-      </li>
+        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은, 잘하는)</span></div>
+        <div class="ch-opts"><span class="opt ">① that</span><span class="opt ">② nice</span><span class="opt ">③ year</span><span class="opt ">④ people</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
       <li>
-        <div class="ch-q"><b>friend</b> <span class="ch-mean">(친구)</span></div>
-        <div class="ch-opts"><span class="opt ">① year</span><span class="opt ">② enemy</span><span class="opt ">③ father[dad, daddy]</span><span class="opt ">④ man</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>day</b> <span class="ch-mean">(날, 하루, 낮)</span></div>
-        <div class="ch-opts"><span class="opt ">① go</span><span class="opt ">② do</span><span class="opt ">③ night</span><span class="opt ">④ father[dad, daddy]</span></div>
+        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은, 잘하는)</span></div>
+        <div class="ch-opts"><span class="opt ">① friend</span><span class="opt ">② that</span><span class="opt ">③ mother[mom]</span><span class="opt ">④ bad</span></div>
       </li>
       <li>
         <div class="ch-q"><b>that</b> <span class="ch-mean">(저(것[사람]), 그(것[사람]))</span></div>
-        <div class="ch-opts"><span class="opt ">① mother[mom]</span><span class="opt ">② this</span><span class="opt ">③ go</span><span class="opt ">④ father[dad, daddy]</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>this</b> <span class="ch-mean">(이(것[사람]))</span></div>
-        <div class="ch-opts"><span class="opt ">① family</span><span class="opt ">② lot</span><span class="opt ">③ that</span><span class="opt ">④ world</span></div>
+        <div class="ch-opts"><span class="opt ">① father[dad, daddy]</span><span class="opt ">② there</span><span class="opt ">③ this</span><span class="opt ">④ lot</span></div>
       </li>
       <li>
         <div class="ch-q"><b>go</b> <span class="ch-mean">(가다)</span></div>
-        <div class="ch-opts"><span class="opt ">① way</span><span class="opt ">② time</span><span class="opt ">③ come</span><span class="opt ">④ lot</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은, 잘하는)</span></div>
-        <div class="ch-opts"><span class="opt ">① bad</span><span class="opt ">② lot</span><span class="opt ">③ year</span><span class="opt ">④ go</span></div>
+        <div class="ch-opts"><span class="opt ">① come</span><span class="opt ">② school</span><span class="opt ">③ this</span><span class="opt ">④ way</span></div>
       </li>
       <li>
         <div class="ch-q"><b>there</b> <span class="ch-mean">(거기에[그곳에])</span></div>
-        <div class="ch-opts"><span class="opt ">① here</span><span class="opt ">② friend</span><span class="opt ">③ world</span><span class="opt ">④ go</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 01</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
+        <div class="ch-opts"><span class="opt ">① family</span><span class="opt ">② friend</span><span class="opt ">③ here</span><span class="opt ">④ people</span></div>
+      </li>
       <li>
-        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은, 잘하는)</span></div>
-        <div class="ch-opts"><span class="opt ">① school</span><span class="opt ">② man</span><span class="opt ">③ nice</span><span class="opt ">④ way</span></div>
+        <div class="ch-q"><b>this</b> <span class="ch-mean">(이(것[사람]))</span></div>
+        <div class="ch-opts"><span class="opt ">① that</span><span class="opt ">② way</span><span class="opt ">③ day</span><span class="opt ">④ world</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>day</b> <span class="ch-mean">(날, 하루, 낮)</span></div>
+        <div class="ch-opts"><span class="opt ">① people</span><span class="opt ">② family</span><span class="opt ">③ night</span><span class="opt ">④ way</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>man</b> <span class="ch-mean">(남자, 사람)</span></div>
+        <div class="ch-opts"><span class="opt ">① family</span><span class="opt ">② way</span><span class="opt ">③ people</span><span class="opt ">④ woman</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>friend</b> <span class="ch-mean">(친구)</span></div>
+        <div class="ch-opts"><span class="opt ">① enemy</span><span class="opt ">② mother[mom]</span><span class="opt ">③ world</span><span class="opt ">④ go</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -1118,64 +1113,57 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 02</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>old</b> <span class="ch-mean">(나이 든, 오래된)</span></div>
-        <div class="ch-opts"><span class="opt ">① many</span><span class="opt ">② new</span><span class="opt ">③ like</span><span class="opt ">④ teacher</span></div>
+        <div class="ch-q"><b>see</b> <span class="ch-mean">(보다, 만나다, 알다)</span></div>
+        <div class="ch-opts"><span class="opt ">① country</span><span class="opt ">② many</span><span class="opt ">③ look</span><span class="opt ">④ today</span></div>
       </li>
-      <li>
-        <div class="ch-q"><b>teacher</b> <span class="ch-mean">(선생님[교사])</span></div>
-        <div class="ch-opts"><span class="opt ">① old</span><span class="opt ">② have</span><span class="opt ">③ student</span><span class="opt ">④ many</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>new</b> <span class="ch-mean">(새로운)</span></div>
-        <div class="ch-opts"><span class="opt ">① many</span><span class="opt ">② home</span><span class="opt ">③ woman</span><span class="opt ">④ old</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>woman</b> <span class="ch-mean">(여자[여성])</span></div>
-        <div class="ch-opts"><span class="opt ">① old</span><span class="opt ">② man</span><span class="opt ">③ thing</span><span class="opt ">④ game</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>like</b> <span class="ch-mean">(좋아하다)</span></div>
-        <div class="ch-opts"><span class="opt ">① child</span><span class="opt ">② teacher</span><span class="opt ">③ thing</span><span class="opt ">④ hate</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>many</b> <span class="ch-mean">((수가) 많은)</span></div>
-        <div class="ch-opts"><span class="opt ">① few</span><span class="opt ">② house</span><span class="opt ">③ see</span><span class="opt ">④ teacher</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>child</b> <span class="ch-mean">(아이, 자식)</span></div>
-        <div class="ch-opts"><span class="opt ">① adult</span><span class="opt ">② computer</span><span class="opt ">③ home</span><span class="opt ">④ country</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>much</b> <span class="ch-mean">((양이) 많은, 많이, 훨씬)</span></div>
-        <div class="ch-opts"><span class="opt ">① see</span><span class="opt ">② many</span><span class="opt ">③ little</span><span class="opt ">④ home</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 02</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
       <li>
         <div class="ch-q"><b>house</b> <span class="ch-mean">(집)</span></div>
-        <div class="ch-opts"><span class="opt ">① home</span><span class="opt ">② music</span><span class="opt ">③ child</span><span class="opt ">④ computer</span></div>
+        <div class="ch-opts"><span class="opt ">① life</span><span class="opt ">② say</span><span class="opt ">③ home</span><span class="opt ">④ like</span></div>
       </li>
       <li>
         <div class="ch-q"><b>home</b> <span class="ch-mean">(가정, 자기 집(으로[에]))</span></div>
-        <div class="ch-opts"><span class="opt ">① country</span><span class="opt ">② like</span><span class="opt ">③ house</span><span class="opt ">④ old</span></div>
+        <div class="ch-opts"><span class="opt ">① house</span><span class="opt ">② music</span><span class="opt ">③ today</span><span class="opt ">④ thing</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>old</b> <span class="ch-mean">(나이 든, 오래된)</span></div>
+        <div class="ch-opts"><span class="opt ">① game</span><span class="opt ">② new</span><span class="opt ">③ computer</span><span class="opt ">④ teacher</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>see</b> <span class="ch-mean">(보다, 만나다, 알다)</span></div>
-        <div class="ch-opts"><span class="opt ">① teacher</span><span class="opt ">② look</span><span class="opt ">③ today</span><span class="opt ">④ much</span></div>
+        <div class="ch-q"><b>many</b> <span class="ch-mean">((수가) 많은)</span></div>
+        <div class="ch-opts"><span class="opt ">① see</span><span class="opt ">② few</span><span class="opt ">③ much</span><span class="opt ">④ game</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>new</b> <span class="ch-mean">(새로운)</span></div>
+        <div class="ch-opts"><span class="opt ">① house</span><span class="opt ">② old</span><span class="opt ">③ home</span><span class="opt ">④ say</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>child</b> <span class="ch-mean">(아이, 자식)</span></div>
+        <div class="ch-opts"><span class="opt ">① life</span><span class="opt ">② adult</span><span class="opt ">③ house</span><span class="opt ">④ new</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>like</b> <span class="ch-mean">(좋아하다)</span></div>
+        <div class="ch-opts"><span class="opt ">① woman</span><span class="opt ">② life</span><span class="opt ">③ today</span><span class="opt ">④ hate</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>woman</b> <span class="ch-mean">(여자[여성])</span></div>
+        <div class="ch-opts"><span class="opt ">① home</span><span class="opt ">② man</span><span class="opt ">③ much</span><span class="opt ">④ old</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>much</b> <span class="ch-mean">((양이) 많은, 많이, 훨씬)</span></div>
+        <div class="ch-opts"><span class="opt ">① little</span><span class="opt ">② say</span><span class="opt ">③ teacher</span><span class="opt ">④ thing</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>teacher</b> <span class="ch-mean">(선생님[교사])</span></div>
+        <div class="ch-opts"><span class="opt ">① today</span><span class="opt ">② life</span><span class="opt ">③ old</span><span class="opt ">④ student</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -1829,41 +1817,34 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 03</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch"><li class="empty">출제할 단어가 부족합니다.</li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>all</b> <span class="ch-mean">(모든, 모두)</span></div>
-        <div class="ch-opts"><span class="opt ">① none</span><span class="opt ">② student</span><span class="opt ">③ money</span><span class="opt ">④ other</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>answer</b> <span class="ch-mean">(대답(하다))</span></div>
-        <div class="ch-opts"><span class="opt ">① lesson</span><span class="opt ">② boy</span><span class="opt ">③ all</span><span class="opt ">④ question</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>student</b> <span class="ch-mean">(학생)</span></div>
-        <div class="ch-opts"><span class="opt ">① teacher</span><span class="opt ">② water</span><span class="opt ">③ make</span><span class="opt ">④ money</span></div>
-      </li>
-      <li>
         <div class="ch-q"><b>love</b> <span class="ch-mean">(사랑(하다))</span></div>
-        <div class="ch-opts"><span class="opt ">① hate</span><span class="opt ">② book</span><span class="opt ">③ lesson</span><span class="opt ">④ picture</span></div>
+        <div class="ch-opts"><span class="opt ">① student</span><span class="opt ">② food</span><span class="opt ">③ some</span><span class="opt ">④ hate</span></div>
       </li>
       <li>
         <div class="ch-q"><b>boy</b> <span class="ch-mean">(소년)</span></div>
-        <div class="ch-opts"><span class="opt ">① think</span><span class="opt ">② picture</span><span class="opt ">③ make</span><span class="opt ">④ girl</span></div>
+        <div class="ch-opts"><span class="opt ">① girl</span><span class="opt ">② food</span><span class="opt ">③ answer</span><span class="opt ">④ love</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>answer</b> <span class="ch-mean">(대답(하다))</span></div>
+        <div class="ch-opts"><span class="opt ">① money</span><span class="opt ">② think</span><span class="opt ">③ question</span><span class="opt ">④ boy</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>student</b> <span class="ch-mean">(학생)</span></div>
+        <div class="ch-opts"><span class="opt ">① other</span><span class="opt ">② water</span><span class="opt ">③ story</span><span class="opt ">④ teacher</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>all</b> <span class="ch-mean">(모든, 모두)</span></div>
+        <div class="ch-opts"><span class="opt ">① none</span><span class="opt ">② other</span><span class="opt ">③ food</span><span class="opt ">④ book</span></div>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 03</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch"><li class="empty">이 유닛에는 출제할 단어가 부족합니다.</li></ol>
   </section>
   <section class="page">
     
@@ -2516,48 +2497,41 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 04</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
-      <li>
-        <div class="ch-q"><b>first</b> <span class="ch-mean">(첫째의, 첫째로, 먼저)</span></div>
-        <div class="ch-opts"><span class="opt ">① last</span><span class="opt ">② right</span><span class="opt ">③ hand</span><span class="opt ">④ part</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>part</b> <span class="ch-mean">(부분, 역할)</span></div>
-        <div class="ch-opts"><span class="opt ">① problem</span><span class="opt ">② change</span><span class="opt ">③ place</span><span class="opt ">④ whole</span></div>
-      </li>
       <li>
         <div class="ch-q"><b>right</b> <span class="ch-mean">(옳은, 오른쪽(의), 권리, 바로)</span></div>
-        <div class="ch-opts"><span class="opt ">① read</span><span class="opt ">② part</span><span class="opt ">③ wrong</span><span class="opt ">④ job</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 04</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
+        <div class="ch-opts"><span class="opt ">① earth</span><span class="opt ">② part</span><span class="opt ">③ group</span><span class="opt ">④ correct</span></div>
+      </li>
       <li>
         <div class="ch-q"><b>group</b> <span class="ch-mean">(무리[집단, 그룹])</span></div>
-        <div class="ch-opts"><span class="opt ">① read</span><span class="opt ">② know</span><span class="opt ">③ weather</span><span class="opt ">④ team</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>right</b> <span class="ch-mean">(옳은, 오른쪽(의), 권리, 바로)</span></div>
-        <div class="ch-opts"><span class="opt ">① correct</span><span class="opt ">② morning</span><span class="opt ">③ problem</span><span class="opt ">④ know</span></div>
+        <div class="ch-opts"><span class="opt ">① part</span><span class="opt ">② idea</span><span class="opt ">③ first</span><span class="opt ">④ team</span></div>
       </li>
       <li>
         <div class="ch-q"><b>look</b> <span class="ch-mean">(보다[보이다], 봄, 표정)</span></div>
-        <div class="ch-opts"><span class="opt ">① morning</span><span class="opt ">② see</span><span class="opt ">③ group</span><span class="opt ">④ parent(s)</span></div>
+        <div class="ch-opts"><span class="opt ">① language</span><span class="opt ">② part</span><span class="opt ">③ see</span><span class="opt ">④ job</span></div>
       </li>
       <li>
         <div class="ch-q"><b>job</b> <span class="ch-mean">(일(자리))</span></div>
-        <div class="ch-opts"><span class="opt ">① language</span><span class="opt ">② hand</span><span class="opt ">③ weather</span><span class="opt ">④ work</span></div>
+        <div class="ch-opts"><span class="opt ">① work</span><span class="opt ">② morning</span><span class="opt ">③ language</span><span class="opt ">④ right</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>first</b> <span class="ch-mean">(첫째의, 첫째로, 먼저)</span></div>
+        <div class="ch-opts"><span class="opt ">① last</span><span class="opt ">② idea</span><span class="opt ">③ group</span><span class="opt ">④ look</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>right</b> <span class="ch-mean">(옳은, 오른쪽(의), 권리, 바로)</span></div>
+        <div class="ch-opts"><span class="opt ">① morning</span><span class="opt ">② word</span><span class="opt ">③ wrong</span><span class="opt ">④ idea</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>part</b> <span class="ch-mean">(부분, 역할)</span></div>
+        <div class="ch-opts"><span class="opt ">① place</span><span class="opt ">② parent(s)</span><span class="opt ">③ whole</span><span class="opt ">④ earth</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -3211,64 +3185,57 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 05</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>night</b> <span class="ch-mean">(밤)</span></div>
-        <div class="ch-opts"><span class="opt ">① big</span><span class="opt ">② television[TV]</span><span class="opt ">③ day</span><span class="opt ">④ then</span></div>
+        <div class="ch-q"><b>big</b> <span class="ch-mean">(큰)</span></div>
+        <div class="ch-opts"><span class="opt ">① happy</span><span class="opt ">② television[TV]</span><span class="opt ">③ large</span><span class="opt ">④ summer</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>big</b> <span class="ch-mean">(큰)</span></div>
+        <div class="ch-q"><b>little</b> <span class="ch-mean">(작은, 어린, 조금(의))</span></div>
         <div class="ch-opts"><span class="opt ">① air</span><span class="opt ">② plant</span><span class="opt ">③ small</span><span class="opt ">④ night</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>little</b> <span class="ch-mean">(작은, 어린, 조금(의))</span></div>
-        <div class="ch-opts"><span class="opt ">① night</span><span class="opt ">② big</span><span class="opt ">③ get</span><span class="opt ">④ plant</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>son</b> <span class="ch-mean">(아들)</span></div>
-        <div class="ch-opts"><span class="opt ">① use</span><span class="opt ">② happy</span><span class="opt ">③ get</span><span class="opt ">④ daughter</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>happy</b> <span class="ch-mean">(행복한[기쁜])</span></div>
-        <div class="ch-opts"><span class="opt ">① get</span><span class="opt ">② sad</span><span class="opt ">③ television[TV]</span><span class="opt ">④ little</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>summer</b> <span class="ch-mean">(여름)</span></div>
-        <div class="ch-opts"><span class="opt ">① want</span><span class="opt ">② winter</span><span class="opt ">③ tree</span><span class="opt ">④ big</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 05</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>big</b> <span class="ch-mean">(큰)</span></div>
-        <div class="ch-opts"><span class="opt ">① use</span><span class="opt ">② car</span><span class="opt ">③ television[TV]</span><span class="opt ">④ large</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>little</b> <span class="ch-mean">(작은, 어린, 조금(의))</span></div>
-        <div class="ch-opts"><span class="opt ">① small</span><span class="opt ">② use</span><span class="opt ">③ son</span><span class="opt ">④ eye</span></div>
-      </li>
-      <li>
         <div class="ch-q"><b>television[TV]</b> <span class="ch-mean">(텔레비전)</span></div>
-        <div class="ch-opts"><span class="opt ">① TV</span><span class="opt ">② summer</span><span class="opt ">③ want</span><span class="opt ">④ shop</span></div>
+        <div class="ch-opts"><span class="opt ">① son</span><span class="opt ">② TV</span><span class="opt ">③ want</span><span class="opt ">④ shop</span></div>
       </li>
       <li>
         <div class="ch-q"><b>happy</b> <span class="ch-mean">(행복한[기쁜])</span></div>
-        <div class="ch-opts"><span class="opt ">① shop</span><span class="opt ">② glad</span><span class="opt ">③ want</span><span class="opt ">④ eye</span></div>
+        <div class="ch-opts"><span class="opt ">① glad</span><span class="opt ">② tree</span><span class="opt ">③ television[TV]</span><span class="opt ">④ air</span></div>
       </li>
       <li>
         <div class="ch-q"><b>shop</b> <span class="ch-mean">(가게, 물건을 사다)</span></div>
-        <div class="ch-opts"><span class="opt ">① store</span><span class="opt ">② example</span><span class="opt ">③ tree</span><span class="opt ">④ eye</span></div>
+        <div class="ch-opts"><span class="opt ">① plant</span><span class="opt ">② example</span><span class="opt ">③ night</span><span class="opt ">④ store</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>happy</b> <span class="ch-mean">(행복한[기쁜])</span></div>
+        <div class="ch-opts"><span class="opt ">① son</span><span class="opt ">② eye</span><span class="opt ">③ example</span><span class="opt ">④ sad</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>big</b> <span class="ch-mean">(큰)</span></div>
+        <div class="ch-opts"><span class="opt ">① eye</span><span class="opt ">② car</span><span class="opt ">③ small</span><span class="opt ">④ air</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>summer</b> <span class="ch-mean">(여름)</span></div>
+        <div class="ch-opts"><span class="opt ">① winter</span><span class="opt ">② want</span><span class="opt ">③ television[TV]</span><span class="opt ">④ little</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>little</b> <span class="ch-mean">(작은, 어린, 조금(의))</span></div>
+        <div class="ch-opts"><span class="opt ">① car</span><span class="opt ">② television[TV]</span><span class="opt ">③ big</span><span class="opt ">④ tree</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>son</b> <span class="ch-mean">(아들)</span></div>
+        <div class="ch-opts"><span class="opt ">① happy</span><span class="opt ">② daughter</span><span class="opt ">③ example</span><span class="opt ">④ big</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>night</b> <span class="ch-mean">(밤)</span></div>
+        <div class="ch-opts"><span class="opt ">① plant</span><span class="opt ">② day</span><span class="opt ">③ eye</span><span class="opt ">④ dialog(ue)</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -3922,48 +3889,41 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 06</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>different</b> <span class="ch-mean">(다른)</span></div>
-        <div class="ch-opts"><span class="opt ">① movie</span><span class="opt ">② same</span><span class="opt ">③ talk</span><span class="opt ">④ person</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>king</b> <span class="ch-mean">(왕)</span></div>
-        <div class="ch-opts"><span class="opt ">① interest</span><span class="opt ">② queen</span><span class="opt ">③ fire</span><span class="opt ">④ city</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 06</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>talk</b> <span class="ch-mean">(말하다, 이야기(하다))</span></div>
-        <div class="ch-opts"><span class="opt ">① speak</span><span class="opt ">② park</span><span class="opt ">③ plan</span><span class="opt ">④ hope</span></div>
+        <div class="ch-q"><b>movie</b> <span class="ch-mean">(영화(관))</span></div>
+        <div class="ch-opts"><span class="opt ">① room</span><span class="opt ">② too</span><span class="opt ">③ body</span><span class="opt ">④ film</span></div>
       </li>
       <li>
         <div class="ch-q"><b>great</b> <span class="ch-mean">(큰, 위대한, 멋진)</span></div>
-        <div class="ch-opts"><span class="opt ">① plan</span><span class="opt ">② hope</span><span class="opt ">③ wonderful</span><span class="opt ">④ talk</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>hope</b> <span class="ch-mean">(희망(하다), 바라다)</span></div>
-        <div class="ch-opts"><span class="opt ">① wish</span><span class="opt ">② movie</span><span class="opt ">③ help</span><span class="opt ">④ king</span></div>
+        <div class="ch-opts"><span class="opt ">① sure</span><span class="opt ">② wonderful</span><span class="opt ">③ room</span><span class="opt ">④ body</span></div>
       </li>
       <li>
         <div class="ch-q"><b>sure</b> <span class="ch-mean">(확신하는, 물론)</span></div>
-        <div class="ch-opts"><span class="opt ">① certain</span><span class="opt ">② great</span><span class="opt ">③ park</span><span class="opt ">④ week</span></div>
+        <div class="ch-opts"><span class="opt ">① letter</span><span class="opt ">② building</span><span class="opt ">③ room</span><span class="opt ">④ certain</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>movie</b> <span class="ch-mean">(영화(관))</span></div>
-        <div class="ch-opts"><span class="opt ">① person</span><span class="opt ">② fire</span><span class="opt ">③ film</span><span class="opt ">④ king</span></div>
+        <div class="ch-q"><b>talk</b> <span class="ch-mean">(말하다, 이야기(하다))</span></div>
+        <div class="ch-opts"><span class="opt ">① help</span><span class="opt ">② speak</span><span class="opt ">③ room</span><span class="opt ">④ sure</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>hope</b> <span class="ch-mean">(희망(하다), 바라다)</span></div>
+        <div class="ch-opts"><span class="opt ">① plan</span><span class="opt ">② city</span><span class="opt ">③ wish</span><span class="opt ">④ letter</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>different</b> <span class="ch-mean">(다른)</span></div>
+        <div class="ch-opts"><span class="opt ">① person</span><span class="opt ">② interest</span><span class="opt ">③ city</span><span class="opt ">④ same</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>king</b> <span class="ch-mean">(왕)</span></div>
+        <div class="ch-opts"><span class="opt ">① interest</span><span class="opt ">② person</span><span class="opt ">③ great</span><span class="opt ">④ queen</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -4617,60 +4577,53 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 07</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>future</b> <span class="ch-mean">(미래[장래](의))</span></div>
-        <div class="ch-opts"><span class="opt ">① past</span><span class="opt ">② next</span><span class="opt ">③ eat</span><span class="opt ">④ kind</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>next</b> <span class="ch-mean">(다음의, 바로 옆의, 다음에)</span></div>
-        <div class="ch-opts"><span class="opt ">① color</span><span class="opt ">② last</span><span class="opt ">③ work</span><span class="opt ">④ sea</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>come</b> <span class="ch-mean">(오다)</span></div>
-        <div class="ch-opts"><span class="opt ">① month</span><span class="opt ">② go</span><span class="opt ">③ kind</span><span class="opt ">④ scientist</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>girl</b> <span class="ch-mean">(소녀)</span></div>
-        <div class="ch-opts"><span class="opt ">① boy</span><span class="opt ">② next</span><span class="opt ">③ hour</span><span class="opt ">④ kind</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>tomorrow</b> <span class="ch-mean">(내일)</span></div>
-        <div class="ch-opts"><span class="opt ">① hour</span><span class="opt ">② color</span><span class="opt ">③ yesterday</span><span class="opt ">④ come</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>kind</b> <span class="ch-mean">(친절한, 종류)</span></div>
-        <div class="ch-opts"><span class="opt ">① mean</span><span class="opt ">② girl</span><span class="opt ">③ color</span><span class="opt ">④ work</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>long</b> <span class="ch-mean">(긴, 길게, 오래)</span></div>
-        <div class="ch-opts"><span class="opt ">① month</span><span class="opt ">② come</span><span class="opt ">③ short</span><span class="opt ">④ girl</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>now</b> <span class="ch-mean">(지금, 이제)</span></div>
-        <div class="ch-opts"><span class="opt ">① later</span><span class="opt ">② month</span><span class="opt ">③ river</span><span class="opt ">④ work</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 07</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
         <div class="ch-q"><b>sea</b> <span class="ch-mean">(바다)</span></div>
-        <div class="ch-opts"><span class="opt ">① next</span><span class="opt ">② come</span><span class="opt ">③ work</span><span class="opt ">④ ocean</span></div>
+        <div class="ch-opts"><span class="opt ">① hour</span><span class="opt ">② mountain</span><span class="opt ">③ ocean</span><span class="opt ">④ eat</span></div>
       </li>
       <li>
         <div class="ch-q"><b>kind</b> <span class="ch-mean">(친절한, 종류)</span></div>
-        <div class="ch-opts"><span class="opt ">① tomorrow</span><span class="opt ">② scientist</span><span class="opt ">③ color</span><span class="opt ">④ nice</span></div>
+        <div class="ch-opts"><span class="opt ">① nice</span><span class="opt ">② hour</span><span class="opt ">③ next</span><span class="opt ">④ scientist</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>future</b> <span class="ch-mean">(미래[장래](의))</span></div>
+        <div class="ch-opts"><span class="opt ">① fun</span><span class="opt ">② color</span><span class="opt ">③ past</span><span class="opt ">④ hour</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>girl</b> <span class="ch-mean">(소녀)</span></div>
+        <div class="ch-opts"><span class="opt ">① scientist</span><span class="opt ">② color</span><span class="opt ">③ boy</span><span class="opt ">④ sea</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>long</b> <span class="ch-mean">(긴, 길게, 오래)</span></div>
+        <div class="ch-opts"><span class="opt ">① come</span><span class="opt ">② eat</span><span class="opt ">③ work</span><span class="opt ">④ short</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>come</b> <span class="ch-mean">(오다)</span></div>
+        <div class="ch-opts"><span class="opt ">① go</span><span class="opt ">② hour</span><span class="opt ">③ tomorrow</span><span class="opt ">④ girl</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>next</b> <span class="ch-mean">(다음의, 바로 옆의, 다음에)</span></div>
+        <div class="ch-opts"><span class="opt ">① girl</span><span class="opt ">② last</span><span class="opt ">③ fun</span><span class="opt ">④ come</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>now</b> <span class="ch-mean">(지금, 이제)</span></div>
+        <div class="ch-opts"><span class="opt ">① river</span><span class="opt ">② come</span><span class="opt ">③ fun</span><span class="opt ">④ later</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>tomorrow</b> <span class="ch-mean">(내일)</span></div>
+        <div class="ch-opts"><span class="opt ">① mountain</span><span class="opt ">② next</span><span class="opt ">③ yesterday</span><span class="opt ">④ eat</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>kind</b> <span class="ch-mean">(친절한, 종류)</span></div>
+        <div class="ch-opts"><span class="opt ">① month</span><span class="opt ">② now</span><span class="opt ">③ mean</span><span class="opt ">④ hour</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -5324,68 +5277,61 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 08</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
+        <div class="ch-q"><b>street</b> <span class="ch-mean">(거리)</span></div>
+        <div class="ch-opts"><span class="opt ">① road</span><span class="opt ">② question</span><span class="opt ">③ play</span><span class="opt ">④ live</span></div>
+      </li>
+      <li>
         <div class="ch-q"><b>beautiful</b> <span class="ch-mean">(아름다운)</span></div>
-        <div class="ch-opts"><span class="opt ">① mind</span><span class="opt ">② live</span><span class="opt ">③ ugly</span><span class="opt ">④ play</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>up</b> <span class="ch-mean">(위로[에])</span></div>
-        <div class="ch-opts"><span class="opt ">① team</span><span class="opt ">② light</span><span class="opt ">③ important</span><span class="opt ">④ down</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>question</b> <span class="ch-mean">(질문, 의문, 문제, 질문하다)</span></div>
-        <div class="ch-opts"><span class="opt ">① listen</span><span class="opt ">② team</span><span class="opt ">③ street</span><span class="opt ">④ answer</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>last</b> <span class="ch-mean">(지난, 마지막의, 계속되다)</span></div>
-        <div class="ch-opts"><span class="opt ">① first</span><span class="opt ">② flower</span><span class="opt ">③ paper</span><span class="opt ">④ question</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>give</b> <span class="ch-mean">(주다)</span></div>
-        <div class="ch-opts"><span class="opt ">① mind</span><span class="opt ">② play</span><span class="opt ">③ take</span><span class="opt ">④ up</span></div>
+        <div class="ch-opts"><span class="opt ">① pretty</span><span class="opt ">② small</span><span class="opt ">③ dog</span><span class="opt ">④ last</span></div>
       </li>
       <li>
         <div class="ch-q"><b>small</b> <span class="ch-mean">(작은)</span></div>
-        <div class="ch-opts"><span class="opt ">① bird</span><span class="opt ">② play</span><span class="opt ">③ soccer</span><span class="opt ">④ big</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>light</b> <span class="ch-mean">(빛[불], 밝은, 가벼운, 불을 붙이다)</span></div>
-        <div class="ch-opts"><span class="opt ">① dark</span><span class="opt ">② paper</span><span class="opt ">③ team</span><span class="opt ">④ dog</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 08</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>beautiful</b> <span class="ch-mean">(아름다운)</span></div>
-        <div class="ch-opts"><span class="opt ">① mind</span><span class="opt ">② live</span><span class="opt ">③ pretty</span><span class="opt ">④ flower</span></div>
+        <div class="ch-opts"><span class="opt ">① song</span><span class="opt ">② paper</span><span class="opt ">③ little</span><span class="opt ">④ team</span></div>
       </li>
       <li>
         <div class="ch-q"><b>listen</b> <span class="ch-mean">(듣다)</span></div>
-        <div class="ch-opts"><span class="opt ">① up</span><span class="opt ">② flower</span><span class="opt ">③ hear</span><span class="opt ">④ soccer</span></div>
+        <div class="ch-opts"><span class="opt ">① street</span><span class="opt ">② last</span><span class="opt ">③ play</span><span class="opt ">④ hear</span></div>
       </li>
       <li>
         <div class="ch-q"><b>team</b> <span class="ch-mean">((경기의) 팀[조])</span></div>
-        <div class="ch-opts"><span class="opt ">① last</span><span class="opt ">② small</span><span class="opt ">③ play</span><span class="opt ">④ group</span></div>
+        <div class="ch-opts"><span class="opt ">① mind</span><span class="opt ">② group</span><span class="opt ">③ soccer</span><span class="opt ">④ give</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>last</b> <span class="ch-mean">(지난, 마지막의, 계속되다)</span></div>
+        <div class="ch-opts"><span class="opt ">① light</span><span class="opt ">② paper</span><span class="opt ">③ first</span><span class="opt ">④ soccer</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>beautiful</b> <span class="ch-mean">(아름다운)</span></div>
+        <div class="ch-opts"><span class="opt ">① question</span><span class="opt ">② paper</span><span class="opt ">③ ugly</span><span class="opt ">④ play</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>question</b> <span class="ch-mean">(질문, 의문, 문제, 질문하다)</span></div>
+        <div class="ch-opts"><span class="opt ">① small</span><span class="opt ">② dog</span><span class="opt ">③ answer</span><span class="opt ">④ street</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>up</b> <span class="ch-mean">(위로[에])</span></div>
+        <div class="ch-opts"><span class="opt ">① play</span><span class="opt ">② question</span><span class="opt ">③ down</span><span class="opt ">④ flower</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>light</b> <span class="ch-mean">(빛[불], 밝은, 가벼운, 불을 붙이다)</span></div>
+        <div class="ch-opts"><span class="opt ">① important</span><span class="opt ">② small</span><span class="opt ">③ dark</span><span class="opt ">④ play</span></div>
       </li>
       <li>
         <div class="ch-q"><b>small</b> <span class="ch-mean">(작은)</span></div>
-        <div class="ch-opts"><span class="opt ">① dog</span><span class="opt ">② up</span><span class="opt ">③ paper</span><span class="opt ">④ little</span></div>
+        <div class="ch-opts"><span class="opt ">① listen</span><span class="opt ">② big</span><span class="opt ">③ last</span><span class="opt ">④ paper</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>street</b> <span class="ch-mean">(거리)</span></div>
-        <div class="ch-opts"><span class="opt ">① road</span><span class="opt ">② song</span><span class="opt ">③ listen</span><span class="opt ">④ live</span></div>
+        <div class="ch-q"><b>give</b> <span class="ch-mean">(주다)</span></div>
+        <div class="ch-opts"><span class="opt ">① take</span><span class="opt ">② light</span><span class="opt ">③ live</span><span class="opt ">④ last</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -6039,44 +5985,37 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 09</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>find</b> <span class="ch-mean">(찾다[발견하다])</span></div>
-        <div class="ch-opts"><span class="opt ">① lose</span><span class="opt ">② space</span><span class="opt ">③ well</span><span class="opt ">④ party</span></div>
+        <div class="ch-q"><b>trip</b> <span class="ch-mean">(여행)</span></div>
+        <div class="ch-opts"><span class="opt ">① journey</span><span class="opt ">② club</span><span class="opt ">③ well</span><span class="opt ">④ party</span></div>
       </li>
-      <li>
-        <div class="ch-q"><b>well</b> <span class="ch-mean">(잘, 건강한, 우물, 글쎄)</span></div>
-        <div class="ch-opts"><span class="opt ">① library</span><span class="opt ">② clothes</span><span class="opt ">③ badly</span><span class="opt ">④ find</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>young</b> <span class="ch-mean">(젊은[어린])</span></div>
-        <div class="ch-opts"><span class="opt ">① phone[telephone]</span><span class="opt ">② well</span><span class="opt ">③ old</span><span class="opt ">④ club</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 09</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
       <li>
         <div class="ch-q"><b>nice</b> <span class="ch-mean">(좋은[멋진], 친절한)</span></div>
-        <div class="ch-opts"><span class="opt ">① party</span><span class="opt ">② library</span><span class="opt ">③ card</span><span class="opt ">④ kind</span></div>
+        <div class="ch-opts"><span class="opt ">① library</span><span class="opt ">② clothes</span><span class="opt ">③ kind</span><span class="opt ">④ find</span></div>
       </li>
       <li>
         <div class="ch-q"><b>topic</b> <span class="ch-mean">(화제[주제])</span></div>
-        <div class="ch-opts"><span class="opt ">① activity</span><span class="opt ">② clothes</span><span class="opt ">③ bike[bicycle]</span><span class="opt ">④ subject</span></div>
+        <div class="ch-opts"><span class="opt ">① phone[telephone]</span><span class="opt ">② well</span><span class="opt ">③ subject</span><span class="opt ">④ club</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>young</b> <span class="ch-mean">(젊은[어린])</span></div>
+        <div class="ch-opts"><span class="opt ">① birthday</span><span class="opt ">② old</span><span class="opt ">③ well</span><span class="opt ">④ library</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>trip</b> <span class="ch-mean">(여행)</span></div>
-        <div class="ch-opts"><span class="opt ">① phone[telephone]</span><span class="opt ">② journey</span><span class="opt ">③ bike[bicycle]</span><span class="opt ">④ nice</span></div>
+        <div class="ch-q"><b>well</b> <span class="ch-mean">(잘, 건강한, 우물, 글쎄)</span></div>
+        <div class="ch-opts"><span class="opt ">① clothes</span><span class="opt ">② every</span><span class="opt ">③ badly</span><span class="opt ">④ feel</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>find</b> <span class="ch-mean">(찾다[발견하다])</span></div>
+        <div class="ch-opts"><span class="opt ">① lose</span><span class="opt ">② nice</span><span class="opt ">③ space</span><span class="opt ">④ young</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -6730,35 +6669,28 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">DAY 10</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>brother</b> <span class="ch-mean">(남자 형제)</span></div>
-        <div class="ch-opts"><span class="opt ">① newspaper</span><span class="opt ">② sister</span><span class="opt ">③ program</span><span class="opt ">④ mail</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bad</b> <span class="ch-mean">(나쁜)</span></div>
-        <div class="ch-opts"><span class="opt ">① shoe</span><span class="opt ">② good</span><span class="opt ">③ out</span><span class="opt ">④ lunch</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>out</b> <span class="ch-mean">(밖에[으로])</span></div>
-        <div class="ch-opts"><span class="opt ">① in</span><span class="opt ">② plane[airplane]</span><span class="opt ">③ lunch</span><span class="opt ">④ bad</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">DAY 10</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
         <div class="ch-q"><b>ship</b> <span class="ch-mean">((타는) 배)</span></div>
-        <div class="ch-opts"><span class="opt ">① rain</span><span class="opt ">② land</span><span class="opt ">③ side</span><span class="opt ">④ boat</span></div>
+        <div class="ch-opts"><span class="opt ">① boat</span><span class="opt ">② each</span><span class="opt ">③ newspaper</span><span class="opt ">④ program</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>brother</b> <span class="ch-mean">(남자 형제)</span></div>
+        <div class="ch-opts"><span class="opt ">① sister</span><span class="opt ">② newspaper</span><span class="opt ">③ land</span><span class="opt ">④ point</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>bad</b> <span class="ch-mean">(나쁜)</span></div>
+        <div class="ch-opts"><span class="opt ">① rain</span><span class="opt ">② each</span><span class="opt ">③ good</span><span class="opt ">④ care</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>out</b> <span class="ch-mean">(밖에[으로])</span></div>
+        <div class="ch-opts"><span class="opt ">① in</span><span class="opt ">② each</span><span class="opt ">③ care</span><span class="opt ">④ sport</span></div>
       </li></ol>
   </section></body></html>
