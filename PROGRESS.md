@@ -62,16 +62,19 @@ HTML로 조립하고 헤드리스 Chrome으로 PDF까지 뽑는 도구.
     입력: `excel/능률VOCA 초등 필수.xlsx`. `--from 1 --to 32 --answer`.
   - DAY 5·10·15·20·25·30·35 결번은 교재의 누적 TEST(복습) DAY로 정상 구조(데이터 손실 아님).
 - **→ 능률VOCA 시리즈 4종(초등 기본·초등 필수·중등 기본·중등 필수) 전량 완료.**
-- 나머지 Bricks 7종: 대기.
-  - ⚠️ **Bricks 4800**: `book_name`에 `Bricks Vocabulary 30` 혼입 → 생성 전 정리 필요.
+- **Bricks Vocabulary 4800** (900단어 / 30유닛, Unit 01~30, 유닛당 30단어)
+  - ✅ 전량 생성 완료(2026-07-23). `output_new/Bricks Vocabulary 4800/`에 학생용·정답 각 374쪽(`..._DAY1-30`).
+    입력: `excel/Bricks Vocabulary 4800.xlsx`. `--from 1 --to 30 --answer`.
+  - book_name 혼입(`Bricks Vocabulary 30`, Unit 30 'tilt' 1줄) → 사용자가 교정. 이제 900줄 통일.
+- 나머지 Bricks 6종: 대기.
   - 참고: 구글드라이브 원본 `능률VOCA 중등 필수.xlsx`는 아직 옛 book_name·DAY27~29 누락 상태. 레포 사본만 정리됨.
 
 **결과물 출력 규칙:** `output_new/<교재이름>/` 아래에 넣는다.
 
 ## 다음에 할 일
 1. ✅ 능률VOCA 시리즈 4종(중등 기본·초등 기본·중등 필수·초등 필수) 전량 생성·푸시 완료.
-2. 다음: **Bricks 시리즈 7종**. 시작 전 각 엑셀 상태 재확인(특히 Bricks 4800 book_name).
-   - Bricks 300/900/1500/2300/3100/3900/4800. 레벨 순 또는 원하는 순서로.
+2. **Bricks 시리즈**: 4800 ✅ 완료. 남은 6종(300/900/1500/2300/3100/3900) 진행.
+   - 시작 전 각 엑셀 상태 재확인(book_name·유닛 결번 등).
 3. ✅ 구 `output_new/주니어 능률 VOAC 기본_DAY1-3.*` 옛 샘플 삭제 완료.
 
 ## 참고
