@@ -386,11 +386,11 @@ def logo_datauri():
     return "data:image/png;base64," + b64
 
 
-def build_html(book_name, units, day_from, day_to, answer=False):
+def build_html(book_name, units, day_from, day_to, answer=False, title_suffix=""):
     body = []
     for i in range(day_from - 1, min(day_to, len(units))):
         body.extend(build_unit_pages(units, i, answer=answer))
-    title = f"{book_name} 워크북" + (" (정답)" if answer else "")
+    title = f"{book_name}{title_suffix} 워크북" + (" (정답)" if answer else "")
     logo = logo_datauri()
     logo_html = f'<img class="pagelogo" src="{logo}" alt="logo">' if logo else ""
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
@@ -436,6 +436,40 @@ def html_to_pdf(html_path, pdf_path):
         shutil.rmtree(profile, ignore_errors=True)
 
 
+# ---------------------------------------------------------------- 분권 범위 계산
+def volume_ranges(total, n):
+    """total개 유닛을 권당 n개로 분할. 마지막에 남는 자투리(<n)는 마지막 권에 합침.
+    반환: [(from, to), ...] (1-based, 양끝 포함). n<=0 또는 n>=total 이면 단권."""
+    if n <= 0 or n >= total:
+        return [(1, total)]
+    ranges = []
+    start = 1
+    while start + n - 1 <= total:
+        ranges.append((start, start + n - 1))
+        start += n
+    if start <= total:  # 자투리 -> 마지막 권에 흡수
+        s, _ = ranges[-1]
+        ranges[-1] = (s, total)
+    return ranges
+
+
+def _emit(out, safe, book_name, units, a, b, vol_tag, title_suffix, answer):
+    """한 범위(권)에 대해 학생용(+정답) HTML/PDF 생성."""
+    h = build_html(book_name, units, a, b, answer=False, title_suffix=title_suffix)
+    hp = os.path.join(out, f"{safe}{vol_tag}_DAY{a}-{b}.html")
+    with open(hp, "w", encoding="utf-8") as f:
+        f.write(h)
+    html_to_pdf(hp, hp[:-5] + ".pdf")
+    print("생성:", hp[:-5] + ".pdf")
+    if answer:
+        ha = build_html(book_name, units, a, b, answer=True, title_suffix=title_suffix)
+        hap = os.path.join(out, f"{safe}{vol_tag}_DAY{a}-{b}_정답.html")
+        with open(hap, "w", encoding="utf-8") as f:
+            f.write(ha)
+        html_to_pdf(hap, hap[:-5] + ".pdf")
+        print("생성:", hap[:-5] + ".pdf")
+
+
 # ---------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
@@ -444,28 +478,23 @@ def main():
     ap.add_argument("--to", dest="dto", type=int, default=3)
     ap.add_argument("--out", default="output")
     ap.add_argument("--answer", action="store_true", help="정답 버전도 생성")
+    ap.add_argument("--split", type=int, default=0,
+                    help="권당 유닛 수로 분권 (예: --split 10). 0이면 단권(--from/--to 사용).")
     args = ap.parse_args()
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)
     for book_name, units in books.items():
         safe = re.sub(r"[\\/:*?\"<>|]", "_", book_name)
-        # 학생용
-        h = build_html(book_name, units, args.dfrom, args.dto, answer=False)
-        hp = os.path.join(args.out, f"{safe}_DAY{args.dfrom}-{args.dto}.html")
-        with open(hp, "w", encoding="utf-8") as f:
-            f.write(h)
-        pp = hp[:-5] + ".pdf"
-        html_to_pdf(hp, pp)
-        print("생성:", pp)
-        if args.answer:
-            ha = build_html(book_name, units, args.dfrom, args.dto, answer=True)
-            hap = os.path.join(args.out, f"{safe}_DAY{args.dfrom}-{args.dto}_정답.html")
-            with open(hap, "w", encoding="utf-8") as f:
-                f.write(ha)
-            ppa = hap[:-5] + ".pdf"
-            html_to_pdf(hap, ppa)
-            print("생성:", ppa)
+        if args.split and args.split > 0:
+            ranges = volume_ranges(len(units), args.split)
+            multi = len(ranges) > 1
+            for vi, (a, b) in enumerate(ranges, 1):
+                vol_tag = f"_{vi}권" if multi else ""
+                title_suffix = f" {vi}권" if multi else ""
+                _emit(args.out, safe, book_name, units, a, b, vol_tag, title_suffix, args.answer)
+        else:
+            _emit(args.out, safe, book_name, units, args.dfrom, args.dto, "", "", args.answer)
 
 
 if __name__ == "__main__":
