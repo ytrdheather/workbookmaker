@@ -84,6 +84,9 @@ ol.ch li { margin-bottom:7px; }
 .opt { border:1px solid var(--line); border-radius:5px; padding:4px 12px; font-size:12.5px; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
+.ch-sec { font-size:13px; font-weight:800; color:var(--teal); margin:10px 0 6px; }
+.ch-sec:first-of-type { margin-top:2px; }
+.ch-hint { font-size:11px; font-weight:400; color:var(--muted); }
 
 /* 암기 노트 (딸기케이크식 4단 자가시험) */
 table.mz { width:100%; border-collapse:collapse; table-layout:fixed; }
@@ -268,10 +271,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 1</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">cap</span><span class="chip">frog</span><span class="chip">good</span><span class="chip">home</span><span class="chip">doll</span><span class="chip">have</span><span class="chip">bear</span><span class="chip">boy</span></div>
     <ol class="fb">
       <li>
@@ -306,53 +309,37 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">That <span class="blank"></span> is my friend.</span> <span class="ans">boy</span>
         <span class="fb-mean">(소년, 남자 아이)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 1</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>boy</b> <span class="ch-mean">(소년, 남자 아이)</span></div>
-        <div class="ch-opts"><span class="opt ">① bear</span><span class="opt opt-ans">② girl</span><span class="opt ">③ cap</span><span class="opt ">④ have</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은)</span></div>
-        <div class="ch-opts"><span class="opt ">① boy</span><span class="opt ">② have</span><span class="opt ">③ home</span><span class="opt opt-ans">④ bad</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 1</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① nice</span><span class="opt ">② frog</span><span class="opt ">③ boy</span><span class="opt ">④ home</span></div>
+        <div class="ch-q"><b>have</b> <span class="ch-mean">(가지다)</span></div>
+        <div class="ch-opts"><span class="opt ">① bear</span><span class="opt ">② cap</span><span class="opt opt-ans">③ get</span><span class="opt ">④ doll</span></div>
       </li>
       <li>
         <div class="ch-q"><b>cap</b> <span class="ch-mean">(모자)</span></div>
-        <div class="ch-opts"><span class="opt ">① good</span><span class="opt ">② frog</span><span class="opt opt-ans">③ hat</span><span class="opt ">④ doll</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>home</b> <span class="ch-mean">(집, 집으로)</span></div>
-        <div class="ch-opts"><span class="opt ">① boy</span><span class="opt ">② frog</span><span class="opt ">③ have</span><span class="opt opt-ans">④ house</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>have</b> <span class="ch-mean">(가지다)</span></div>
-        <div class="ch-opts"><span class="opt ">① frog</span><span class="opt ">② good</span><span class="opt opt-ans">③ get</span><span class="opt ">④ cap</span></div>
+        <div class="ch-opts"><span class="opt ">① boy</span><span class="opt opt-ans">② hat</span><span class="opt ">③ good</span><span class="opt ">④ doll</span></div>
       </li>
       <li>
         <div class="ch-q"><b>doll</b> <span class="ch-mean">(인형)</span></div>
-        <div class="ch-opts"><span class="opt ">① bear</span><span class="opt ">② cap</span><span class="opt ">③ good</span><span class="opt opt-ans">④ toy</span></div>
+        <div class="ch-opts"><span class="opt ">① home</span><span class="opt ">② boy</span><span class="opt opt-ans">③ toy</span><span class="opt ">④ frog</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① nice</span><span class="opt ">② have</span><span class="opt ">③ frog</span><span class="opt ">④ boy</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>home</b> <span class="ch-mean">(집, 집으로)</span></div>
+        <div class="ch-opts"><span class="opt ">① boy</span><span class="opt ">② bear</span><span class="opt ">③ have</span><span class="opt opt-ans">④ house</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>boy</b> <span class="ch-mean">(소년, 남자 아이)</span></div>
+        <div class="ch-opts"><span class="opt ">① home</span><span class="opt ">② cap</span><span class="opt ">③ doll</span><span class="opt opt-ans">④ girl</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>good</b> <span class="ch-mean">(좋은)</span></div>
+        <div class="ch-opts"><span class="opt ">① boy</span><span class="opt ">② cap</span><span class="opt opt-ans">③ bad</span><span class="opt ">④ frog</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -575,10 +562,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 2</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">arm</span><span class="chip">play</span><span class="chip">little</span><span class="chip">fish</span><span class="chip">ear</span><span class="chip">see</span><span class="chip">baby</span><span class="chip">milk</span></div>
     <ol class="fb">
       <li>
@@ -613,45 +600,29 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">I drink <span class="blank"></span> every morning.</span> <span class="ans">milk</span>
         <span class="fb-mean">(우유)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 2</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>little</b> <span class="ch-mean">(작은, 적은)</span></div>
-        <div class="ch-opts"><span class="opt ">① fish</span><span class="opt ">② see</span><span class="opt ">③ baby</span><span class="opt opt-ans">④ big</span></div>
+        <div class="ch-q"><b>see</b> <span class="ch-mean">(~을 보다)</span></div>
+        <div class="ch-opts"><span class="opt ">① arm</span><span class="opt ">② play</span><span class="opt ">③ ear</span><span class="opt opt-ans">④ look at</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>play</b> <span class="ch-mean">(놀다)</span></div>
-        <div class="ch-opts"><span class="opt ">① little</span><span class="opt ">② baby</span><span class="opt ">③ arm</span><span class="opt opt-ans">④ work</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 2</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
         <div class="ch-q"><b>little</b> <span class="ch-mean">(작은, 적은)</span></div>
-        <div class="ch-opts"><span class="opt ">① baby</span><span class="opt ">② arm</span><span class="opt opt-ans">③ small</span><span class="opt ">④ ear</span></div>
+        <div class="ch-opts"><span class="opt ">① ear</span><span class="opt ">② see</span><span class="opt ">③ baby</span><span class="opt opt-ans">④ small</span></div>
       </li>
       <li>
         <div class="ch-q"><b>baby</b> <span class="ch-mean">(아기)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① infant</span><span class="opt ">② play</span><span class="opt ">③ milk</span><span class="opt ">④ arm</span></div>
+        <div class="ch-opts"><span class="opt ">① arm</span><span class="opt opt-ans">② infant</span><span class="opt ">③ see</span><span class="opt ">④ ear</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>little</b> <span class="ch-mean">(작은, 적은)</span></div>
+        <div class="ch-opts"><span class="opt ">① baby</span><span class="opt ">② arm</span><span class="opt opt-ans">③ big</span><span class="opt ">④ ear</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>see</b> <span class="ch-mean">(~을 보다)</span></div>
-        <div class="ch-opts"><span class="opt ">① fish</span><span class="opt ">② play</span><span class="opt opt-ans">③ look at</span><span class="opt ">④ little</span></div>
+        <div class="ch-q"><b>play</b> <span class="ch-mean">(놀다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① work</span><span class="opt ">② see</span><span class="opt ">③ milk</span><span class="opt ">④ arm</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -926,10 +897,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 3</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">nose</span><span class="chip">happy</span><span class="chip">flower</span><span class="chip">egg</span><span class="chip">leg</span><span class="chip">ball</span><span class="chip">cake</span><span class="chip">go</span></div>
     <ol class="fb">
       <li>
@@ -964,41 +935,25 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">This <span class="blank"></span> smells good.</span> <span class="ans">flower</span>
         <span class="fb-mean">(꽃)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 3</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
         <div class="ch-q"><b>go</b> <span class="ch-mean">((다른 곳으로) 가다)</span></div>
-        <div class="ch-opts"><span class="opt ">① happy</span><span class="opt opt-ans">② come</span><span class="opt ">③ ball</span><span class="opt ">④ egg</span></div>
+        <div class="ch-opts"><span class="opt ">① happy</span><span class="opt opt-ans">② move</span><span class="opt ">③ ball</span><span class="opt ">④ egg</span></div>
       </li>
       <li>
         <div class="ch-q"><b>happy</b> <span class="ch-mean">(행복한)</span></div>
-        <div class="ch-opts"><span class="opt ">① egg</span><span class="opt opt-ans">② sad</span><span class="opt ">③ leg</span><span class="opt ">④ flower</span></div>
+        <div class="ch-opts"><span class="opt ">① egg</span><span class="opt opt-ans">② glad</span><span class="opt ">③ leg</span><span class="opt ">④ flower</span></div>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 3</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 반의어 고르기</div>
     <ol class="ch">
       <li>
         <div class="ch-q"><b>go</b> <span class="ch-mean">((다른 곳으로) 가다)</span></div>
-        <div class="ch-opts"><span class="opt ">① egg</span><span class="opt ">② cake</span><span class="opt opt-ans">③ move</span><span class="opt ">④ happy</span></div>
+        <div class="ch-opts"><span class="opt ">① egg</span><span class="opt ">② cake</span><span class="opt opt-ans">③ come</span><span class="opt ">④ happy</span></div>
       </li>
       <li>
         <div class="ch-q"><b>happy</b> <span class="ch-mean">(행복한)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① glad</span><span class="opt ">② leg</span><span class="opt ">③ ball</span><span class="opt ">④ egg</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① sad</span><span class="opt ">② leg</span><span class="opt ">③ ball</span><span class="opt ">④ egg</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -1273,10 +1228,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 4</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">say</span><span class="chip">eye</span><span class="chip">girl</span><span class="chip">dish</span><span class="chip">bad</span><span class="chip">book</span><span class="chip">name</span><span class="chip">chair</span></div>
     <ol class="fb">
       <li>
@@ -1311,45 +1266,29 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">The <span class="blank"></span> is wearing a dress.</span> <span class="ans">girl</span>
         <span class="fb-mean">(소녀, 여자 아이)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 4</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>girl</b> <span class="ch-mean">(소녀, 여자 아이)</span></div>
-        <div class="ch-opts"><span class="opt ">① name</span><span class="opt ">② book</span><span class="opt ">③ say</span><span class="opt opt-ans">④ boy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bad</b> <span class="ch-mean">(나쁜, 안 좋은)</span></div>
-        <div class="ch-opts"><span class="opt ">① eye</span><span class="opt opt-ans">② good</span><span class="opt ">③ book</span><span class="opt ">④ chair</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 4</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
         <div class="ch-q"><b>say</b> <span class="ch-mean">(말하다)</span></div>
-        <div class="ch-opts"><span class="opt ">① chair</span><span class="opt ">② bad</span><span class="opt ">③ eye</span><span class="opt opt-ans">④ speak</span></div>
+        <div class="ch-opts"><span class="opt ">① book</span><span class="opt ">② eye</span><span class="opt ">③ name</span><span class="opt opt-ans">④ speak</span></div>
       </li>
       <li>
         <div class="ch-q"><b>chair</b> <span class="ch-mean">(의자)</span></div>
-        <div class="ch-opts"><span class="opt ">① say</span><span class="opt ">② name</span><span class="opt ">③ girl</span><span class="opt opt-ans">④ seat</span></div>
+        <div class="ch-opts"><span class="opt ">① bad</span><span class="opt opt-ans">② seat</span><span class="opt ">③ eye</span><span class="opt ">④ say</span></div>
       </li>
       <li>
         <div class="ch-q"><b>dish</b> <span class="ch-mean">(접시)</span></div>
-        <div class="ch-opts"><span class="opt ">① name</span><span class="opt opt-ans">② plate</span><span class="opt ">③ say</span><span class="opt ">④ eye</span></div>
+        <div class="ch-opts"><span class="opt ">① say</span><span class="opt ">② chair</span><span class="opt ">③ bad</span><span class="opt opt-ans">④ plate</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>girl</b> <span class="ch-mean">(소녀, 여자 아이)</span></div>
+        <div class="ch-opts"><span class="opt ">① chair</span><span class="opt ">② eye</span><span class="opt ">③ book</span><span class="opt opt-ans">④ boy</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>bad</b> <span class="ch-mean">(나쁜, 안 좋은)</span></div>
+        <div class="ch-opts"><span class="opt ">① chair</span><span class="opt ">② say</span><span class="opt ">③ girl</span><span class="opt opt-ans">④ good</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -1624,10 +1563,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 5</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">dress</span><span class="chip">ant</span><span class="chip">hair</span><span class="chip">smell</span><span class="chip">cup</span><span class="chip">kite</span><span class="chip">read</span><span class="chip">boat</span></div>
     <ol class="fb">
       <li>
@@ -1662,41 +1601,25 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">I <span class="blank"></span> the red rose.</span> <span class="ans">smell</span>
         <span class="fb-mean">(냄새가 나다)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 5</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>read</b> <span class="ch-mean">(읽다)</span></div>
-        <div class="ch-opts"><span class="opt ">① ant</span><span class="opt opt-ans">② write</span><span class="opt ">③ hair</span><span class="opt ">④ cup</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 5</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
         <div class="ch-q"><b>cup</b> <span class="ch-mean">(컵, 잔)</span></div>
-        <div class="ch-opts"><span class="opt ">① hair</span><span class="opt ">② read</span><span class="opt opt-ans">③ glass</span><span class="opt ">④ ant</span></div>
+        <div class="ch-opts"><span class="opt ">① dress</span><span class="opt ">② ant</span><span class="opt opt-ans">③ glass</span><span class="opt ">④ read</span></div>
       </li>
       <li>
         <div class="ch-q"><b>dress</b> <span class="ch-mean">(드레스, 옷을 입다)</span></div>
-        <div class="ch-opts"><span class="opt ">① smell</span><span class="opt ">② read</span><span class="opt opt-ans">③ clothes</span><span class="opt ">④ boat</span></div>
+        <div class="ch-opts"><span class="opt ">① ant</span><span class="opt ">② hair</span><span class="opt ">③ cup</span><span class="opt opt-ans">④ clothes</span></div>
       </li>
       <li>
         <div class="ch-q"><b>boat</b> <span class="ch-mean">((작은) 배)</span></div>
-        <div class="ch-opts"><span class="opt ">① smell</span><span class="opt opt-ans">② ship</span><span class="opt ">③ read</span><span class="opt ">④ dress</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① ship</span><span class="opt ">② smell</span><span class="opt ">③ kite</span><span class="opt ">④ read</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>read</b> <span class="ch-mean">(읽다)</span></div>
+        <div class="ch-opts"><span class="opt ">① ant</span><span class="opt opt-ans">② write</span><span class="opt ">③ cup</span><span class="opt ">④ hair</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -1971,10 +1894,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 6</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">hot</span><span class="chip">water</span><span class="chip">desk</span><span class="chip">bird</span><span class="chip">car</span><span class="chip">make</span><span class="chip">bread</span><span class="chip">apple</span></div>
     <ol class="fb">
       <li>
@@ -2009,41 +1932,25 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">I <span class="blank"></span> a paper plane.</span> <span class="ans">make</span>
         <span class="fb-mean">(만들다)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 6</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
-      <li>
-        <div class="ch-q"><b>hot</b> <span class="ch-mean">(뜨거운, 더운)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① cold</span><span class="opt ">② bird</span><span class="opt ">③ desk</span><span class="opt ">④ water</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 6</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>make</b> <span class="ch-mean">(만들다)</span></div>
-        <div class="ch-opts"><span class="opt ">① desk</span><span class="opt ">② apple</span><span class="opt ">③ bird</span><span class="opt opt-ans">④ build</span></div>
-      </li>
       <li>
         <div class="ch-q"><b>desk</b> <span class="ch-mean">(책상)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① table</span><span class="opt ">② bird</span><span class="opt ">③ apple</span><span class="opt ">④ car</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① table</span><span class="opt ">② make</span><span class="opt ">③ water</span><span class="opt ">④ apple</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>make</b> <span class="ch-mean">(만들다)</span></div>
+        <div class="ch-opts"><span class="opt ">① apple</span><span class="opt opt-ans">② build</span><span class="opt ">③ hot</span><span class="opt ">④ desk</span></div>
       </li>
       <li>
         <div class="ch-q"><b>car</b> <span class="ch-mean">(승용차)</span></div>
-        <div class="ch-opts"><span class="opt ">① water</span><span class="opt ">② bird</span><span class="opt ">③ desk</span><span class="opt opt-ans">④ auto</span></div>
+        <div class="ch-opts"><span class="opt ">① bread</span><span class="opt opt-ans">② auto</span><span class="opt ">③ bird</span><span class="opt ">④ hot</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>hot</b> <span class="ch-mean">(뜨거운, 더운)</span></div>
+        <div class="ch-opts"><span class="opt ">① desk</span><span class="opt opt-ans">② cold</span><span class="opt ">③ make</span><span class="opt ">④ apple</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -2318,10 +2225,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 7</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">face</span><span class="chip">bag</span><span class="chip">sock</span><span class="chip">hand</span><span class="chip">look</span><span class="chip">father</span><span class="chip">bee</span><span class="chip">small</span></div>
     <ol class="fb">
       <li>
@@ -2356,49 +2263,33 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent"><span class="blank"></span> at the stars tonight.</span> <span class="ans">look</span>
         <span class="fb-mean">(보다)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 7</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>small</b> <span class="ch-mean">(작은, 적은)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① big</span><span class="opt ">② bee</span><span class="opt ">③ face</span><span class="opt ">④ sock</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>father</b> <span class="ch-mean">(아버지)</span></div>
-        <div class="ch-opts"><span class="opt ">① sock</span><span class="opt ">② face</span><span class="opt opt-ans">③ mother</span><span class="opt ">④ bag</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 7</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>father</b> <span class="ch-mean">(아버지)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① dad</span><span class="opt ">② hand</span><span class="opt ">③ sock</span><span class="opt ">④ look</span></div>
+        <div class="ch-q"><b>bag</b> <span class="ch-mean">(가방)</span></div>
+        <div class="ch-opts"><span class="opt ">① look</span><span class="opt opt-ans">② backpack</span><span class="opt ">③ small</span><span class="opt ">④ face</span></div>
       </li>
       <li>
         <div class="ch-q"><b>look</b> <span class="ch-mean">(보다)</span></div>
-        <div class="ch-opts"><span class="opt ">① bag</span><span class="opt ">② sock</span><span class="opt ">③ father</span><span class="opt opt-ans">④ see</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bag</b> <span class="ch-mean">(가방)</span></div>
-        <div class="ch-opts"><span class="opt ">① father</span><span class="opt ">② face</span><span class="opt opt-ans">③ backpack</span><span class="opt ">④ sock</span></div>
+        <div class="ch-opts"><span class="opt ">① bag</span><span class="opt ">② hand</span><span class="opt ">③ small</span><span class="opt opt-ans">④ see</span></div>
       </li>
       <li>
         <div class="ch-q"><b>small</b> <span class="ch-mean">(작은, 적은)</span></div>
-        <div class="ch-opts"><span class="opt ">① face</span><span class="opt ">② look</span><span class="opt ">③ father</span><span class="opt opt-ans">④ little</span></div>
+        <div class="ch-opts"><span class="opt ">① hand</span><span class="opt opt-ans">② little</span><span class="opt ">③ bag</span><span class="opt ">④ sock</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>father</b> <span class="ch-mean">(아버지)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① dad</span><span class="opt ">② look</span><span class="opt ">③ bag</span><span class="opt ">④ face</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>small</b> <span class="ch-mean">(작은, 적은)</span></div>
+        <div class="ch-opts"><span class="opt ">① bee</span><span class="opt ">② father</span><span class="opt opt-ans">③ big</span><span class="opt ">④ look</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>father</b> <span class="ch-mean">(아버지)</span></div>
+        <div class="ch-opts"><span class="opt ">① bee</span><span class="opt opt-ans">② mother</span><span class="opt ">③ sock</span><span class="opt ">④ bag</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -2673,10 +2564,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 8</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">mother</span><span class="chip">meet</span><span class="chip">bed</span><span class="chip">glove</span><span class="chip">tall</span><span class="chip">time</span><span class="chip">fly</span><span class="chip">leaf</span></div>
     <ol class="fb">
       <li>
@@ -2711,45 +2602,29 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">He is a <span class="blank"></span> boy.</span> <span class="ans">tall</span>
         <span class="fb-mean">(키가 큰, 높은)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 8</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
         <div class="ch-q"><b>tall</b> <span class="ch-mean">(키가 큰, 높은)</span></div>
-        <div class="ch-opts"><span class="opt ">① glove</span><span class="opt opt-ans">② short</span><span class="opt ">③ fly</span><span class="opt ">④ meet</span></div>
+        <div class="ch-opts"><span class="opt ">① meet</span><span class="opt ">② mother</span><span class="opt ">③ leaf</span><span class="opt opt-ans">④ high</span></div>
       </li>
       <li>
         <div class="ch-q"><b>mother</b> <span class="ch-mean">(어머니)</span></div>
-        <div class="ch-opts"><span class="opt ">① leaf</span><span class="opt opt-ans">② father</span><span class="opt ">③ tall</span><span class="opt ">④ bed</span></div>
-      </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 8</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>mother</b> <span class="ch-mean">(어머니)</span></div>
-        <div class="ch-opts"><span class="opt ">① leaf</span><span class="opt opt-ans">② mom</span><span class="opt ">③ meet</span><span class="opt ">④ fly</span></div>
+        <div class="ch-opts"><span class="opt ">① tall</span><span class="opt ">② time</span><span class="opt opt-ans">③ mom</span><span class="opt ">④ glove</span></div>
       </li>
       <li>
         <div class="ch-q"><b>meet</b> <span class="ch-mean">(만나다)</span></div>
-        <div class="ch-opts"><span class="opt ">① glove</span><span class="opt opt-ans">② see</span><span class="opt ">③ fly</span><span class="opt ">④ mother</span></div>
-      </li>
+        <div class="ch-opts"><span class="opt ">① leaf</span><span class="opt ">② fly</span><span class="opt opt-ans">③ see</span><span class="opt ">④ mother</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
       <li>
         <div class="ch-q"><b>tall</b> <span class="ch-mean">(키가 큰, 높은)</span></div>
-        <div class="ch-opts"><span class="opt ">① meet</span><span class="opt opt-ans">② high</span><span class="opt ">③ mother</span><span class="opt ">④ bed</span></div>
+        <div class="ch-opts"><span class="opt ">① leaf</span><span class="opt opt-ans">② short</span><span class="opt ">③ meet</span><span class="opt ">④ fly</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>mother</b> <span class="ch-mean">(어머니)</span></div>
+        <div class="ch-opts"><span class="opt ">① glove</span><span class="opt opt-ans">② father</span><span class="opt ">③ meet</span><span class="opt ">④ bed</span></div>
       </li></ol>
   </section>
   <section class="page">
@@ -3024,10 +2899,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 9</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">give</span><span class="chip">wait</span><span class="chip">eat</span><span class="chip">brother</span><span class="chip">hungry</span><span class="chip">door</span><span class="chip">fork</span><span class="chip">knee</span></div>
     <ol class="fb">
       <li>
@@ -3062,38 +2937,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">I play with my <span class="blank"></span>.</span> <span class="ans">brother</span>
         <span class="fb-mean">(형, 오빠, 남동생)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 9</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch"><li class="empty">출제할 단어가 부족합니다.</li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>hungry</b> <span class="ch-mean">(배고픈)</span></div>
-        <div class="ch-opts"><span class="opt ">① give</span><span class="opt ">② knee</span><span class="opt opt-ans">③ full</span><span class="opt ">④ fork</span></div>
-      </li>
-      <li>
         <div class="ch-q"><b>brother</b> <span class="ch-mean">(형, 오빠, 남동생)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① sister</span><span class="opt ">② door</span><span class="opt ">③ hungry</span><span class="opt ">④ give</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① sister</span><span class="opt ">② door</span><span class="opt ">③ wait</span><span class="opt ">④ give</span></div>
       </li>
       <li>
         <div class="ch-q"><b>give</b> <span class="ch-mean">(주다)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① take</span><span class="opt ">② brother</span><span class="opt ">③ fork</span><span class="opt ">④ knee</span></div>
+        <div class="ch-opts"><span class="opt ">① hungry</span><span class="opt ">② wait</span><span class="opt ">③ brother</span><span class="opt opt-ans">④ take</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>hungry</b> <span class="ch-mean">(배고픈)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① full</span><span class="opt ">② wait</span><span class="opt ">③ fork</span><span class="opt ">④ brother</span></div>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 9</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
-    <ol class="ch"><li class="empty">이 유닛에는 출제할 단어가 부족합니다.</li></ol>
   </section>
   <section class="page">
     
@@ -3367,10 +3226,10 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
     
     <div class="phead">
       <div class="ph-day">Unit 10</div>
-      <div class="ph-title"><span class="pt-ko">예문 빈칸 채우기</span><span class="pt-en">Fill in the Blank</span></div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
     <div class="bank"><span class="chip">work</span><span class="chip">tree</span><span class="chip">song</span><span class="chip">cute</span><span class="chip">neck</span><span class="chip">help</span><span class="chip">sad</span><span class="chip">friend</span></div>
     <ol class="fb">
       <li>
@@ -3405,52 +3264,3366 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">You are my best <span class="blank"></span>.</span> <span class="ans">friend</span>
         <span class="fb-mean">(친구)</span>
       </li></ol>
-  </section>
-  <section class="page">
-    
-    <div class="phead">
-      <div class="ph-day">Unit 10</div>
-      <div class="ph-title"><span class="pt-ko">반의어 고르기</span><span class="pt-en">Choose the Antonym</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
-    </div>
-    <p class="guide">각 단어의 <b>반의어</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>work</b> <span class="ch-mean">(일하다)</span></div>
-        <div class="ch-opts"><span class="opt ">① neck</span><span class="opt opt-ans">② play</span><span class="opt ">③ tree</span><span class="opt ">④ friend</span></div>
+        <div class="ch-q"><b>sad</b> <span class="ch-mean">(슬픈)</span></div>
+        <div class="ch-opts"><span class="opt ">① work</span><span class="opt ">② friend</span><span class="opt opt-ans">③ unhappy</span><span class="opt ">④ song</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>sad</b> <span class="ch-mean">(슬픈)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① happy</span><span class="opt ">② song</span><span class="opt ">③ tree</span><span class="opt ">④ friend</span></div>
+        <div class="ch-q"><b>help</b> <span class="ch-mean">(돕다)</span></div>
+        <div class="ch-opts"><span class="opt ">① tree</span><span class="opt opt-ans">② aid</span><span class="opt ">③ friend</span><span class="opt ">④ sad</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>cute</b> <span class="ch-mean">(귀여운)</span></div>
+        <div class="ch-opts"><span class="opt ">① help</span><span class="opt opt-ans">② lovely</span><span class="opt ">③ sad</span><span class="opt ">④ tree</span></div>
       </li>
       <li>
         <div class="ch-q"><b>friend</b> <span class="ch-mean">(친구)</span></div>
-        <div class="ch-opts"><span class="opt ">① song</span><span class="opt opt-ans">② enemy</span><span class="opt ">③ sad</span><span class="opt ">④ cute</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① buddy</span><span class="opt ">② cute</span><span class="opt ">③ neck</span><span class="opt ">④ tree</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>sad</b> <span class="ch-mean">(슬픈)</span></div>
+        <div class="ch-opts"><span class="opt ">① cute</span><span class="opt ">② help</span><span class="opt opt-ans">③ happy</span><span class="opt ">④ neck</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>friend</b> <span class="ch-mean">(친구)</span></div>
+        <div class="ch-opts"><span class="opt ">① neck</span><span class="opt opt-ans">② enemy</span><span class="opt ">③ song</span><span class="opt ">④ cute</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>work</b> <span class="ch-mean">(일하다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① play</span><span class="opt ">② friend</span><span class="opt ">③ song</span><span class="opt ">④ tree</span></div>
       </li></ol>
   </section>
   <section class="page">
     
     <div class="phead">
-      <div class="ph-day">Unit 10</div>
-      <div class="ph-title"><span class="pt-ko">동의어 고르기</span><span class="pt-en">Choose the Synonym</span></div>
+      <div class="ph-day">Unit 11</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <p class="guide">각 단어의 <b>동의어</b>를 보기에서 고르세요.</p>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">snowy</td>
+        <td class="c-mean">눈이 내리는</td>
+        <td class="c-ex">It is a snowy day.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">hive</td>
+        <td class="c-mean">벌집</td>
+        <td class="c-ex">The bees live in the hive.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">bus</td>
+        <td class="c-mean">버스</td>
+        <td class="c-ex">I go to school by bus.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">bowl</td>
+        <td class="c-mean">(우묵한) 그릇</td>
+        <td class="c-ex">Put the soup in the bowl.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">dish</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">find</td>
+        <td class="c-mean">~을 찾다</td>
+        <td class="c-ex">I can find my key.</td>
+        <td class="c-ant">lose</td>
+        <td class="c-syn">look for</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">sing</td>
+        <td class="c-mean">노래하다</td>
+        <td class="c-ex">We sing together in class.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">house</td>
+        <td class="c-mean">집</td>
+        <td class="c-ex">This is a big white house.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">home</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">white</td>
+        <td class="c-mean">흰색의, 흰색</td>
+        <td class="c-ex">The snow is white.</td>
+        <td class="c-ant">black</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 11</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 11</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">find</td>
+        <td class="w-mean">~을 찾다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">bus</td>
+        <td class="w-mean">버스</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">house</td>
+        <td class="w-mean">집</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">snowy</td>
+        <td class="w-mean">눈이 내리는</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">white</td>
+        <td class="w-mean">흰색의, 흰색</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">hive</td>
+        <td class="w-mean">벌집</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">sing</td>
+        <td class="w-mean">노래하다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">bowl</td>
+        <td class="w-mean">(우묵한) 그릇</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 11</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 9</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">brother</td>
+        <td class="rv-a"><span class="ans">형, 오빠, 남동생</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">배고픈</td>
+        <td class="rv-a"><span class="ans">hungry</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">door</td>
+        <td class="rv-a"><span class="ans">문</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">wait</td>
+        <td class="rv-a"><span class="ans">기다리다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">먹다</td>
+        <td class="rv-a"><span class="ans">eat</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">knee</td>
+        <td class="rv-a"><span class="ans">무릎</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-eng">fork</td>
+        <td class="rv-a"><span class="ans">포크</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">주다</td>
+        <td class="rv-a"><span class="ans">give</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 11</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 10</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">work</td>
+        <td class="rv-a"><span class="ans">일하다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">friend</td>
+        <td class="rv-a"><span class="ans">친구</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">노래</td>
+        <td class="rv-a"><span class="ans">song</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">돕다</td>
+        <td class="rv-a"><span class="ans">help</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">cute</td>
+        <td class="rv-a"><span class="ans">귀여운</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">sad</td>
+        <td class="rv-a"><span class="ans">슬픈</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">목</td>
+        <td class="rv-a"><span class="ans">neck</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">나무</td>
+        <td class="rv-a"><span class="ans">tree</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 11</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">find</span><span class="chip">house</span><span class="chip">bowl</span><span class="chip">hive</span><span class="chip">bus</span><span class="chip">snowy</span><span class="chip">sing</span><span class="chip">white</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">I go to school by <span class="blank"></span>.</span> <span class="ans">bus</span>
+        <span class="fb-mean">(버스)</span>
+      </li>
+      <li>
+        <span class="fb-sent">This is a big white <span class="blank"></span>.</span> <span class="ans">house</span>
+        <span class="fb-mean">(집)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I can <span class="blank"></span> my key.</span> <span class="ans">find</span>
+        <span class="fb-mean">(~을 찾다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The snow is <span class="blank"></span>.</span> <span class="ans">white</span>
+        <span class="fb-mean">(흰색의, 흰색)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Put the soup in the <span class="blank"></span>.</span> <span class="ans">bowl</span>
+        <span class="fb-mean">((우묵한) 그릇)</span>
+      </li>
+      <li>
+        <span class="fb-sent">We <span class="blank"></span> together in class.</span> <span class="ans">sing</span>
+        <span class="fb-mean">(노래하다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The bees live in the <span class="blank"></span>.</span> <span class="ans">hive</span>
+        <span class="fb-mean">(벌집)</span>
+      </li>
+      <li>
+        <span class="fb-sent">It is a <span class="blank"></span> day.</span> <span class="ans">snowy</span>
+        <span class="fb-mean">(눈이 내리는)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">
       <li>
-        <div class="ch-q"><b>friend</b> <span class="ch-mean">(친구)</span></div>
-        <div class="ch-opts"><span class="opt ">① cute</span><span class="opt ">② help</span><span class="opt opt-ans">③ buddy</span><span class="opt ">④ neck</span></div>
+        <div class="ch-q"><b>find</b> <span class="ch-mean">(~을 찾다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① look for</span><span class="opt ">② sing</span><span class="opt ">③ bus</span><span class="opt ">④ hive</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>sad</b> <span class="ch-mean">(슬픈)</span></div>
-        <div class="ch-opts"><span class="opt ">① neck</span><span class="opt opt-ans">② unhappy</span><span class="opt ">③ song</span><span class="opt ">④ cute</span></div>
+        <div class="ch-q"><b>bowl</b> <span class="ch-mean">((우묵한) 그릇)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① dish</span><span class="opt ">② bus</span><span class="opt ">③ hive</span><span class="opt ">④ house</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>cute</b> <span class="ch-mean">(귀여운)</span></div>
-        <div class="ch-opts"><span class="opt opt-ans">① lovely</span><span class="opt ">② friend</span><span class="opt ">③ song</span><span class="opt ">④ tree</span></div>
+        <div class="ch-q"><b>house</b> <span class="ch-mean">(집)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① home</span><span class="opt ">② bus</span><span class="opt ">③ sing</span><span class="opt ">④ white</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>find</b> <span class="ch-mean">(~을 찾다)</span></div>
+        <div class="ch-opts"><span class="opt ">① sing</span><span class="opt ">② white</span><span class="opt ">③ bowl</span><span class="opt opt-ans">④ lose</span></div>
       </li>
       <li>
-        <div class="ch-q"><b>help</b> <span class="ch-mean">(돕다)</span></div>
-        <div class="ch-opts"><span class="opt ">① song</span><span class="opt ">② neck</span><span class="opt ">③ cute</span><span class="opt opt-ans">④ aid</span></div>
+        <div class="ch-q"><b>white</b> <span class="ch-mean">(흰색의, 흰색)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① black</span><span class="opt ">② find</span><span class="opt ">③ house</span><span class="opt ">④ snowy</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 12</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">cry</td>
+        <td class="c-mean">울다</td>
+        <td class="c-ex">The baby starts to cry.</td>
+        <td class="c-ant">laugh</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">funny</td>
+        <td class="c-mean">웃기는</td>
+        <td class="c-ex">The movie is very funny.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">silly</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">green</td>
+        <td class="c-mean">녹색의, 녹색</td>
+        <td class="c-ex">The grass is very green.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">hat</td>
+        <td class="c-mean">모자</td>
+        <td class="c-ex">Wear your hat today.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">cap</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">teeth</td>
+        <td class="c-mean">이, 치아</td>
+        <td class="c-ex">Brush your teeth every day.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">watch</td>
+        <td class="c-mean">시계, 보다</td>
+        <td class="c-ex">I watch TV at home.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">see</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">sister</td>
+        <td class="c-mean">언니, 누나, 여동생</td>
+        <td class="c-ex">My sister is very kind.</td>
+        <td class="c-ant">brother</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">ride</td>
+        <td class="c-mean">~을 타다</td>
+        <td class="c-ex">I ride my bike fast.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 12</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 12</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">ride</td>
+        <td class="w-mean">~을 타다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">sister</td>
+        <td class="w-mean">언니, 누나, 여동생</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">funny</td>
+        <td class="w-mean">웃기는</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">teeth</td>
+        <td class="w-mean">이, 치아</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">cry</td>
+        <td class="w-mean">울다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">hat</td>
+        <td class="w-mean">모자</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">watch</td>
+        <td class="w-mean">시계, 보다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">green</td>
+        <td class="w-mean">녹색의, 녹색</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 12</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 10</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">work</td>
+        <td class="rv-a"><span class="ans">일하다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">돕다</td>
+        <td class="rv-a"><span class="ans">help</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">나무</td>
+        <td class="rv-a"><span class="ans">tree</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">song</td>
+        <td class="rv-a"><span class="ans">노래</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">friend</td>
+        <td class="rv-a"><span class="ans">친구</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">귀여운</td>
+        <td class="rv-a"><span class="ans">cute</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">슬픈</td>
+        <td class="rv-a"><span class="ans">sad</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">neck</td>
+        <td class="rv-a"><span class="ans">목</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 12</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 11</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">흰색의, 흰색</td>
+        <td class="rv-a"><span class="ans">white</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">버스</td>
+        <td class="rv-a"><span class="ans">bus</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">hive</td>
+        <td class="rv-a"><span class="ans">벌집</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">집</td>
+        <td class="rv-a"><span class="ans">house</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">sing</td>
+        <td class="rv-a"><span class="ans">노래하다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">bowl</td>
+        <td class="rv-a"><span class="ans">(우묵한) 그릇</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">~을 찾다</td>
+        <td class="rv-a"><span class="ans">find</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">눈이 내리는</td>
+        <td class="rv-a"><span class="ans">snowy</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 12</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">sister</span><span class="chip">hat</span><span class="chip">funny</span><span class="chip">cry</span><span class="chip">watch</span><span class="chip">ride</span><span class="chip">green</span><span class="chip">teeth</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">Brush your <span class="blank"></span> every day.</span> <span class="ans">teeth</span>
+        <span class="fb-mean">(이, 치아)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> my bike fast.</span> <span class="ans">ride</span>
+        <span class="fb-mean">(~을 타다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">My <span class="blank"></span> is very kind.</span> <span class="ans">sister</span>
+        <span class="fb-mean">(언니, 누나, 여동생)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The baby starts to <span class="blank"></span>.</span> <span class="ans">cry</span>
+        <span class="fb-mean">(울다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Wear your <span class="blank"></span> today.</span> <span class="ans">hat</span>
+        <span class="fb-mean">(모자)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The grass is very <span class="blank"></span>.</span> <span class="ans">green</span>
+        <span class="fb-mean">(녹색의, 녹색)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The movie is very <span class="blank"></span>.</span> <span class="ans">funny</span>
+        <span class="fb-mean">(웃기는)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> TV at home.</span> <span class="ans">watch</span>
+        <span class="fb-mean">(시계, 보다)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>hat</b> <span class="ch-mean">(모자)</span></div>
+        <div class="ch-opts"><span class="opt ">① green</span><span class="opt ">② funny</span><span class="opt ">③ ride</span><span class="opt opt-ans">④ cap</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>watch</b> <span class="ch-mean">(시계, 보다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① see</span><span class="opt ">② ride</span><span class="opt ">③ hat</span><span class="opt ">④ green</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>funny</b> <span class="ch-mean">(웃기는)</span></div>
+        <div class="ch-opts"><span class="opt ">① sister</span><span class="opt ">② hat</span><span class="opt opt-ans">③ silly</span><span class="opt ">④ teeth</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>sister</b> <span class="ch-mean">(언니, 누나, 여동생)</span></div>
+        <div class="ch-opts"><span class="opt ">① green</span><span class="opt ">② ride</span><span class="opt opt-ans">③ brother</span><span class="opt ">④ watch</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>cry</b> <span class="ch-mean">(울다)</span></div>
+        <div class="ch-opts"><span class="opt ">① ride</span><span class="opt ">② watch</span><span class="opt ">③ green</span><span class="opt opt-ans">④ laugh</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 13</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">big</td>
+        <td class="c-mean">큰</td>
+        <td class="c-ex">The elephant is very big.</td>
+        <td class="c-ant">small</td>
+        <td class="c-syn">large</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">ZOO</td>
+        <td class="c-mean">동물원</td>
+        <td class="c-ex">I see tigers at the zoo.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">mouth</td>
+        <td class="c-mean">입</td>
+        <td class="c-ex">Open your mouth wide.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">run</td>
+        <td class="c-mean">달리다</td>
+        <td class="c-ex">I can run very fast.</td>
+        <td class="c-ant">walk</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">rainy</td>
+        <td class="c-mean">비가 오는</td>
+        <td class="c-ex">It is a rainy day.</td>
+        <td class="c-ant">sunny</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">card</td>
+        <td class="c-mean">카드</td>
+        <td class="c-ex">I wrote a birthday card.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">tiger</td>
+        <td class="c-mean">호랑이</td>
+        <td class="c-ex">The tiger is very strong.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">write</td>
+        <td class="c-mean">쓰다</td>
+        <td class="c-ex">Write your name here.</td>
+        <td class="c-ant">read</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 13</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 13</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">run</td>
+        <td class="w-mean">달리다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">rainy</td>
+        <td class="w-mean">비가 오는</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">mouth</td>
+        <td class="w-mean">입</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">big</td>
+        <td class="w-mean">큰</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">card</td>
+        <td class="w-mean">카드</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">tiger</td>
+        <td class="w-mean">호랑이</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">ZOO</td>
+        <td class="w-mean">동물원</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">write</td>
+        <td class="w-mean">쓰다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 13</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 11</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">snowy</td>
+        <td class="rv-a"><span class="ans">눈이 내리는</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">버스</td>
+        <td class="rv-a"><span class="ans">bus</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">find</td>
+        <td class="rv-a"><span class="ans">~을 찾다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">sing</td>
+        <td class="rv-a"><span class="ans">노래하다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">흰색의, 흰색</td>
+        <td class="rv-a"><span class="ans">white</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">벌집</td>
+        <td class="rv-a"><span class="ans">hive</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">집</td>
+        <td class="rv-a"><span class="ans">house</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">(우묵한) 그릇</td>
+        <td class="rv-a"><span class="ans">bowl</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 13</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 12</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">teeth</td>
+        <td class="rv-a"><span class="ans">이, 치아</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">언니, 누나, 여동생</td>
+        <td class="rv-a"><span class="ans">sister</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">울다</td>
+        <td class="rv-a"><span class="ans">cry</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">ride</td>
+        <td class="rv-a"><span class="ans">~을 타다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">funny</td>
+        <td class="rv-a"><span class="ans">웃기는</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">watch</td>
+        <td class="rv-a"><span class="ans">시계, 보다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">모자</td>
+        <td class="rv-a"><span class="ans">hat</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">green</td>
+        <td class="rv-a"><span class="ans">녹색의, 녹색</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 13</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">rainy</span><span class="chip">mouth</span><span class="chip">big</span><span class="chip">run</span><span class="chip">card</span><span class="chip">tiger</span><span class="chip">write</span><span class="chip">ZOO</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">The elephant is very <span class="blank"></span>.</span> <span class="ans">big</span>
+        <span class="fb-mean">(큰)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> is very strong.</span> <span class="ans">tiger</span>
+        <span class="fb-mean">(호랑이)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Open your <span class="blank"></span> wide.</span> <span class="ans">mouth</span>
+        <span class="fb-mean">(입)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I see tigers at the <span class="blank"></span>.</span> <span class="ans">ZOO</span>
+        <span class="fb-mean">(동물원)</span>
+      </li>
+      <li>
+        <span class="fb-sent">It is a <span class="blank"></span> day.</span> <span class="ans">rainy</span>
+        <span class="fb-mean">(비가 오는)</span>
+      </li>
+      <li>
+        <span class="fb-sent"><span class="blank"></span> your name here.</span> <span class="ans">write</span>
+        <span class="fb-mean">(쓰다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I can <span class="blank"></span> very fast.</span> <span class="ans">run</span>
+        <span class="fb-mean">(달리다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I wrote a birthday <span class="blank"></span>.</span> <span class="ans">card</span>
+        <span class="fb-mean">(카드)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>big</b> <span class="ch-mean">(큰)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① large</span><span class="opt ">② ZOO</span><span class="opt ">③ run</span><span class="opt ">④ card</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>big</b> <span class="ch-mean">(큰)</span></div>
+        <div class="ch-opts"><span class="opt ">① tiger</span><span class="opt ">② card</span><span class="opt ">③ mouth</span><span class="opt opt-ans">④ small</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>run</b> <span class="ch-mean">(달리다)</span></div>
+        <div class="ch-opts"><span class="opt ">① mouth</span><span class="opt ">② card</span><span class="opt opt-ans">③ walk</span><span class="opt ">④ ZOO</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>write</b> <span class="ch-mean">(쓰다)</span></div>
+        <div class="ch-opts"><span class="opt ">① ZOO</span><span class="opt ">② tiger</span><span class="opt ">③ card</span><span class="opt opt-ans">④ read</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>rainy</b> <span class="ch-mean">(비가 오는)</span></div>
+        <div class="ch-opts"><span class="opt ">① tiger</span><span class="opt opt-ans">② sunny</span><span class="opt ">③ write</span><span class="opt ">④ big</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 14</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">ship</td>
+        <td class="c-mean">(큰) 배</td>
+        <td class="c-ex">The ship is in the sea.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">boat</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">sit</td>
+        <td class="c-mean">앉다</td>
+        <td class="c-ex">Sit on the chair, please.</td>
+        <td class="c-ant">stand</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">letter</td>
+        <td class="c-mean">편지</td>
+        <td class="c-ex">I get a long letter.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">love</td>
+        <td class="c-mean">사랑, 사랑하다</td>
+        <td class="c-ex">I love my family.</td>
+        <td class="c-ant">hate</td>
+        <td class="c-syn">like</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">short</td>
+        <td class="c-mean">짧은, 키가 작은</td>
+        <td class="c-ex">The pencil is very short.</td>
+        <td class="c-ant">tall</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">cold</td>
+        <td class="c-mean">추운, 차가운</td>
+        <td class="c-ex">It is very cold today.</td>
+        <td class="c-ant">hot</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">towel</td>
+        <td class="c-mean">수건</td>
+        <td class="c-ex">Dry your hands with a towel.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">hug</td>
+        <td class="c-mean">껴안다</td>
+        <td class="c-ex">Give your mom a hug.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 14</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 14</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">short</td>
+        <td class="w-mean">짧은, 키가 작은</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">ship</td>
+        <td class="w-mean">(큰) 배</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">love</td>
+        <td class="w-mean">사랑, 사랑하다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">cold</td>
+        <td class="w-mean">추운, 차가운</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">sit</td>
+        <td class="w-mean">앉다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">hug</td>
+        <td class="w-mean">껴안다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">letter</td>
+        <td class="w-mean">편지</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">towel</td>
+        <td class="w-mean">수건</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 14</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 12</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">ride</td>
+        <td class="rv-a"><span class="ans">~을 타다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">teeth</td>
+        <td class="rv-a"><span class="ans">이, 치아</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">funny</td>
+        <td class="rv-a"><span class="ans">웃기는</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">언니, 누나, 여동생</td>
+        <td class="rv-a"><span class="ans">sister</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">모자</td>
+        <td class="rv-a"><span class="ans">hat</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">watch</td>
+        <td class="rv-a"><span class="ans">시계, 보다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">녹색의, 녹색</td>
+        <td class="rv-a"><span class="ans">green</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">울다</td>
+        <td class="rv-a"><span class="ans">cry</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 14</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 13</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">카드</td>
+        <td class="rv-a"><span class="ans">card</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">run</td>
+        <td class="rv-a"><span class="ans">달리다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">ZOO</td>
+        <td class="rv-a"><span class="ans">동물원</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">write</td>
+        <td class="rv-a"><span class="ans">쓰다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">비가 오는</td>
+        <td class="rv-a"><span class="ans">rainy</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">호랑이</td>
+        <td class="rv-a"><span class="ans">tiger</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-eng">big</td>
+        <td class="rv-a"><span class="ans">큰</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">입</td>
+        <td class="rv-a"><span class="ans">mouth</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 14</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">ship</span><span class="chip">letter</span><span class="chip">hug</span><span class="chip">short</span><span class="chip">cold</span><span class="chip">towel</span><span class="chip">sit</span><span class="chip">love</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent"><span class="blank"></span> on the chair, please.</span> <span class="ans">sit</span>
+        <span class="fb-mean">(앉다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Give your mom a <span class="blank"></span>.</span> <span class="ans">hug</span>
+        <span class="fb-mean">(껴안다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">It is very <span class="blank"></span> today.</span> <span class="ans">cold</span>
+        <span class="fb-mean">(추운, 차가운)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> is in the sea.</span> <span class="ans">ship</span>
+        <span class="fb-mean">((큰) 배)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Dry your hands with a <span class="blank"></span>.</span> <span class="ans">towel</span>
+        <span class="fb-mean">(수건)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The pencil is very <span class="blank"></span>.</span> <span class="ans">short</span>
+        <span class="fb-mean">(짧은, 키가 작은)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I get a long <span class="blank"></span>.</span> <span class="ans">letter</span>
+        <span class="fb-mean">(편지)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> my family.</span> <span class="ans">love</span>
+        <span class="fb-mean">(사랑, 사랑하다)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>ship</b> <span class="ch-mean">((큰) 배)</span></div>
+        <div class="ch-opts"><span class="opt ">① hug</span><span class="opt opt-ans">② boat</span><span class="opt ">③ letter</span><span class="opt ">④ short</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>love</b> <span class="ch-mean">(사랑, 사랑하다)</span></div>
+        <div class="ch-opts"><span class="opt ">① cold</span><span class="opt ">② towel</span><span class="opt opt-ans">③ like</span><span class="opt ">④ ship</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>sit</b> <span class="ch-mean">(앉다)</span></div>
+        <div class="ch-opts"><span class="opt ">① hug</span><span class="opt ">② ship</span><span class="opt ">③ love</span><span class="opt opt-ans">④ stand</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>short</b> <span class="ch-mean">(짧은, 키가 작은)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① tall</span><span class="opt ">② ship</span><span class="opt ">③ love</span><span class="opt ">④ letter</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>cold</b> <span class="ch-mean">(추운, 차가운)</span></div>
+        <div class="ch-opts"><span class="opt ">① hug</span><span class="opt opt-ans">② hot</span><span class="opt ">③ towel</span><span class="opt ">④ sit</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>love</b> <span class="ch-mean">(사랑, 사랑하다)</span></div>
+        <div class="ch-opts"><span class="opt ">① cold</span><span class="opt opt-ans">② hate</span><span class="opt ">③ letter</span><span class="opt ">④ towel</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 15</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">foot</td>
+        <td class="c-mean">발</td>
+        <td class="c-ex">My left foot is small.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">sun</td>
+        <td class="c-mean">해, 태양</td>
+        <td class="c-ex">The sun is very bright.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">duck</td>
+        <td class="c-mean">오리</td>
+        <td class="c-ex">The duck says quack quack.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">table</td>
+        <td class="c-mean">식탁</td>
+        <td class="c-ex">Dinner is on the table.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">desk</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">garden</td>
+        <td class="c-mean">정원</td>
+        <td class="c-ex">Flowers grow in the garden.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">yard</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">walk</td>
+        <td class="c-mean">걷다</td>
+        <td class="c-ex">I walk to school.</td>
+        <td class="c-ant">run</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">elephant</td>
+        <td class="c-mean">코끼리</td>
+        <td class="c-ex">The elephant has a long nose.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">like</td>
+        <td class="c-mean">좋아하다</td>
+        <td class="c-ex">I like apples and grapes.</td>
+        <td class="c-ant">hate</td>
+        <td class="c-syn">love</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 15</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 15</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">duck</td>
+        <td class="w-mean">오리</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">table</td>
+        <td class="w-mean">식탁</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">foot</td>
+        <td class="w-mean">발</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">sun</td>
+        <td class="w-mean">해, 태양</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">like</td>
+        <td class="w-mean">좋아하다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">walk</td>
+        <td class="w-mean">걷다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">elephant</td>
+        <td class="w-mean">코끼리</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">garden</td>
+        <td class="w-mean">정원</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 15</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 13</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">write</td>
+        <td class="rv-a"><span class="ans">쓰다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">tiger</td>
+        <td class="rv-a"><span class="ans">호랑이</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">run</td>
+        <td class="rv-a"><span class="ans">달리다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">큰</td>
+        <td class="rv-a"><span class="ans">big</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">ZOO</td>
+        <td class="rv-a"><span class="ans">동물원</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">card</td>
+        <td class="rv-a"><span class="ans">카드</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">입</td>
+        <td class="rv-a"><span class="ans">mouth</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">rainy</td>
+        <td class="rv-a"><span class="ans">비가 오는</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 15</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 14</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">ship</td>
+        <td class="rv-a"><span class="ans">(큰) 배</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">편지</td>
+        <td class="rv-a"><span class="ans">letter</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">추운, 차가운</td>
+        <td class="rv-a"><span class="ans">cold</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">앉다</td>
+        <td class="rv-a"><span class="ans">sit</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">love</td>
+        <td class="rv-a"><span class="ans">사랑, 사랑하다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">towel</td>
+        <td class="rv-a"><span class="ans">수건</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-eng">short</td>
+        <td class="rv-a"><span class="ans">짧은, 키가 작은</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">껴안다</td>
+        <td class="rv-a"><span class="ans">hug</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 15</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">foot</span><span class="chip">garden</span><span class="chip">table</span><span class="chip">elephant</span><span class="chip">sun</span><span class="chip">like</span><span class="chip">duck</span><span class="chip">walk</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> says quack quack.</span> <span class="ans">duck</span>
+        <span class="fb-mean">(오리)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> apples and grapes.</span> <span class="ans">like</span>
+        <span class="fb-mean">(좋아하다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">My left <span class="blank"></span> is small.</span> <span class="ans">foot</span>
+        <span class="fb-mean">(발)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Flowers grow in the <span class="blank"></span>.</span> <span class="ans">garden</span>
+        <span class="fb-mean">(정원)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Dinner is on the <span class="blank"></span>.</span> <span class="ans">table</span>
+        <span class="fb-mean">(식탁)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> has a long nose.</span> <span class="ans">elephant</span>
+        <span class="fb-mean">(코끼리)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> to school.</span> <span class="ans">walk</span>
+        <span class="fb-mean">(걷다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> is very bright.</span> <span class="ans">sun</span>
+        <span class="fb-mean">(해, 태양)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>table</b> <span class="ch-mean">(식탁)</span></div>
+        <div class="ch-opts"><span class="opt ">① garden</span><span class="opt opt-ans">② desk</span><span class="opt ">③ duck</span><span class="opt ">④ walk</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>garden</b> <span class="ch-mean">(정원)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① yard</span><span class="opt ">② foot</span><span class="opt ">③ elephant</span><span class="opt ">④ like</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>like</b> <span class="ch-mean">(좋아하다)</span></div>
+        <div class="ch-opts"><span class="opt ">① duck</span><span class="opt ">② elephant</span><span class="opt opt-ans">③ love</span><span class="opt ">④ foot</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>walk</b> <span class="ch-mean">(걷다)</span></div>
+        <div class="ch-opts"><span class="opt ">① duck</span><span class="opt ">② foot</span><span class="opt ">③ elephant</span><span class="opt opt-ans">④ run</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>like</b> <span class="ch-mean">(좋아하다)</span></div>
+        <div class="ch-opts"><span class="opt ">① walk</span><span class="opt ">② duck</span><span class="opt ">③ sun</span><span class="opt opt-ans">④ hate</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 16</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">come</td>
+        <td class="c-mean">오다</td>
+        <td class="c-ex">Come to my house today.</td>
+        <td class="c-ant">go</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">shoe</td>
+        <td class="c-mean">신발 한 짝</td>
+        <td class="c-ex">Put on your shoes.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">full</td>
+        <td class="c-mean">가득한</td>
+        <td class="c-ex">The box is full of toys.</td>
+        <td class="c-ant">empty</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">map</td>
+        <td class="c-mean">지도</td>
+        <td class="c-ex">Look at the world map.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">bean</td>
+        <td class="c-mean">콩</td>
+        <td class="c-ex">I like green beans.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">pencil</td>
+        <td class="c-mean">연필</td>
+        <td class="c-ex">Use your pencil to write.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">park</td>
+        <td class="c-mean">공원</td>
+        <td class="c-ex">Let&#x27;s play in the park.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">train</td>
+        <td class="c-mean">기차</td>
+        <td class="c-ex">The train is very long.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 16</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 16</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">pencil</td>
+        <td class="w-mean">연필</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">map</td>
+        <td class="w-mean">지도</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">full</td>
+        <td class="w-mean">가득한</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">shoe</td>
+        <td class="w-mean">신발 한 짝</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">park</td>
+        <td class="w-mean">공원</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">bean</td>
+        <td class="w-mean">콩</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">come</td>
+        <td class="w-mean">오다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">train</td>
+        <td class="w-mean">기차</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 16</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 14</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">(큰) 배</td>
+        <td class="rv-a"><span class="ans">ship</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">sit</td>
+        <td class="rv-a"><span class="ans">앉다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">towel</td>
+        <td class="rv-a"><span class="ans">수건</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">love</td>
+        <td class="rv-a"><span class="ans">사랑, 사랑하다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">편지</td>
+        <td class="rv-a"><span class="ans">letter</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">추운, 차가운</td>
+        <td class="rv-a"><span class="ans">cold</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">짧은, 키가 작은</td>
+        <td class="rv-a"><span class="ans">short</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">hug</td>
+        <td class="rv-a"><span class="ans">껴안다</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 16</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 15</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">오리</td>
+        <td class="rv-a"><span class="ans">duck</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">코끼리</td>
+        <td class="rv-a"><span class="ans">elephant</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">sun</td>
+        <td class="rv-a"><span class="ans">해, 태양</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">table</td>
+        <td class="rv-a"><span class="ans">식탁</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">발</td>
+        <td class="rv-a"><span class="ans">foot</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">정원</td>
+        <td class="rv-a"><span class="ans">garden</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">걷다</td>
+        <td class="rv-a"><span class="ans">walk</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">좋아하다</td>
+        <td class="rv-a"><span class="ans">like</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 16</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">park</span><span class="chip">map</span><span class="chip">shoe</span><span class="chip">come</span><span class="chip">bean</span><span class="chip">pencil</span><span class="chip">train</span><span class="chip">full</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">Use your <span class="blank"></span> to write.</span> <span class="ans">pencil</span>
+        <span class="fb-mean">(연필)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> is very long.</span> <span class="ans">train</span>
+        <span class="fb-mean">(기차)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Look at the world <span class="blank"></span>.</span> <span class="ans">map</span>
+        <span class="fb-mean">(지도)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Let's play in the <span class="blank"></span>.</span> <span class="ans">park</span>
+        <span class="fb-mean">(공원)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Put on your <span class="blank"></span>s.</span> <span class="ans">shoe</span>
+        <span class="fb-mean">(신발 한 짝)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I like green <span class="blank"></span>s.</span> <span class="ans">bean</span>
+        <span class="fb-mean">(콩)</span>
+      </li>
+      <li>
+        <span class="fb-sent"><span class="blank"></span> to my house today.</span> <span class="ans">come</span>
+        <span class="fb-mean">(오다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The box is <span class="blank"></span> of toys.</span> <span class="ans">full</span>
+        <span class="fb-mean">(가득한)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch"><li class="empty">출제할 단어가 부족합니다.</li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>come</b> <span class="ch-mean">(오다)</span></div>
+        <div class="ch-opts"><span class="opt ">① map</span><span class="opt opt-ans">② go</span><span class="opt ">③ shoe</span><span class="opt ">④ train</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>full</b> <span class="ch-mean">(가득한)</span></div>
+        <div class="ch-opts"><span class="opt ">① map</span><span class="opt ">② bean</span><span class="opt opt-ans">③ empty</span><span class="opt ">④ pencil</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 17</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">feed</td>
+        <td class="c-mean">먹이다</td>
+        <td class="c-ex">I feed my dog every day.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">fast</td>
+        <td class="c-mean">빠른, 빨리</td>
+        <td class="c-ex">He can run very fast.</td>
+        <td class="c-ant">slow</td>
+        <td class="c-syn">quick</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">spoon</td>
+        <td class="c-mean">숟가락</td>
+        <td class="c-ex">Use a spoon for soup.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">bicycle</td>
+        <td class="c-mean">자전거</td>
+        <td class="c-ex">I ride my bicycle.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">bike</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">lip</td>
+        <td class="c-mean">입술</td>
+        <td class="c-ex">My lips are red.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">tail</td>
+        <td class="c-mean">꼬리</td>
+        <td class="c-ex">The dog wags its tail.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">shop</td>
+        <td class="c-mean">가게, 물건을 사다</td>
+        <td class="c-ex">I go to the toy shop.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">store</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">wear</td>
+        <td class="c-mean">(옷 등을) 입다</td>
+        <td class="c-ex">Wear your jacket today.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 17</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 17</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">fast</td>
+        <td class="w-mean">빠른, 빨리</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">lip</td>
+        <td class="w-mean">입술</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">tail</td>
+        <td class="w-mean">꼬리</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">feed</td>
+        <td class="w-mean">먹이다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">wear</td>
+        <td class="w-mean">(옷 등을) 입다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">spoon</td>
+        <td class="w-mean">숟가락</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">shop</td>
+        <td class="w-mean">가게, 물건을 사다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">bicycle</td>
+        <td class="w-mean">자전거</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 17</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 15</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">오리</td>
+        <td class="rv-a"><span class="ans">duck</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">좋아하다</td>
+        <td class="rv-a"><span class="ans">like</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">걷다</td>
+        <td class="rv-a"><span class="ans">walk</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">foot</td>
+        <td class="rv-a"><span class="ans">발</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">table</td>
+        <td class="rv-a"><span class="ans">식탁</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">sun</td>
+        <td class="rv-a"><span class="ans">해, 태양</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-eng">garden</td>
+        <td class="rv-a"><span class="ans">정원</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">elephant</td>
+        <td class="rv-a"><span class="ans">코끼리</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 17</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 16</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">연필</td>
+        <td class="rv-a"><span class="ans">pencil</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">가득한</td>
+        <td class="rv-a"><span class="ans">full</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">bean</td>
+        <td class="rv-a"><span class="ans">콩</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">map</td>
+        <td class="rv-a"><span class="ans">지도</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">기차</td>
+        <td class="rv-a"><span class="ans">train</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">come</td>
+        <td class="rv-a"><span class="ans">오다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">신발 한 짝</td>
+        <td class="rv-a"><span class="ans">shoe</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">park</td>
+        <td class="rv-a"><span class="ans">공원</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 17</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">tail</span><span class="chip">spoon</span><span class="chip">fast</span><span class="chip">bicycle</span><span class="chip">shop</span><span class="chip">lip</span><span class="chip">feed</span><span class="chip">wear</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">He can run very <span class="blank"></span>.</span> <span class="ans">fast</span>
+        <span class="fb-mean">(빠른, 빨리)</span>
+      </li>
+      <li>
+        <span class="fb-sent"><span class="blank"></span> your jacket today.</span> <span class="ans">wear</span>
+        <span class="fb-mean">((옷 등을) 입다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I go to the toy <span class="blank"></span>.</span> <span class="ans">shop</span>
+        <span class="fb-mean">(가게, 물건을 사다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> my dog every day.</span> <span class="ans">feed</span>
+        <span class="fb-mean">(먹이다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Use a <span class="blank"></span> for soup.</span> <span class="ans">spoon</span>
+        <span class="fb-mean">(숟가락)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I ride my <span class="blank"></span>.</span> <span class="ans">bicycle</span>
+        <span class="fb-mean">(자전거)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The dog wags its <span class="blank"></span>.</span> <span class="ans">tail</span>
+        <span class="fb-mean">(꼬리)</span>
+      </li>
+      <li>
+        <span class="fb-sent">My <span class="blank"></span>s are red.</span> <span class="ans">lip</span>
+        <span class="fb-mean">(입술)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>shop</b> <span class="ch-mean">(가게, 물건을 사다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① store</span><span class="opt ">② lip</span><span class="opt ">③ tail</span><span class="opt ">④ bicycle</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>bicycle</b> <span class="ch-mean">(자전거)</span></div>
+        <div class="ch-opts"><span class="opt ">① shop</span><span class="opt opt-ans">② bike</span><span class="opt ">③ tail</span><span class="opt ">④ spoon</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>fast</b> <span class="ch-mean">(빠른, 빨리)</span></div>
+        <div class="ch-opts"><span class="opt ">① feed</span><span class="opt ">② tail</span><span class="opt ">③ bicycle</span><span class="opt opt-ans">④ quick</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>fast</b> <span class="ch-mean">(빠른, 빨리)</span></div>
+        <div class="ch-opts"><span class="opt ">① bicycle</span><span class="opt ">② spoon</span><span class="opt opt-ans">③ slow</span><span class="opt ">④ feed</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 18</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">umbrella</td>
+        <td class="c-mean">우산</td>
+        <td class="c-ex">Take an umbrella today.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">nice</td>
+        <td class="c-mean">좋은, 멋진</td>
+        <td class="c-ex">You have a nice car.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">good</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">wash</td>
+        <td class="c-mean">씻다</td>
+        <td class="c-ex">Wash your face now.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">clean</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">man</td>
+        <td class="c-mean">남자</td>
+        <td class="c-ex">That man is my teacher.</td>
+        <td class="c-ant">woman</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">banana</td>
+        <td class="c-mean">바나나</td>
+        <td class="c-ex">I eat a yellow banana.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">slow</td>
+        <td class="c-mean">느린</td>
+        <td class="c-ex">The turtle is very slow.</td>
+        <td class="c-ant">fast</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">school</td>
+        <td class="c-mean">학교</td>
+        <td class="c-ex">I love my school.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">mouse</td>
+        <td class="c-mean">쥐</td>
+        <td class="c-ex">The mouse likes cheese.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 18</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 18</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">wash</td>
+        <td class="w-mean">씻다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">mouse</td>
+        <td class="w-mean">쥐</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">slow</td>
+        <td class="w-mean">느린</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">nice</td>
+        <td class="w-mean">좋은, 멋진</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">school</td>
+        <td class="w-mean">학교</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">banana</td>
+        <td class="w-mean">바나나</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">man</td>
+        <td class="w-mean">남자</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">umbrella</td>
+        <td class="w-mean">우산</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 18</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 16</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">신발 한 짝</td>
+        <td class="rv-a"><span class="ans">shoe</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">bean</td>
+        <td class="rv-a"><span class="ans">콩</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">pencil</td>
+        <td class="rv-a"><span class="ans">연필</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">지도</td>
+        <td class="rv-a"><span class="ans">map</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">가득한</td>
+        <td class="rv-a"><span class="ans">full</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">come</td>
+        <td class="rv-a"><span class="ans">오다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">공원</td>
+        <td class="rv-a"><span class="ans">park</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">기차</td>
+        <td class="rv-a"><span class="ans">train</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 18</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 17</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">fast</td>
+        <td class="rv-a"><span class="ans">빠른, 빨리</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">꼬리</td>
+        <td class="rv-a"><span class="ans">tail</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">입술</td>
+        <td class="rv-a"><span class="ans">lip</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">bicycle</td>
+        <td class="rv-a"><span class="ans">자전거</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-mean">먹이다</td>
+        <td class="rv-a"><span class="ans">feed</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-eng">shop</td>
+        <td class="rv-a"><span class="ans">가게, 물건을 사다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-eng">wear</td>
+        <td class="rv-a"><span class="ans">(옷 등을) 입다</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">spoon</td>
+        <td class="rv-a"><span class="ans">숟가락</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 18</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">banana</span><span class="chip">man</span><span class="chip">mouse</span><span class="chip">nice</span><span class="chip">umbrella</span><span class="chip">wash</span><span class="chip">slow</span><span class="chip">school</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> likes cheese.</span> <span class="ans">mouse</span>
+        <span class="fb-mean">(쥐)</span>
+      </li>
+      <li>
+        <span class="fb-sent">That <span class="blank"></span> is my teacher.</span> <span class="ans">man</span>
+        <span class="fb-mean">(남자)</span>
+      </li>
+      <li>
+        <span class="fb-sent"><span class="blank"></span> your face now.</span> <span class="ans">wash</span>
+        <span class="fb-mean">(씻다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I eat a yellow <span class="blank"></span>.</span> <span class="ans">banana</span>
+        <span class="fb-mean">(바나나)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Take an <span class="blank"></span> today.</span> <span class="ans">umbrella</span>
+        <span class="fb-mean">(우산)</span>
+      </li>
+      <li>
+        <span class="fb-sent">You have a <span class="blank"></span> car.</span> <span class="ans">nice</span>
+        <span class="fb-mean">(좋은, 멋진)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The turtle is very <span class="blank"></span>.</span> <span class="ans">slow</span>
+        <span class="fb-mean">(느린)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I love my <span class="blank"></span>.</span> <span class="ans">school</span>
+        <span class="fb-mean">(학교)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>nice</b> <span class="ch-mean">(좋은, 멋진)</span></div>
+        <div class="ch-opts"><span class="opt ">① wash</span><span class="opt opt-ans">② good</span><span class="opt ">③ umbrella</span><span class="opt ">④ banana</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>wash</b> <span class="ch-mean">(씻다)</span></div>
+        <div class="ch-opts"><span class="opt ">① man</span><span class="opt ">② banana</span><span class="opt ">③ mouse</span><span class="opt opt-ans">④ clean</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>slow</b> <span class="ch-mean">(느린)</span></div>
+        <div class="ch-opts"><span class="opt ">① school</span><span class="opt ">② man</span><span class="opt opt-ans">③ fast</span><span class="opt ">④ nice</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>man</b> <span class="ch-mean">(남자)</span></div>
+        <div class="ch-opts"><span class="opt ">① school</span><span class="opt ">② wash</span><span class="opt ">③ mouse</span><span class="opt opt-ans">④ woman</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 19</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">wake</td>
+        <td class="c-mean">잠에서 깨다</td>
+        <td class="c-ex">I wake up at seven.</td>
+        <td class="c-ant">sleep</td>
+        <td class="c-syn">wake up</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">horse</td>
+        <td class="c-mean">(동물) 말</td>
+        <td class="c-ex">The horse runs very fast.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">night</td>
+        <td class="c-mean">밤, 야간</td>
+        <td class="c-ex">Good night, mom.</td>
+        <td class="c-ant">day</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">star</td>
+        <td class="c-mean">별</td>
+        <td class="c-ex">I see stars at night.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">sea</td>
+        <td class="c-mean">바다</td>
+        <td class="c-ex">I swim in the sea.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">ocean</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">cook</td>
+        <td class="c-mean">요리하다, 요리사</td>
+        <td class="c-ex">My dad can cook well.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">long</td>
+        <td class="c-mean">긴</td>
+        <td class="c-ex">The ruler is very long.</td>
+        <td class="c-ant">short</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">truck</td>
+        <td class="c-mean">트럭</td>
+        <td class="c-ex">The truck is very big.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 19</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 19</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">long</td>
+        <td class="w-mean">긴</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">sea</td>
+        <td class="w-mean">바다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">star</td>
+        <td class="w-mean">별</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">night</td>
+        <td class="w-mean">밤, 야간</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">horse</td>
+        <td class="w-mean">(동물) 말</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">cook</td>
+        <td class="w-mean">요리하다, 요리사</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">truck</td>
+        <td class="w-mean">트럭</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">wake</td>
+        <td class="w-mean">잠에서 깨다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 19</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 17</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">tail</td>
+        <td class="rv-a"><span class="ans">꼬리</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-mean">먹이다</td>
+        <td class="rv-a"><span class="ans">feed</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">(옷 등을) 입다</td>
+        <td class="rv-a"><span class="ans">wear</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">자전거</td>
+        <td class="rv-a"><span class="ans">bicycle</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">spoon</td>
+        <td class="rv-a"><span class="ans">숟가락</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">가게, 물건을 사다</td>
+        <td class="rv-a"><span class="ans">shop</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">빠른, 빨리</td>
+        <td class="rv-a"><span class="ans">fast</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">입술</td>
+        <td class="rv-a"><span class="ans">lip</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 19</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 18</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">느린</td>
+        <td class="rv-a"><span class="ans">slow</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">school</td>
+        <td class="rv-a"><span class="ans">학교</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-mean">쥐</td>
+        <td class="rv-a"><span class="ans">mouse</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">바나나</td>
+        <td class="rv-a"><span class="ans">banana</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">man</td>
+        <td class="rv-a"><span class="ans">남자</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">좋은, 멋진</td>
+        <td class="rv-a"><span class="ans">nice</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-eng">umbrella</td>
+        <td class="rv-a"><span class="ans">우산</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">wash</td>
+        <td class="rv-a"><span class="ans">씻다</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 19</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">long</span><span class="chip">sea</span><span class="chip">cook</span><span class="chip">truck</span><span class="chip">horse</span><span class="chip">star</span><span class="chip">wake</span><span class="chip">night</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">The ruler is very <span class="blank"></span>.</span> <span class="ans">long</span>
+        <span class="fb-mean">(긴)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> is very big.</span> <span class="ans">truck</span>
+        <span class="fb-mean">(트럭)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> up at seven.</span> <span class="ans">wake</span>
+        <span class="fb-mean">(잠에서 깨다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I see <span class="blank"></span>s at night.</span> <span class="ans">star</span>
+        <span class="fb-mean">(별)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> runs very fast.</span> <span class="ans">horse</span>
+        <span class="fb-mean">((동물) 말)</span>
+      </li>
+      <li>
+        <span class="fb-sent">My dad can <span class="blank"></span> well.</span> <span class="ans">cook</span>
+        <span class="fb-mean">(요리하다, 요리사)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Good <span class="blank"></span>, mom.</span> <span class="ans">night</span>
+        <span class="fb-mean">(밤, 야간)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I swim in the <span class="blank"></span>.</span> <span class="ans">sea</span>
+        <span class="fb-mean">(바다)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>wake</b> <span class="ch-mean">(잠에서 깨다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① wake up</span><span class="opt ">② horse</span><span class="opt ">③ truck</span><span class="opt ">④ long</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>sea</b> <span class="ch-mean">(바다)</span></div>
+        <div class="ch-opts"><span class="opt ">① horse</span><span class="opt opt-ans">② ocean</span><span class="opt ">③ night</span><span class="opt ">④ truck</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>night</b> <span class="ch-mean">(밤, 야간)</span></div>
+        <div class="ch-opts"><span class="opt ">① star</span><span class="opt ">② wake</span><span class="opt ">③ cook</span><span class="opt opt-ans">④ day</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>wake</b> <span class="ch-mean">(잠에서 깨다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① sleep</span><span class="opt ">② night</span><span class="opt ">③ truck</span><span class="opt ">④ long</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>long</b> <span class="ch-mean">(긴)</span></div>
+        <div class="ch-opts"><span class="opt ">① star</span><span class="opt opt-ans">② short</span><span class="opt ">③ wake</span><span class="opt ">④ horse</span></div>
+      </li></ol>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 20</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="c-no">1</td>
+        <td class="c-eng">buy</td>
+        <td class="c-mean">사다</td>
+        <td class="c-ex">I buy a new book.</td>
+        <td class="c-ant">sell</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">2</td>
+        <td class="c-eng">moon</td>
+        <td class="c-mean">달</td>
+        <td class="c-ex">The moon is round.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">3</td>
+        <td class="c-eng">new</td>
+        <td class="c-mean">새로운</td>
+        <td class="c-ex">I have a new bag.</td>
+        <td class="c-ant">old</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">4</td>
+        <td class="c-eng">farm</td>
+        <td class="c-mean">농장</td>
+        <td class="c-ex">Pigs live on the farm.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">5</td>
+        <td class="c-eng">live</td>
+        <td class="c-mean">살다</td>
+        <td class="c-ex">I live in a big city.</td>
+        <td class="c-ant">die</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">6</td>
+        <td class="c-eng">toy</td>
+        <td class="c-mean">장난감</td>
+        <td class="c-ex">I play with my toys.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">7</td>
+        <td class="c-eng">glasses</td>
+        <td class="c-mean">안경</td>
+        <td class="c-ex">I wear glasses for reading.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">-</td>
+      </tr>
+      <tr>
+        <td class="c-no">8</td>
+        <td class="c-eng">people</td>
+        <td class="c-mean">사람들</td>
+        <td class="c-ex">Many people are in the park.</td>
+        <td class="c-ant">-</td>
+        <td class="c-syn">persons</td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 20</div>
+      <div class="ph-title"><span class="pt-ko">단어 암기 노트</span><span class="pt-en">Memorize &amp; Self-Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:34px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody><tr><td class="mz-no">1</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">2</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">3</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">4</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">5</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">6</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">7</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr><tr><td class="mz-no">8</td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold mz-mark">□</td></tr></tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div><div class="mz-oa-line"></div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 20</div>
+      <div class="ph-title"><span class="pt-ko">쓰기 연습</span><span class="pt-en">Write &amp; Remember</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
+    <table class="wr">
+      <thead>
+        <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="w-no">1</td>
+        <td class="w-eng">glasses</td>
+        <td class="w-mean">안경</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">2</td>
+        <td class="w-eng">moon</td>
+        <td class="w-mean">달</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">3</td>
+        <td class="w-eng">buy</td>
+        <td class="w-mean">사다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">4</td>
+        <td class="w-eng">people</td>
+        <td class="w-mean">사람들</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">5</td>
+        <td class="w-eng">live</td>
+        <td class="w-mean">살다</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">6</td>
+        <td class="w-eng">farm</td>
+        <td class="w-mean">농장</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">7</td>
+        <td class="w-eng">new</td>
+        <td class="w-mean">새로운</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr>
+      <tr>
+        <td class="w-no">8</td>
+        <td class="w-eng">toy</td>
+        <td class="w-mean">장난감</td>
+        <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 20</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 18</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-mean">바나나</td>
+        <td class="rv-a"><span class="ans">banana</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">school</td>
+        <td class="rv-a"><span class="ans">학교</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">man</td>
+        <td class="rv-a"><span class="ans">남자</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-mean">씻다</td>
+        <td class="rv-a"><span class="ans">wash</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">nice</td>
+        <td class="rv-a"><span class="ans">좋은, 멋진</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">쥐</td>
+        <td class="rv-a"><span class="ans">mouse</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-eng">slow</td>
+        <td class="rv-a"><span class="ans">느린</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-eng">umbrella</td>
+        <td class="rv-a"><span class="ans">우산</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 20</div>
+      <div class="ph-title"><span class="pt-ko">누적 복습 시험 &middot; Unit 19</span><span class="pt-en">Review Test</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
+    <table class="rv">
+      <tbody>
+      <tr>
+        <td class="rv-no">1</td>
+        <td class="rv-eng">night</td>
+        <td class="rv-a"><span class="ans">밤, 야간</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">2</td>
+        <td class="rv-eng">star</td>
+        <td class="rv-a"><span class="ans">별</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">3</td>
+        <td class="rv-eng">cook</td>
+        <td class="rv-a"><span class="ans">요리하다, 요리사</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">4</td>
+        <td class="rv-eng">truck</td>
+        <td class="rv-a"><span class="ans">트럭</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">5</td>
+        <td class="rv-eng">long</td>
+        <td class="rv-a"><span class="ans">긴</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">6</td>
+        <td class="rv-mean">잠에서 깨다</td>
+        <td class="rv-a"><span class="ans">wake</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">7</td>
+        <td class="rv-mean">(동물) 말</td>
+        <td class="rv-a"><span class="ans">horse</span></td>
+      </tr>
+      <tr>
+        <td class="rv-no">8</td>
+        <td class="rv-mean">바다</td>
+        <td class="rv-a"><span class="ans">sea</span></td>
+      </tr></tbody>
+    </table>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 20</div>
+      <div class="ph-title"><span class="pt-ko">종합 연습</span><span class="pt-en">Practice</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank"><span class="chip">moon</span><span class="chip">toy</span><span class="chip">buy</span><span class="chip">new</span><span class="chip">live</span><span class="chip">glasses</span><span class="chip">people</span><span class="chip">farm</span></div>
+    <ol class="fb">
+      <li>
+        <span class="fb-sent">I play with my <span class="blank"></span>s.</span> <span class="ans">toy</span>
+        <span class="fb-mean">(장난감)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Pigs live on the <span class="blank"></span>.</span> <span class="ans">farm</span>
+        <span class="fb-mean">(농장)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I wear <span class="blank"></span> for reading.</span> <span class="ans">glasses</span>
+        <span class="fb-mean">(안경)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> in a big city.</span> <span class="ans">live</span>
+        <span class="fb-mean">(살다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">Many <span class="blank"></span> are in the park.</span> <span class="ans">people</span>
+        <span class="fb-mean">(사람들)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I have a <span class="blank"></span> bag.</span> <span class="ans">new</span>
+        <span class="fb-mean">(새로운)</span>
+      </li>
+      <li>
+        <span class="fb-sent">I <span class="blank"></span> a new book.</span> <span class="ans">buy</span>
+        <span class="fb-mean">(사다)</span>
+      </li>
+      <li>
+        <span class="fb-sent">The <span class="blank"></span> is round.</span> <span class="ans">moon</span>
+        <span class="fb-mean">(달)</span>
+      </li></ol>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>people</b> <span class="ch-mean">(사람들)</span></div>
+        <div class="ch-opts"><span class="opt ">① moon</span><span class="opt opt-ans">② persons</span><span class="opt ">③ farm</span><span class="opt ">④ glasses</span></div>
+      </li></ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">
+      <li>
+        <div class="ch-q"><b>new</b> <span class="ch-mean">(새로운)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① old</span><span class="opt ">② live</span><span class="opt ">③ people</span><span class="opt ">④ buy</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>live</b> <span class="ch-mean">(살다)</span></div>
+        <div class="ch-opts"><span class="opt opt-ans">① die</span><span class="opt ">② farm</span><span class="opt ">③ moon</span><span class="opt ">④ glasses</span></div>
+      </li>
+      <li>
+        <div class="ch-q"><b>buy</b> <span class="ch-mean">(사다)</span></div>
+        <div class="ch-opts"><span class="opt ">① live</span><span class="opt opt-ans">② sell</span><span class="opt ">③ toy</span><span class="opt ">④ farm</span></div>
       </li></ol>
   </section></body></html>

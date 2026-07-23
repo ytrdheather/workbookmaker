@@ -174,14 +174,14 @@ def page_writing(day_name, words, seed):
 
 
 # ---------------------------------------------------------------- 페이지: 예문 빈칸
-def page_fillblank(day_name, words, seed, answer=False):
+def _fillblank_parts(words, seed, answer):
+    """예문 빈칸 은행/문항 HTML 생성 -> (bank_html, items_html)."""
     ws = words[:]
     random.Random(seed).shuffle(ws)
-    # 단어 은행(랜덤)
     bank = [w["english"] for w in ws]
     random.Random(seed + 1).shuffle(bank)
     items = []
-    for i, w in enumerate(ws, 1):
+    for w in ws:
         sent = blank_out(w["example"], w["english"])
         ans = f'<span class="ans">{esc(w["english"])}</span>' if answer else ""
         items.append(f"""
@@ -190,12 +190,17 @@ def page_fillblank(day_name, words, seed, answer=False):
         <span class="fb-mean">({esc(w['meaning'])})</span>
       </li>""")
     bank_html = "".join(f'<span class="chip">{esc(b)}</span>' for b in bank)
+    return bank_html, "".join(items)
+
+
+def page_fillblank(day_name, words, seed, answer=False):
+    bank_html, items_html = _fillblank_parts(words, seed, answer)
     return f"""
   <section class="page">
     {page_head(day_name, "예문 빈칸 채우기", "Fill in the Blank")}
     <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
     <div class="bank">{bank_html}</div>
-    <ol class="fb">{''.join(items)}</ol>
+    <ol class="fb">{items_html}</ol>
   </section>"""
 
 
@@ -288,6 +293,27 @@ def page_choice_merged(day_name, words, seed, answer=False):
   <section class="page">
     {page_head(day_name, "동의어 &middot; 반의어 고르기", "Choose Synonym / Antonym")}
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 동의어 고르기</div>
+    <ol class="ch">{syn_html}</ol>
+    <div class="ch-sec">■ 반의어 고르기</div>
+    <ol class="ch">{ant_html}</ol>
+  </section>"""
+
+
+def page_practice_merged(day_name, words, seed, answer=False):
+    """예문 빈칸 + 동의어 + 반의어를 한 페이지에. 단어 수가 아주 적은 교재(예: Bricks 300)용."""
+    bank_html, fb_items = _fillblank_parts(words, seed + 4, answer)
+    sitems = _choice_items(words, "synonyms", random.Random(seed + 5), answer)
+    aitems = _choice_items(words, "antonyms", random.Random(seed + 6), answer)
+    empty = '<li class="empty">출제할 단어가 부족합니다.</li>'
+    syn_html = "".join(sitems) if sitems else empty
+    ant_html = "".join(aitems) if aitems else empty
+    return f"""
+  <section class="page">
+    {page_head(day_name, "종합 연습", "Practice")}
+    <div class="ch-sec">■ 예문 빈칸 채우기 <span class="ch-hint">— 단어 은행에서 골라 쓰세요.</span></div>
+    <div class="bank">{bank_html}</div>
+    <ol class="fb">{fb_items}</ol>
     <div class="ch-sec">■ 동의어 고르기</div>
     <ol class="ch">{syn_html}</ol>
     <div class="ch-sec">■ 반의어 고르기</div>
@@ -388,6 +414,7 @@ ol.ch li { margin-bottom:7px; }
 .empty { color:var(--muted); }
 .ch-sec { font-size:13px; font-weight:800; color:var(--teal); margin:10px 0 6px; }
 .ch-sec:first-of-type { margin-top:2px; }
+.ch-hint { font-size:11px; font-weight:400; color:var(--muted); }
 
 /* 암기 노트 (딸기케이크식 4단 자가시험) */
 table.mz { width:100%; border-collapse:collapse; table-layout:fixed; }
@@ -406,7 +433,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
 
 
 # ---------------------------------------------------------------- 유닛 페이지 조립
-def build_unit_pages(units, i, answer=False, merge_choice=False):
+def build_unit_pages(units, i, answer=False, merge_choice=False, merge_practice=False):
     """units: [(name, words)]. i: 0-based 현재 유닛 index."""
     name, words = units[i]
     base = (i + 1) * 1000
@@ -421,12 +448,15 @@ def build_unit_pages(units, i, answer=False, merge_choice=False):
     if i - 1 >= 0:
         tname, twords = units[i - 1]
         pages.append(page_review(name, tname, twords, seed=base + 300 + i, answer=answer))
-    pages.append(page_fillblank(name, words, seed=base + 4, answer=answer))
-    if merge_choice:  # 동의/반의 적은 교재: 한 페이지로 합쳐 종이 절약
-        pages.append(page_choice_merged(name, words, seed=base + 5, answer=answer))
+    if merge_practice:  # 예문+동의+반의를 한 페이지로 (단어 아주 적은 교재)
+        pages.append(page_practice_merged(name, words, seed=base, answer=answer))
     else:
-        pages.append(page_choice(name, words, "antonyms", seed=base + 5, answer=answer))
-        pages.append(page_choice(name, words, "synonyms", seed=base + 6, answer=answer))
+        pages.append(page_fillblank(name, words, seed=base + 4, answer=answer))
+        if merge_choice:  # 동의/반의만 한 페이지로 합쳐 종이 절약
+            pages.append(page_choice_merged(name, words, seed=base + 5, answer=answer))
+        else:
+            pages.append(page_choice(name, words, "antonyms", seed=base + 5, answer=answer))
+            pages.append(page_choice(name, words, "synonyms", seed=base + 6, answer=answer))
     return pages
 
 
@@ -463,10 +493,12 @@ def logo_datauri():
     return "data:image/png;base64," + b64
 
 
-def build_html(book_name, units, day_from, day_to, answer=False, title_suffix="", merge_choice=False):
+def build_html(book_name, units, day_from, day_to, answer=False, title_suffix="",
+               merge_choice=False, merge_practice=False):
     body = []
     for i in range(day_from - 1, min(day_to, len(units))):
-        body.extend(build_unit_pages(units, i, answer=answer, merge_choice=merge_choice))
+        body.extend(build_unit_pages(units, i, answer=answer,
+                                     merge_choice=merge_choice, merge_practice=merge_practice))
     title = f"{book_name}{title_suffix} 워크북" + (" (정답)" if answer else "")
     logo = logo_datauri()
     logo_html = f'<img class="pagelogo" src="{logo}" alt="logo">' if logo else ""
@@ -549,16 +581,19 @@ def volume_ranges(total, n):
     return ranges
 
 
-def _emit(out, safe, book_name, units, a, b, vol_tag, title_suffix, answer, merge_choice=False):
+def _emit(out, safe, book_name, units, a, b, vol_tag, title_suffix, answer,
+          merge_choice=False, merge_practice=False):
     """한 범위(권)에 대해 학생용(+정답) HTML/PDF 생성."""
-    h = build_html(book_name, units, a, b, answer=False, title_suffix=title_suffix, merge_choice=merge_choice)
+    h = build_html(book_name, units, a, b, answer=False, title_suffix=title_suffix,
+                   merge_choice=merge_choice, merge_practice=merge_practice)
     hp = os.path.join(out, f"{safe}{vol_tag}_DAY{a}-{b}.html")
     with open(hp, "w", encoding="utf-8") as f:
         f.write(h)
     html_to_pdf(hp, hp[:-5] + ".pdf")
     print("생성:", hp[:-5] + ".pdf")
     if answer:
-        ha = build_html(book_name, units, a, b, answer=True, title_suffix=title_suffix, merge_choice=merge_choice)
+        ha = build_html(book_name, units, a, b, answer=True, title_suffix=title_suffix,
+                        merge_choice=merge_choice, merge_practice=merge_practice)
         hap = os.path.join(out, f"{safe}{vol_tag}_DAY{a}-{b}_정답.html")
         with open(hap, "w", encoding="utf-8") as f:
             f.write(ha)
@@ -578,22 +613,24 @@ def main():
                     help="권당 유닛 수로 분권 (예: --split 10). 0이면 단권(--from/--to 사용).")
     ap.add_argument("--merge-choice", dest="merge_choice", action="store_true",
                     help="동의어/반의어 고르기를 한 페이지로 합침 (동의/반의 적은 교재 종이 절약).")
+    ap.add_argument("--merge-practice", dest="merge_practice", action="store_true",
+                    help="예문 빈칸+동의어+반의어를 한 페이지로 합침 (단어 아주 적은 교재. --merge-choice 대체).")
     args = ap.parse_args()
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)
     for book_name, units in books.items():
         safe = re.sub(r"[\\/:*?\"<>|]", "_", book_name)
-        mc = args.merge_choice
+        mc, mp = args.merge_choice, args.merge_practice
         if args.split and args.split > 0:
             ranges = volume_ranges(len(units), args.split)
             multi = len(ranges) > 1
             for vi, (a, b) in enumerate(ranges, 1):
                 vol_tag = f"_{vi}권" if multi else ""
                 title_suffix = f" {vi}권" if multi else ""
-                _emit(args.out, safe, book_name, units, a, b, vol_tag, title_suffix, args.answer, mc)
+                _emit(args.out, safe, book_name, units, a, b, vol_tag, title_suffix, args.answer, mc, mp)
         else:
-            _emit(args.out, safe, book_name, units, args.dfrom, args.dto, "", "", args.answer, mc)
+            _emit(args.out, safe, book_name, units, args.dfrom, args.dto, "", "", args.answer, mc, mp)
 
 
 if __name__ == "__main__":
