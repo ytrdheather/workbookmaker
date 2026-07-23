@@ -16,7 +16,8 @@ from build_workbook import font_face_css, logo_datauri, html_to_pdf
 CSS = """
 @page { size: A4; margin: 12mm 11mm 12mm 11mm; }
 * { box-sizing: border-box; }
-body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:#2f302f; margin:0; font-size:13px; }
+body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:#2f302f; margin:0; font-size:13px;
+  padding-bottom:14mm; }  /* 하단 로고(고정 배치)와 본문 겹침 방지용 여백 */
 
 .phead { display:flex; align-items:flex-end; justify-content:space-between;
   border-bottom:3px solid #32bfb6; padding-bottom:6px; margin-bottom:9px; }
@@ -111,8 +112,8 @@ def main():
     variants = [
         ("단어암기노트_양식_20", True, 20, 31, 5),
         ("단어암기노트_양식_20_로고없음", False, 20, 31, 5),
-        ("단어암기노트_양식_30", True, 30, 23, 4),
-        ("단어암기노트_양식_30_로고없음", False, 30, 23, 4),
+        ("단어암기노트_양식_30", True, 30, 22, 4),
+        ("단어암기노트_양식_30_로고없음", False, 30, 22, 4),
     ]
     for stem, show_logo, rows, row_h, oa_lines in variants:
         hp = os.path.join(out, stem + ".html")

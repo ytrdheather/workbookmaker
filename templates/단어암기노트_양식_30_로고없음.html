@@ -7,7 +7,8 @@
 
 @page { size: A4; margin: 12mm 11mm 12mm 11mm; }
 * { box-sizing: border-box; }
-body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:#2f302f; margin:0; font-size:13px; }
+body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:#2f302f; margin:0; font-size:13px;
+  padding-bottom:14mm; }  /* 하단 로고(고정 배치)와 본문 겹침 방지용 여백 */
 
 .phead { display:flex; align-items:flex-end; justify-content:space-between;
   border-bottom:3px solid #32bfb6; padding-bottom:6px; margin-bottom:9px; }
@@ -40,7 +41,7 @@ table.nt tr:nth-child(even) td { background:#f4fbfa; }
 .oadap .oa-line:last-child { margin-bottom:0; }
 .pagelogo { position:fixed; bottom:1mm; right:2mm; width:28mm; height:auto; opacity:.95; }
 
-table.nt td { height:23px; }</style></head>
+table.nt td { height:22px; }</style></head>
 <body>
   <div class="phead">
     <div class="ph-left">이름 :<span class="nline"></span><br>날짜 :<span class="nline"></span></div>
