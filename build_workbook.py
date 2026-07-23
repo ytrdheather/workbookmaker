@@ -112,6 +112,41 @@ def page_wordlist(day_name, words):
   </section>"""
 
 
+# ---------------------------------------------------------------- 페이지: 암기 노트
+def page_memorize(day_name, words):
+    """딸기케이크식 4단 자가시험 노트(빈칸). 단어를 직접 쓰게 하고, 단어 수에 맞춰 행 높이 자동 조정.
+    단어목록 바로 뒤에 배치해 '외우는 단계'를 강제한다."""
+    n = max(len(words), 1)
+    # 행 높이: 하단 로고 여백 확보하며 한 페이지에 들어가도록 (행 영역 예산 ~600px)
+    row_h = max(18, min(34, 600 // n))
+    rows = []
+    for i in range(1, n + 1):
+        rows.append(
+            f'<tr><td class="mz-no">{i}</td>'
+            f'<td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td>'
+            f'<td class="mz-fold mz-mark">□</td></tr>')
+    oa = "".join('<div class="mz-oa-line"></div>' for _ in range(4))
+    return f"""
+  <section class="page">
+    {page_head(day_name, "단어 암기 노트", "Memorize &amp; Self-Test")}
+    <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
+      <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
+      <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
+      <b>④ 모름 □</b> 체크 → 아래 오답 정리에 <b>모르는 것만</b> 다시.</p>
+    <table class="mz" style="--mzh:{row_h}px">
+      <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:27%"><col style="width:34px"></colgroup>
+      <thead><tr>
+        <th>No</th><th class="mz-fold">① 단어</th>
+        <th class="mz-fold">② 뜻 쓰기<br><span class="mz-th-sub">단어 보고 · 외워서</span></th>
+        <th class="mz-fold">③ 스펠링 쓰기<br><span class="mz-th-sub">단어 접어 가리고 · 뜻만 보고</span></th>
+        <th class="mz-fold">모름</th>
+      </tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table>
+    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div>{oa}</div>
+  </section>"""
+
+
 # ---------------------------------------------------------------- 페이지: 4회 쓰기
 def page_writing(day_name, words, seed):
     ws = words[:]
@@ -329,6 +364,20 @@ ol.ch li { margin-bottom:7px; }
 .opt { border:1px solid var(--line); border-radius:5px; padding:4px 12px; font-size:12.5px; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
+
+/* 암기 노트 (딸기케이크식 4단 자가시험) */
+table.mz { width:100%; border-collapse:collapse; table-layout:fixed; }
+table.mz th { background:var(--teal); color:#fff; font-size:11px; font-weight:700; padding:6px 4px; }
+.mz-th-sub { font-weight:400; font-size:8.5px; opacity:.9; }
+table.mz td { border-bottom:1px solid var(--line); height:var(--mzh,26px); }
+table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
+.mz-fold { border-left:1px dashed var(--teal-lt); }
+.mz-no { text-align:center; color:var(--muted); font-size:11px; }
+.mz-mark { text-align:center; color:#b4b2a9; }
+.mz-oa { margin-top:10px; border:1.5px dashed var(--sand); background:var(--sand-bg); border-radius:6px; padding:8px 10px; }
+.mz-oa-t { font-size:11.5px; font-weight:800; color:#b06a2c; margin-bottom:7px; }
+.mz-oa-line { border-bottom:1px solid #d9c3ab; height:19px; margin-bottom:6px; }
+.mz-oa-line:last-child { margin-bottom:0; }
 """
 
 
@@ -339,6 +388,7 @@ def build_unit_pages(units, i, answer=False):
     base = (i + 1) * 1000
     pages = []
     pages.append(page_wordlist(name, words))
+    pages.append(page_memorize(name, words))   # 단어목록 뒤 → '외우는 단계' 강제
     pages.append(page_writing(name, words, seed=base + 1))
     # 누적 복습: N-2, N-1
     if i - 2 >= 0:
