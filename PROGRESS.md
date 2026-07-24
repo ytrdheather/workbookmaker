@@ -5,27 +5,30 @@
 ---
 ## 🔖 다음 세션 인수인계 (직장 PC에서 이어서) — 먼저 읽기
 
-**바로 할 일: Bricks 2300 보강** (엑셀에 Unit 16-30만 있고 **Unit 1-15 누락**. PDF 있음)
+**Bricks 시리즈 7종은 전부 완료됨.** 남은 일은 아래 두 갈래.
 
-이 대화 없이도 아래 순서만 따라 하면 됨. (Bricks 900·1500을 이 방식으로 이미 완료함 — 그대로 복제)
+### ① (빠름·생성 불필요) 페이지번호 없는 완료본 7종 재생성
+능률 4종 + Bricks 3100/3900/4800은 **데이터는 완전한데 페이지 번호가 없음**(그 기능 추가 전에 만든 것). 재생성만 하면 됨.
+```
+python build_workbook.py "excel/<교재>.xlsx" --split <N> --answer [--merge-choice] --out "output_new/<교재>"
+find "output_new/<교재>" -maxdepth 1 -type f ! -name '*권*' -delete   # 구 단권 파일만 정리
+```
+- 합치기 추천: **능률 초등 기본만 `--merge-choice`**(동의21%/반의30%), 나머지 6종은 분리 유지(동의 60~96%).
+- 분권 추천: 중등기본 60유닛→20DAY×3권 / 중등필수 50→13DAY×4권 / 초등기본·초등필수 32→16DAY×2권 / Bricks 3100·3900·4800 30→10DAY×3권.
+  (분권 기준은 취향 문제이니 사용자와 한 번 확인하고 진행할 것.)
 
-1. **최신 pull**: `git pull` (build_workbook.py, import_pdf.py, PDFs/, excel/ 다 들어있음)
-2. **PDF에서 Unit 1-15 추출** (english+뜻만, 품사 자동 제거. Bricks는 0-패딩 없음이 관례라 `--zero-pad` 쓰지 않음):
-   ```
-   python import_pdf.py "PDFs/Bricks Vocabulary 2300.pdf" --book "Bricks Vocabulary 2300" --unit-label Unit --from-unit 1 --to-unit 15 --out "scratch/b2300_1_15.xlsx"
-   ```
-   → 스켈레톤 xlsx + `.review.txt`(검수용) 생성. 유닛당 단어수 확인(2300은 24~25단어/유닛일 수 있음).
-3. **예문·동의어·반의어 생성**(★수작업/AI 파트): 각 단어에 예문(짧고 표제어 포함, 100%), 동의/반의는 확실한 것만.
-   기존 Bricks 형식과 맞춤: 뜻은 품사 없이 plain(`아이, 어린이`), 동의/반의 헤더는 `synonym`/`antonym`(단수).
-4. **엑셀 병합**: `excel/Bricks Vocabulary 1500.xlsx`의 기존 Unit 16-30은 유지, 앞에 Unit 1-15 추가 → 유닛 번호순 정렬(1→30).
-   (Bricks 900 때 쓴 병합 스크립트 패턴: 기존 행 읽고 해당 유닛 제외 후, 새 행과 합쳐 유닛·word_no 순 정렬해 시트 재작성.)
-5. **워크북 생성**: 동의/반의 적으니 merge-choice, 30유닛이니 15DAY/권:
-   ```
-   python build_workbook.py "excel/Bricks Vocabulary 2300.xlsx" --split 15 --merge-choice --answer --out "output_new/Bricks Vocabulary 2300"
-   ```
-   → 구 파일(권 없는 `_DAY16-30`) 삭제: `find "출력폴더" -maxdepth 1 -type f ! -name '*권*' -delete`
+### ② (느림·예문 생성 필요) 새 교재 임포트
+`PDFs/`에 대기 중인 7종. 아래 "PDF→엑셀 표준 절차"를 그대로 따르면 됨.
+
+### PDF→엑셀 표준 절차 (Bricks 900·1500·2300에서 검증된 방식)
+1. **추출**: `python import_pdf.py "PDFs/<파일>.pdf" --book "<book_name>" --unit-label <DAY|Unit> [--from-unit A --to-unit B] [--zero-pad] --out "scratch/x.xlsx"`
+   → 스켈레톤 xlsx + `.review.txt`. **유닛당 단어수가 일정한지 먼저 확인**(들쭉날쭉하면 파싱 이상).
+   - `--zero-pad`: 뜯어먹는은 `DAY 01`(패딩 O), Bricks는 `Unit 1`(패딩 X)이 관례.
+2. **예문·동의/반의 생성** (★수작업/AI, 가장 오래 걸림): 예문은 100%(짧고 표제어 그대로 포함), 동의/반의는 확실한 것만.
+   기존 교재 형식에 맞출 것 — 뜻 품사표기 유무, 헤더가 `synonym`인지 `synonyms`인지 반드시 기존 파일 확인.
+3. **엑셀 병합**: 기존 행 읽어 해당 유닛만 제외 → 새 행과 합쳐 **(유닛번호, word_no) 순 정렬** → 시트 재작성. (재실행해도 중복 안 생김)
+4. **워크북 생성** → 구 파일 정리 → 커밋·푸시 → 이 PROGRESS 표 갱신.
    ⚠️ 삭제 패턴 주의: `*_DAY1-15.*` 같은 걸로 지우면 **새로 만든 `_1권_DAY1-15`까지 지워짐**. 반드시 "권 없는 것만" 지울 것.
-6. **커밋·푸시**. PROGRESS 이 표 갱신.
 
 ### build_workbook.py 옵션 요약
 - `--split N` 권당 N유닛(자투리는 마지막 권). `--answer` 정답본. 페이지 번호(하단 중앙)는 **자동**.
@@ -46,7 +49,7 @@
 | Bricks 900 | ✅ 완료 | 2권, Unit16-30 보강, merge-choice, 페이지번호 O |
 | 뜯어먹는 1200 | ✅ 완료 | 3권(20DAY), merge-choice, 페이지번호 O |
 | Bricks 1500 | ✅ 완료 | 2권(102·108p), Unit1-15 보강, merge-choice, 페이지번호 O |
-| **Bricks 2300** | ⬜ **다음 작업** | Unit1-15 누락. PDF 있음 |
+| Bricks 2300 | ✅ 완료 | 2권(138·147p), Unit1-15 보강, merge-choice, 페이지번호 O |
 
 **아직 페이지번호 없는 완료본**(능률 4종 + Bricks 3100/3900/4800): 페이지번호는 재생성해야 붙음.
 합치기 추천 — 능률 초등기본은 merge-choice, 나머지는 분리. 분권/합치기 최종안은 아래 '분권 재검토' 참고. 시간 될 때 일괄 재생성.
@@ -123,7 +126,7 @@ HTML로 조립하고 헤드리스 Chrome으로 PDF까지 뽑는 도구.
   | 300 | 320 / 40(8단어) | **2권 · 117·120p** | 유닛당 8단어라 `--merge-practice`(예문+동의+반의 1페이지)+20DAY/권 |
   | 900 | **600 / 30** | **2권 · 105p** | PDF에서 **Unit 16~30 보강**(엑셀 15유닛만 있었음). 품사(n./v.) 제거, 예문·동의/반의 생성. merge-choice·15DAY/권 |
   | 1500 | **600 / 30** | **2권 · 102·108p** | PDF에서 **Unit 1~15 보강**(엑셀 16-30만 있었음). merge-choice·15DAY/권 |
-  | 2300 | 374 / 15 | 1권 · 147p | Unit 16~30 라벨 |
+  | 2300 | **749 / 30** | **2권 · 138·147p** | PDF에서 **Unit 1~15 보강**(엑셀 16-30만 있었음). merge-choice·15DAY/권 |
   | 3100 | 749 / 30 | 3권 · ~110p | |
   | 3900 | 900 / 30 | 3권 · ~127p | |
   | 4800 | 900 / 30 | 3권 · ~130p | book_name 'Bricks Vocabulary 30' 1줄 교정함 |
