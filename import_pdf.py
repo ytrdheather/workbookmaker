@@ -27,12 +27,15 @@ def has_hangul(s):
 
 
 def clean_meaning(mlines):
+    """여러 뜻 줄을 하나로. 영문 품사(n./v.…)는 제거, 한글 대괄호 품사([명]/[동])는 유지.
+    구분자: 능률식 대괄호 품사면 공백(`[명] 손잡이 [동] 처리하다`), 아니면 쉼표."""
     seen = []
     for ml in mlines:
         m = POS.sub("", ml).strip(" ;,\t")
         if m and m not in seen:
             seen.append(m)
-    return ", ".join(seen)
+    sep = " " if any(p.startswith("[") for p in seen) else ", "
+    return sep.join(seen)
 
 
 def parse(pdf_path, book_name):
