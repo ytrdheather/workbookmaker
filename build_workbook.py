@@ -160,11 +160,16 @@ def page_writing(day_name, words, seed):
         <td class="w-mean">{esc(w['meaning'])}</td>
         <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
       </tr>""")
+    # 행 높이/뜻 글자크기: 단어 수가 많아도 한 페이지에 들어가도록 자동 축소.
+    # (뜻이 길어 2줄로 줄바꿈되는 행이 있어 여유를 더 둠 — 25단어에서 넘치던 문제)
+    n = max(len(ws), 1)
+    row_h = max(21, min(38, 660 // n))
+    mean_fs = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
     return f"""
   <section class="page">
     {page_head(day_name, "쓰기 연습", "Write &amp; Remember")}
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:{row_h}px; --wmf:{mean_fs}px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -240,12 +245,14 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
 
 # ---------------------------------------------------------------- 페이지: 반의어/동의어 고르기
 def _choice_items(words, kind, rnd, answer):
-    """해당 kind(값 있는 단어)로 4지선다 <li> 항목 리스트 생성."""
+    """해당 kind(값 있는 단어)로 4지선다 항목 리스트 생성.
+    <li>(list-item)는 Chrome 인쇄에서 break-inside:avoid가 무시돼 문제/선택지가 갈라지므로
+    일반 블록 div(.ch-item)로 만들고 번호를 직접 붙인다."""
     pool = [w for w in words if split_multi(w[kind])]
     all_english = [w["english"] for w in words]
     rnd.shuffle(pool)
     items = []
-    for w in pool:
+    for qno, w in enumerate(pool, 1):
         corrects = split_multi(w[kind])
         correct = corrects[0]
         # 오답: 같은 유닛의 다른 english (정답/문제어 제외)
@@ -260,44 +267,78 @@ def _choice_items(words, kind, rnd, answer):
             for j, o in enumerate(options)
         )
         items.append(f"""
-      <li>
-        <div class="ch-q"><b>{esc(w['english'])}</b> <span class="ch-mean">({esc(w['meaning'])})</span></div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">{qno}.</span> <b>{esc(w['english'])}</b> <span class="ch-mean">({esc(w['meaning'])})</span></div>
         <div class="ch-opts">{opt_html}</div>
-      </li>""")
+      </div>""")
     return items
 
 
+CHOICE_SLOTS = 24   # 고르기 페이지 한 장에 들어가는 항목 수(섹션 제목도 1칸 차지)
+
+
+def _choice_pages(day_name, title_ko, title_en, guide, sections, slots=CHOICE_SLOTS):
+    """고르기 항목을 페이지 단위로 '직접' 나눈다.
+    Chrome이 인쇄에서 break-inside:avoid를 자주 무시해 문제/선택지가 갈라지므로,
+    넘침을 브라우저에 맡기지 않고 여기서 항목 수를 세어 페이지를 끊는다.
+    sections: [(섹션제목 or None, [항목 html, ...]), ...]"""
+    pages, cur, used = [], [], 0
+
+    def flush():
+        nonlocal cur, used
+        if not cur:
+            return
+        pages.append(f"""
+  <section class="page">
+    {page_head(day_name, title_ko, title_en)}
+    {guide}
+    {''.join(cur)}
+  </section>""")
+        cur, used = [], 0
+
+    for label, items in sections:
+        if not items:
+            items = ['<div class="empty">출제할 단어가 부족합니다.</div>']
+        head_html = f'<div class="ch-sec">■ {label}</div>' if label else ""
+        need_head = bool(label)
+        opened = False          # 이 페이지에 ch-list를 열었는지
+        for it in items:
+            cost = 1 + (1 if need_head else 0)
+            if used + cost > slots and cur:
+                if opened:
+                    cur.append("</div>")
+                    opened = False
+                flush()
+                need_head = bool(label)
+            if need_head:
+                cur.append(head_html); used += 1; need_head = False
+            if not opened:
+                cur.append('<div class="ch-list">'); opened = True
+            cur.append(it); used += 1
+        if opened:
+            cur.append("</div>")
+    flush()
+    return pages
+
+
 def page_choice(day_name, words, kind, seed, answer=False):
-    """kind: 'antonyms' or 'synonyms'. 해당 값 있는 단어만 출제. (동의어/반의어 각각 한 페이지)"""
+    """kind: 'antonyms' or 'synonyms'. 해당 값 있는 단어만 출제. -> 페이지 리스트"""
     label = "반의어" if kind == "antonyms" else "동의어"
     en_label = "Antonym" if kind == "antonyms" else "Synonym"
     items = _choice_items(words, kind, random.Random(seed), answer)
-    if not items:
-        items.append('<li class="empty">이 유닛에는 출제할 단어가 부족합니다.</li>')
-    return f"""
-  <section class="page">
-    {page_head(day_name, f"{label} 고르기", f"Choose the {en_label}")}
-    <p class="guide">각 단어의 <b>{label}</b>를 보기에서 고르세요.</p>
-    <ol class="ch">{''.join(items)}</ol>
-  </section>"""
+    guide = f'<p class="guide">각 단어의 <b>{label}</b>를 보기에서 고르세요.</p>'
+    return _choice_pages(day_name, f"{label} 고르기", f"Choose the {en_label}",
+                         guide, [(None, items)])
 
 
 def page_choice_merged(day_name, words, seed, answer=False):
-    """동의어+반의어를 한 페이지에. 동의/반의가 적은 교재에서 종이 절약."""
+    """동의어+반의어를 한 페이지에(넘치면 자동으로 다음 장). -> 페이지 리스트"""
     sitems = _choice_items(words, "synonyms", random.Random(seed), answer)
     aitems = _choice_items(words, "antonyms", random.Random(seed + 50), answer)
-    empty = '<li class="empty">출제할 단어가 부족합니다.</li>'
-    syn_html = "".join(sitems) if sitems else empty
-    ant_html = "".join(aitems) if aitems else empty
-    return f"""
-  <section class="page">
-    {page_head(day_name, "동의어 &middot; 반의어 고르기", "Choose Synonym / Antonym")}
-    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">{syn_html}</ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">{ant_html}</ol>
-  </section>"""
+    guide = ('<p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 '
+             '<b>반의어(반대말)</b>를 보기에서 고르세요.</p>')
+    return _choice_pages(day_name, "동의어 &middot; 반의어 고르기", "Choose Synonym / Antonym",
+                         guide, [("동의어 고르기", sitems), ("반의어 고르기", aitems)])
 
 
 def page_practice_merged(day_name, words, seed, answer=False):
@@ -305,7 +346,7 @@ def page_practice_merged(day_name, words, seed, answer=False):
     bank_html, fb_items = _fillblank_parts(words, seed + 4, answer)
     sitems = _choice_items(words, "synonyms", random.Random(seed + 5), answer)
     aitems = _choice_items(words, "antonyms", random.Random(seed + 6), answer)
-    empty = '<li class="empty">출제할 단어가 부족합니다.</li>'
+    empty = '<div class="empty">출제할 단어가 부족합니다.</div>'
     syn_html = "".join(sitems) if sitems else empty
     ant_html = "".join(aitems) if aitems else empty
     return f"""
@@ -315,9 +356,9 @@ def page_practice_merged(day_name, words, seed, answer=False):
     <div class="bank">{bank_html}</div>
     <ol class="fb">{fb_items}</ol>
     <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">{syn_html}</ol>
+    <div class="ch-list">{syn_html}</div>
     <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">{ant_html}</ol>
+    <div class="ch-list">{ant_html}</div>
   </section>"""
 
 
@@ -374,10 +415,11 @@ table.wl tr:nth-child(even) td { background:var(--teal-bg2); }
 table.wr { width:100%; border-collapse:collapse; }
 table.wr th { background:var(--teal); color:#fff; padding:8px; font-size:12px; font-weight:700; }
 table.wr th.wh-no{ width:38px; } table.wr th.wh-eng{ width:120px; } table.wr th.wh-mean{ width:190px; }
-table.wr td { border-bottom:1px solid var(--line); height:38px; vertical-align:middle; }
+table.wr td { border-bottom:1px solid var(--line); height:var(--wrh,38px); vertical-align:middle; }
 .w-no { text-align:center; color:var(--muted); font-size:12px; }
 .w-eng { font-weight:800; padding-left:12px; color:var(--teal); font-size:14px; border-left:1px dashed var(--teal-lt); }
-.w-mean { padding-left:10px; color:var(--ink); font-size:12.5px; border-left:1px dashed var(--teal-lt); }
+.w-mean { padding-left:10px; color:var(--ink); font-size:var(--wmf,12.5px); line-height:1.25;
+  border-left:1px dashed var(--teal-lt); }
 .w-write { padding:0 10px; white-space:nowrap; border-left:1px dashed var(--teal-lt); }
 .wl3 { display:inline-block; width:29%; border-bottom:1.4px solid var(--line); margin:0 1.5%; height:20px; }
 
@@ -387,7 +429,7 @@ table.wr td { border-bottom:1px solid var(--line); height:38px; vertical-align:m
 .chip { display:inline-block; background:#fff; border:1px solid var(--teal-lt); border-radius:13px;
   padding:2px 11px; margin:2px 3px; font-size:12px; font-weight:600; color:var(--ink); }
 ol.fb { margin:0; padding-left:22px; }
-ol.fb li { margin-bottom:17px; line-height:1.7; }
+ol.fb li { margin-bottom:17px; line-height:1.7; page-break-inside:avoid; break-inside:avoid; }
 .fb-sent { font-size:13px; }
 .fb-mean { font-size:11px; color:var(--muted); margin-left:6px; }
 .blank { display:inline-block; min-width:120px; border-bottom:1.6px solid var(--ink); }
@@ -403,16 +445,22 @@ table.rv td { border-bottom:1px solid var(--line); padding:9px 7px; font-size:13
 .wline { display:inline-block; width:90%; border-bottom:1px solid var(--line); }
 
 /* 고르기 */
-ol.ch { margin:0; padding-left:22px; }
-ol.ch li { margin-bottom:7px; }
-.ch-q { font-size:13px; margin-bottom:3px; }
+/* 고르기 항목: <li>는 Chrome 인쇄에서 break-inside가 무시되므로 블록 div로 만든다 */
+.ch-list { margin:0; padding-left:4px; }
+.ch-item { margin-bottom:4px; padding-left:16px; text-indent:-16px;
+  page-break-inside:avoid; break-inside:avoid; }
+.ch-item > * { text-indent:0; }
+.ch-no { color:var(--muted); font-size:11.5px; }
+.ch-q { font-size:11.5px; margin-bottom:1px; }
 .ch-q b { color:var(--teal); }
 .ch-mean { color:var(--muted); font-size:11px; font-weight:400; }
-.ch-opts { display:flex; gap:7px; flex-wrap:wrap; }
-.opt { border:1px solid var(--line); border-radius:5px; padding:4px 12px; font-size:12.5px; }
+/* flex를 쓰면 Chrome 인쇄에서 break-inside:avoid가 무시돼 문제/선택지가 갈라짐 -> inline-block */
+.ch-opts { display:block; page-break-inside:avoid; break-inside:avoid; }
+.opt { display:inline-block; border:1px solid var(--line); border-radius:5px;
+  padding:1px 8px; font-size:11px; margin:0 4px 2px 0; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
-.ch-sec { font-size:13px; font-weight:800; color:var(--teal); margin:10px 0 6px; }
+.ch-sec { font-size:12.5px; font-weight:800; color:var(--teal); margin:7px 0 4px; }
 .ch-sec:first-of-type { margin-top:2px; }
 .ch-hint { font-size:11px; font-weight:400; color:var(--muted); }
 
@@ -453,10 +501,10 @@ def build_unit_pages(units, i, answer=False, merge_choice=False, merge_practice=
     else:
         pages.append(page_fillblank(name, words, seed=base + 4, answer=answer))
         if merge_choice:  # 동의/반의만 한 페이지로 합쳐 종이 절약
-            pages.append(page_choice_merged(name, words, seed=base + 5, answer=answer))
+            pages.extend(page_choice_merged(name, words, seed=base + 5, answer=answer))
         else:
-            pages.append(page_choice(name, words, "antonyms", seed=base + 5, answer=answer))
-            pages.append(page_choice(name, words, "synonyms", seed=base + 6, answer=answer))
+            pages.extend(page_choice(name, words, "antonyms", seed=base + 5, answer=answer))
+            pages.extend(page_choice(name, words, "synonyms", seed=base + 6, answer=answer))
     return pages
 
 

@@ -46,10 +46,11 @@ table.wl tr:nth-child(even) td { background:var(--teal-bg2); }
 table.wr { width:100%; border-collapse:collapse; }
 table.wr th { background:var(--teal); color:#fff; padding:8px; font-size:12px; font-weight:700; }
 table.wr th.wh-no{ width:38px; } table.wr th.wh-eng{ width:120px; } table.wr th.wh-mean{ width:190px; }
-table.wr td { border-bottom:1px solid var(--line); height:38px; vertical-align:middle; }
+table.wr td { border-bottom:1px solid var(--line); height:var(--wrh,38px); vertical-align:middle; }
 .w-no { text-align:center; color:var(--muted); font-size:12px; }
 .w-eng { font-weight:800; padding-left:12px; color:var(--teal); font-size:14px; border-left:1px dashed var(--teal-lt); }
-.w-mean { padding-left:10px; color:var(--ink); font-size:12.5px; border-left:1px dashed var(--teal-lt); }
+.w-mean { padding-left:10px; color:var(--ink); font-size:var(--wmf,12.5px); line-height:1.25;
+  border-left:1px dashed var(--teal-lt); }
 .w-write { padding:0 10px; white-space:nowrap; border-left:1px dashed var(--teal-lt); }
 .wl3 { display:inline-block; width:29%; border-bottom:1.4px solid var(--line); margin:0 1.5%; height:20px; }
 
@@ -59,7 +60,7 @@ table.wr td { border-bottom:1px solid var(--line); height:38px; vertical-align:m
 .chip { display:inline-block; background:#fff; border:1px solid var(--teal-lt); border-radius:13px;
   padding:2px 11px; margin:2px 3px; font-size:12px; font-weight:600; color:var(--ink); }
 ol.fb { margin:0; padding-left:22px; }
-ol.fb li { margin-bottom:17px; line-height:1.7; }
+ol.fb li { margin-bottom:17px; line-height:1.7; page-break-inside:avoid; break-inside:avoid; }
 .fb-sent { font-size:13px; }
 .fb-mean { font-size:11px; color:var(--muted); margin-left:6px; }
 .blank { display:inline-block; min-width:120px; border-bottom:1.6px solid var(--ink); }
@@ -75,16 +76,22 @@ table.rv td { border-bottom:1px solid var(--line); padding:9px 7px; font-size:13
 .wline { display:inline-block; width:90%; border-bottom:1px solid var(--line); }
 
 /* 고르기 */
-ol.ch { margin:0; padding-left:22px; }
-ol.ch li { margin-bottom:7px; }
-.ch-q { font-size:13px; margin-bottom:3px; }
+/* 고르기 항목: <li>는 Chrome 인쇄에서 break-inside가 무시되므로 블록 div로 만든다 */
+.ch-list { margin:0; padding-left:4px; }
+.ch-item { margin-bottom:4px; padding-left:16px; text-indent:-16px;
+  page-break-inside:avoid; break-inside:avoid; }
+.ch-item > * { text-indent:0; }
+.ch-no { color:var(--muted); font-size:11.5px; }
+.ch-q { font-size:11.5px; margin-bottom:1px; }
 .ch-q b { color:var(--teal); }
 .ch-mean { color:var(--muted); font-size:11px; font-weight:400; }
-.ch-opts { display:flex; gap:7px; flex-wrap:wrap; }
-.opt { border:1px solid var(--line); border-radius:5px; padding:4px 12px; font-size:12.5px; }
+/* flex를 쓰면 Chrome 인쇄에서 break-inside:avoid가 무시돼 문제/선택지가 갈라짐 -> inline-block */
+.ch-opts { display:block; page-break-inside:avoid; break-inside:avoid; }
+.opt { display:inline-block; border:1px solid var(--line); border-radius:5px;
+  padding:1px 8px; font-size:11px; margin:0 4px 2px 0; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
-.ch-sec { font-size:13px; font-weight:800; color:var(--teal); margin:10px 0 6px; }
+.ch-sec { font-size:12.5px; font-weight:800; color:var(--teal); margin:7px 0 4px; }
 .ch-sec:first-of-type { margin-top:2px; }
 .ch-hint { font-size:11px; font-weight:400; color:var(--muted); }
 
@@ -348,7 +355,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -898,78 +905,75 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>suggest</b> <span class="ch-mean">(제안하다)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>suggest</b> <span class="ch-mean">(제안하다)</span></div>
         <div class="ch-opts"><span class="opt ">① center</span><span class="opt ">② offer</span><span class="opt ">③ wrist</span><span class="opt ">④ example</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>spin</b> <span class="ch-mean">(돌다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>spin</b> <span class="ch-mean">(돌다)</span></div>
         <div class="ch-opts"><span class="opt ">① example</span><span class="opt ">② thankful</span><span class="opt ">③ turn</span><span class="opt ">④ dive</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>outer</b> <span class="ch-mean">(바깥의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>outer</b> <span class="ch-mean">(바깥의)</span></div>
         <div class="ch-opts"><span class="opt ">① center</span><span class="opt ">② outside</span><span class="opt ">③ example</span><span class="opt ">④ handmade</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>thankful</b> <span class="ch-mean">(감사하는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>thankful</b> <span class="ch-mean">(감사하는)</span></div>
         <div class="ch-opts"><span class="opt ">① steal</span><span class="opt ">② blame</span><span class="opt ">③ crush</span><span class="opt ">④ grateful</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>flame</b> <span class="ch-mean">(불꽃)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>flame</b> <span class="ch-mean">(불꽃)</span></div>
         <div class="ch-opts"><span class="opt ">① never</span><span class="opt ">② fire</span><span class="opt ">③ spin</span><span class="opt ">④ crush</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>golden</b> <span class="ch-mean">(금빛의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>golden</b> <span class="ch-mean">(금빛의)</span></div>
         <div class="ch-opts"><span class="opt ">① gold</span><span class="opt ">② outer</span><span class="opt ">③ example</span><span class="opt ">④ tear</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>aloud</b> <span class="ch-mean">(소리 내어)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>aloud</b> <span class="ch-mean">(소리 내어)</span></div>
         <div class="ch-opts"><span class="opt ">① golden</span><span class="opt ">② far</span><span class="opt ">③ loudly</span><span class="opt ">④ alarm</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>far</b> <span class="ch-mean">(멀리)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>far</b> <span class="ch-mean">(멀리)</span></div>
         <div class="ch-opts"><span class="opt ">① distant</span><span class="opt ">② example</span><span class="opt ">③ cliff</span><span class="opt ">④ handmade</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>center</b> <span class="ch-mean">(중앙)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>center</b> <span class="ch-mean">(중앙)</span></div>
         <div class="ch-opts"><span class="opt ">① example</span><span class="opt ">② middle</span><span class="opt ">③ outer</span><span class="opt ">④ screen</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>dive</b> <span class="ch-mean">(잠수하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>dive</b> <span class="ch-mean">(잠수하다)</span></div>
         <div class="ch-opts"><span class="opt ">① far</span><span class="opt ">② jump</span><span class="opt ">③ tear</span><span class="opt ">④ never</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>far</b> <span class="ch-mean">(멀리)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>far</b> <span class="ch-mean">(멀리)</span></div>
         <div class="ch-opts"><span class="opt ">① blame</span><span class="opt ">② near</span><span class="opt ">③ capital</span><span class="opt ">④ steal</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>never</b> <span class="ch-mean">(절대 ~ 않다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>never</b> <span class="ch-mean">(절대 ~ 않다)</span></div>
         <div class="ch-opts"><span class="opt ">① always</span><span class="opt ">② outer</span><span class="opt ">③ lightning</span><span class="opt ">④ screen</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>blame</b> <span class="ch-mean">(탓하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>blame</b> <span class="ch-mean">(탓하다)</span></div>
         <div class="ch-opts"><span class="opt ">① thankful</span><span class="opt ">② praise</span><span class="opt ">③ capital</span><span class="opt ">④ alarm</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>handmade</b> <span class="ch-mean">(수제의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>handmade</b> <span class="ch-mean">(수제의)</span></div>
         <div class="ch-opts"><span class="opt ">① center</span><span class="opt ">② never</span><span class="opt ">③ cliff</span><span class="opt ">④ machine-made</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>center</b> <span class="ch-mean">(중앙)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>center</b> <span class="ch-mean">(중앙)</span></div>
         <div class="ch-opts"><span class="opt ">① edge</span><span class="opt ">② blame</span><span class="opt ">③ golden</span><span class="opt ">④ steal</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>outer</b> <span class="ch-mean">(바깥의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>outer</b> <span class="ch-mean">(바깥의)</span></div>
         <div class="ch-opts"><span class="opt ">① spin</span><span class="opt ">② inner</span><span class="opt ">③ lightning</span><span class="opt ">④ example</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>aloud</b> <span class="ch-mean">(소리 내어)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>aloud</b> <span class="ch-mean">(소리 내어)</span></div>
         <div class="ch-opts"><span class="opt ">① outer</span><span class="opt ">② handmade</span><span class="opt ">③ quietly</span><span class="opt ">④ flame</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -1216,7 +1220,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -1766,78 +1770,75 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>complete</b> <span class="ch-mean">(완성하다)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>complete</b> <span class="ch-mean">(완성하다)</span></div>
         <div class="ch-opts"><span class="opt ">① repeat</span><span class="opt ">② finish</span><span class="opt ">③ beard</span><span class="opt ">④ reduce</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>photograph</b> <span class="ch-mean">(사진)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>photograph</b> <span class="ch-mean">(사진)</span></div>
         <div class="ch-opts"><span class="opt ">① reduce</span><span class="opt ">② mobile</span><span class="opt ">③ photo</span><span class="opt ">④ step</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>forever</b> <span class="ch-mean">(영원히)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>forever</b> <span class="ch-mean">(영원히)</span></div>
         <div class="ch-opts"><span class="opt ">① code</span><span class="opt ">② step</span><span class="opt ">③ always</span><span class="opt ">④ row</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>mobile</b> <span class="ch-mean">(이동하는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>mobile</b> <span class="ch-mean">(이동하는)</span></div>
         <div class="ch-opts"><span class="opt ">① photograph</span><span class="opt ">② moving</span><span class="opt ">③ secret</span><span class="opt ">④ shrimp</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>reduce</b> <span class="ch-mean">(줄이다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>reduce</b> <span class="ch-mean">(줄이다)</span></div>
         <div class="ch-opts"><span class="opt ">① photograph</span><span class="opt ">② repeat</span><span class="opt ">③ cut</span><span class="opt ">④ secret</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>spicy</b> <span class="ch-mean">(매운)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>spicy</b> <span class="ch-mean">(매운)</span></div>
         <div class="ch-opts"><span class="opt ">① reduce</span><span class="opt ">② hot</span><span class="opt ">③ support</span><span class="opt ">④ guide</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>guide</b> <span class="ch-mean">(안내하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>guide</b> <span class="ch-mean">(안내하다)</span></div>
         <div class="ch-opts"><span class="opt ">① lead</span><span class="opt ">② spicy</span><span class="opt ">③ code</span><span class="opt ">④ supermarket</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>tease</b> <span class="ch-mean">(놀리다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>tease</b> <span class="ch-mean">(놀리다)</span></div>
         <div class="ch-opts"><span class="opt ">① step</span><span class="opt ">② speaker</span><span class="opt ">③ shrimp</span><span class="opt ">④ joke</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>painful</b> <span class="ch-mean">(아픈)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>painful</b> <span class="ch-mean">(아픈)</span></div>
         <div class="ch-opts"><span class="opt ">① sore</span><span class="opt ">② step</span><span class="opt ">③ secret</span><span class="opt ">④ tease</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>row</b> <span class="ch-mean">(줄; 배를 젓다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>row</b> <span class="ch-mean">(줄; 배를 젓다)</span></div>
         <div class="ch-opts"><span class="opt ">① repeat</span><span class="opt ">② photograph</span><span class="opt ">③ line</span><span class="opt ">④ reduce</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>support</b> <span class="ch-mean">(지지하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>support</b> <span class="ch-mean">(지지하다)</span></div>
         <div class="ch-opts"><span class="opt ">① mobile</span><span class="opt ">② tease</span><span class="opt ">③ secret</span><span class="opt ">④ help</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>supermarket</b> <span class="ch-mean">(슈퍼마켓)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>supermarket</b> <span class="ch-mean">(슈퍼마켓)</span></div>
         <div class="ch-opts"><span class="opt ">① syrup</span><span class="opt ">② painful</span><span class="opt ">③ shrimp</span><span class="opt ">④ market</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>reduce</b> <span class="ch-mean">(줄이다)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>reduce</b> <span class="ch-mean">(줄이다)</span></div>
         <div class="ch-opts"><span class="opt ">① spicy</span><span class="opt ">② back</span><span class="opt ">③ supermarket</span><span class="opt ">④ increase</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>back</b> <span class="ch-mean">(뒤의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>back</b> <span class="ch-mean">(뒤의)</span></div>
         <div class="ch-opts"><span class="opt ">① front</span><span class="opt ">② mobile</span><span class="opt ">③ support</span><span class="opt ">④ tease</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>spicy</b> <span class="ch-mean">(매운)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>spicy</b> <span class="ch-mean">(매운)</span></div>
         <div class="ch-opts"><span class="opt ">① mild</span><span class="opt ">② support</span><span class="opt ">③ allergy</span><span class="opt ">④ speaker</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>mobile</b> <span class="ch-mean">(이동하는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>mobile</b> <span class="ch-mean">(이동하는)</span></div>
         <div class="ch-opts"><span class="opt ">① roar</span><span class="opt ">② complete</span><span class="opt ">③ forever</span><span class="opt ">④ fixed</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>complete</b> <span class="ch-mean">(완성하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>complete</b> <span class="ch-mean">(완성하다)</span></div>
         <div class="ch-opts"><span class="opt ">① campfire</span><span class="opt ">② start</span><span class="opt ">③ code</span><span class="opt ">④ painful</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -2084,7 +2085,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -2634,82 +2635,79 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>suppose</b> <span class="ch-mean">(추정하다)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>suppose</b> <span class="ch-mean">(추정하다)</span></div>
         <div class="ch-opts"><span class="opt ">① teammate</span><span class="opt ">② blind</span><span class="opt ">③ think</span><span class="opt ">④ decrease</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>monitor</b> <span class="ch-mean">(감시하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>monitor</b> <span class="ch-mean">(감시하다)</span></div>
         <div class="ch-opts"><span class="opt ">① tub</span><span class="opt ">② still</span><span class="opt ">③ check</span><span class="opt ">④ sigh</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>defend</b> <span class="ch-mean">(방어하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>defend</b> <span class="ch-mean">(방어하다)</span></div>
         <div class="ch-opts"><span class="opt ">① bleed</span><span class="opt ">② frame</span><span class="opt ">③ powder</span><span class="opt ">④ guard</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>mild</b> <span class="ch-mean">(순한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>mild</b> <span class="ch-mean">(순한)</span></div>
         <div class="ch-opts"><span class="opt ">① bleed</span><span class="opt ">② decrease</span><span class="opt ">③ gentle</span><span class="opt ">④ character</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>report</b> <span class="ch-mean">(발표하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>report</b> <span class="ch-mean">(발표하다)</span></div>
         <div class="ch-opts"><span class="opt ">① tub</span><span class="opt ">② still</span><span class="opt ">③ however</span><span class="opt ">④ tell</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>teammate</b> <span class="ch-mean">(팀원)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>teammate</b> <span class="ch-mean">(팀원)</span></div>
         <div class="ch-opts"><span class="opt ">① fountain</span><span class="opt ">② decrease</span><span class="opt ">③ as</span><span class="opt ">④ partner</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>decrease</b> <span class="ch-mean">(감소하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>decrease</b> <span class="ch-mean">(감소하다)</span></div>
         <div class="ch-opts"><span class="opt ">① destroy</span><span class="opt ">② go down</span><span class="opt ">③ report</span><span class="opt ">④ area</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>area</b> <span class="ch-mean">(지역)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>area</b> <span class="ch-mean">(지역)</span></div>
         <div class="ch-opts"><span class="opt ">① place</span><span class="opt ">② character</span><span class="opt ">③ defend</span><span class="opt ">④ mild</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>still</b> <span class="ch-mean">(여전히; 고요한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>still</b> <span class="ch-mean">(여전히; 고요한)</span></div>
         <div class="ch-opts"><span class="opt ">① frame</span><span class="opt ">② yet</span><span class="opt ">③ report</span><span class="opt ">④ tub</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>tub</b> <span class="ch-mean">(욕조)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>tub</b> <span class="ch-mean">(욕조)</span></div>
         <div class="ch-opts"><span class="opt ">① bathtub</span><span class="opt ">② sigh</span><span class="opt ">③ teammate</span><span class="opt ">④ bleed</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>destroy</b> <span class="ch-mean">(파괴하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>destroy</b> <span class="ch-mean">(파괴하다)</span></div>
         <div class="ch-opts"><span class="opt ">① monitor</span><span class="opt ">② report</span><span class="opt ">③ as</span><span class="opt ">④ break</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>however</b> <span class="ch-mean">(그러나)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>however</b> <span class="ch-mean">(그러나)</span></div>
         <div class="ch-opts"><span class="opt ">① suppose</span><span class="opt ">② report</span><span class="opt ">③ monitor</span><span class="opt ">④ but</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>search</b> <span class="ch-mean">(찾다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>search</b> <span class="ch-mean">(찾다)</span></div>
         <div class="ch-opts"><span class="opt ">① look for</span><span class="opt ">② teammate</span><span class="opt ">③ fountain</span><span class="opt ">④ powder</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>mild</b> <span class="ch-mean">(순한)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>mild</b> <span class="ch-mean">(순한)</span></div>
         <div class="ch-opts"><span class="opt ">① decrease</span><span class="opt ">② sigh</span><span class="opt ">③ strong</span><span class="opt ">④ as</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>sharp</b> <span class="ch-mean">(날카로운)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>sharp</b> <span class="ch-mean">(날카로운)</span></div>
         <div class="ch-opts"><span class="opt ">① area</span><span class="opt ">② bleed</span><span class="opt ">③ decrease</span><span class="opt ">④ blunt</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>defend</b> <span class="ch-mean">(방어하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>defend</b> <span class="ch-mean">(방어하다)</span></div>
         <div class="ch-opts"><span class="opt ">① attack</span><span class="opt ">② fountain</span><span class="opt ">③ destroy</span><span class="opt ">④ decrease</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>destroy</b> <span class="ch-mean">(파괴하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>destroy</b> <span class="ch-mean">(파괴하다)</span></div>
         <div class="ch-opts"><span class="opt ">① frame</span><span class="opt ">② build</span><span class="opt ">③ blind</span><span class="opt ">④ teammate</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>decrease</b> <span class="ch-mean">(감소하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>decrease</b> <span class="ch-mean">(감소하다)</span></div>
         <div class="ch-opts"><span class="opt ">① tub</span><span class="opt ">② increase</span><span class="opt ">③ monitor</span><span class="opt ">④ blind</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -2956,7 +2954,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -3506,90 +3504,87 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>greatly</b> <span class="ch-mean">(매우)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>greatly</b> <span class="ch-mean">(매우)</span></div>
         <div class="ch-opts"><span class="opt ">① quite</span><span class="opt ">② cashier</span><span class="opt ">③ twice</span><span class="opt ">④ very</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>band</b> <span class="ch-mean">(밴드)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>band</b> <span class="ch-mean">(밴드)</span></div>
         <div class="ch-opts"><span class="opt ">① group</span><span class="opt ">② spread</span><span class="opt ">③ recommend</span><span class="opt ">④ thousand</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>try</b> <span class="ch-mean">(노력하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>try</b> <span class="ch-mean">(노력하다)</span></div>
         <div class="ch-opts"><span class="opt ">① moonlight</span><span class="opt ">② cashier</span><span class="opt ">③ effort</span><span class="opt ">④ quite</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>cashier</b> <span class="ch-mean">(계산원)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>cashier</b> <span class="ch-mean">(계산원)</span></div>
         <div class="ch-opts"><span class="opt ">① recommend</span><span class="opt ">② try</span><span class="opt ">③ spread</span><span class="opt ">④ clerk</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>thought</b> <span class="ch-mean">(생각)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>thought</b> <span class="ch-mean">(생각)</span></div>
         <div class="ch-opts"><span class="opt ">① damage</span><span class="opt ">② sometimes</span><span class="opt ">③ toast</span><span class="opt ">④ idea</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>type</b> <span class="ch-mean">(유형)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>type</b> <span class="ch-mean">(유형)</span></div>
         <div class="ch-opts"><span class="opt ">① gallery</span><span class="opt ">② caterpillar</span><span class="opt ">③ kind</span><span class="opt ">④ chili</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>recommend</b> <span class="ch-mean">(추천하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>recommend</b> <span class="ch-mean">(추천하다)</span></div>
         <div class="ch-opts"><span class="opt ">① toast</span><span class="opt ">② band</span><span class="opt ">③ focus</span><span class="opt ">④ suggest</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bother</b> <span class="ch-mean">(괴롭히다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>bother</b> <span class="ch-mean">(괴롭히다)</span></div>
         <div class="ch-opts"><span class="opt ">① cashier</span><span class="opt ">② annoy</span><span class="opt ">③ twice</span><span class="opt ">④ thousand</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>gallery</b> <span class="ch-mean">(미술관)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>gallery</b> <span class="ch-mean">(미술관)</span></div>
         <div class="ch-opts"><span class="opt ">① type</span><span class="opt ">② reed</span><span class="opt ">③ chili</span><span class="opt ">④ museum</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>force</b> <span class="ch-mean">(힘)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>force</b> <span class="ch-mean">(힘)</span></div>
         <div class="ch-opts"><span class="opt ">① thousand</span><span class="opt ">② power</span><span class="opt ">③ try</span><span class="opt ">④ bother</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>sometimes</b> <span class="ch-mean">(가끔)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>sometimes</b> <span class="ch-mean">(가끔)</span></div>
         <div class="ch-opts"><span class="opt ">① twice</span><span class="opt ">② laundry</span><span class="opt ">③ occasionally</span><span class="opt ">④ violence</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>fear</b> <span class="ch-mean">(두려움)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>fear</b> <span class="ch-mean">(두려움)</span></div>
         <div class="ch-opts"><span class="opt ">① scary</span><span class="opt ">② reed</span><span class="opt ">③ damage</span><span class="opt ">④ gallery</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>focus</b> <span class="ch-mean">(집중하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>focus</b> <span class="ch-mean">(집중하다)</span></div>
         <div class="ch-opts"><span class="opt ">① moonlight</span><span class="opt ">② gallery</span><span class="opt ">③ fear</span><span class="opt ">④ concentrate</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>damage</b> <span class="ch-mean">(피해)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>damage</b> <span class="ch-mean">(피해)</span></div>
         <div class="ch-opts"><span class="opt ">① hurt</span><span class="opt ">② cashier</span><span class="opt ">③ spread</span><span class="opt ">④ try</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>toast</b> <span class="ch-mean">(굽다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>toast</b> <span class="ch-mean">(굽다)</span></div>
         <div class="ch-opts"><span class="opt ">① type</span><span class="opt ">② twice</span><span class="opt ">③ caterpillar</span><span class="opt ">④ bake</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>quite</b> <span class="ch-mean">(꽤)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>quite</b> <span class="ch-mean">(꽤)</span></div>
         <div class="ch-opts"><span class="opt ">① cashier</span><span class="opt ">② try</span><span class="opt ">③ very</span><span class="opt ">④ laundry</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>twice</b> <span class="ch-mean">(두 번)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>twice</b> <span class="ch-mean">(두 번)</span></div>
         <div class="ch-opts"><span class="opt ">① thousand</span><span class="opt ">② force</span><span class="opt ">③ spread</span><span class="opt ">④ once</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>violence</b> <span class="ch-mean">(폭력)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>violence</b> <span class="ch-mean">(폭력)</span></div>
         <div class="ch-opts"><span class="opt ">① reed</span><span class="opt ">② spread</span><span class="opt ">③ peace</span><span class="opt ">④ damage</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>sometimes</b> <span class="ch-mean">(가끔)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>sometimes</b> <span class="ch-mean">(가끔)</span></div>
         <div class="ch-opts"><span class="opt ">① thought</span><span class="opt ">② always</span><span class="opt ">③ twice</span><span class="opt ">④ chili</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>damage</b> <span class="ch-mean">(피해)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>damage</b> <span class="ch-mean">(피해)</span></div>
         <div class="ch-opts"><span class="opt ">① reed</span><span class="opt ">② violence</span><span class="opt ">③ type</span><span class="opt ">④ fix</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -3836,7 +3831,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -4386,82 +4381,79 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>advise</b> <span class="ch-mean">(조언하다)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>advise</b> <span class="ch-mean">(조언하다)</span></div>
         <div class="ch-opts"><span class="opt ">① painkiller</span><span class="opt ">② help</span><span class="opt ">③ often</span><span class="opt ">④ clinic</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>mist</b> <span class="ch-mean">(안개)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>mist</b> <span class="ch-mean">(안개)</span></div>
         <div class="ch-opts"><span class="opt ">① stuffy</span><span class="opt ">② fog</span><span class="opt ">③ advise</span><span class="opt ">④ such</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>eventful</b> <span class="ch-mean">(사건이 많은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>eventful</b> <span class="ch-mean">(사건이 많은)</span></div>
         <div class="ch-opts"><span class="opt ">① busy</span><span class="opt ">② develop</span><span class="opt ">③ beverage</span><span class="opt ">④ appearance</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>argue</b> <span class="ch-mean">(말다툼하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>argue</b> <span class="ch-mean">(말다툼하다)</span></div>
         <div class="ch-opts"><span class="opt ">① fight</span><span class="opt ">② batter</span><span class="opt ">③ advise</span><span class="opt ">④ scar</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>decorate</b> <span class="ch-mean">(꾸미다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>decorate</b> <span class="ch-mean">(꾸미다)</span></div>
         <div class="ch-opts"><span class="opt ">① adorn</span><span class="opt ">② often</span><span class="opt ">③ batter</span><span class="opt ">④ beverage</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>stomach</b> <span class="ch-mean">(배)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>stomach</b> <span class="ch-mean">(배)</span></div>
         <div class="ch-opts"><span class="opt ">① painkiller</span><span class="opt ">② batter</span><span class="opt ">③ belly</span><span class="opt ">④ freckle</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>review</b> <span class="ch-mean">(복습하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>review</b> <span class="ch-mean">(복습하다)</span></div>
         <div class="ch-opts"><span class="opt ">① study</span><span class="opt ">② clinic</span><span class="opt ">③ painkiller</span><span class="opt ">④ own</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>own</b> <span class="ch-mean">(소유하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>own</b> <span class="ch-mean">(소유하다)</span></div>
         <div class="ch-opts"><span class="opt ">① such</span><span class="opt ">② have</span><span class="opt ">③ track</span><span class="opt ">④ clinic</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>surround</b> <span class="ch-mean">(둘러싸다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>surround</b> <span class="ch-mean">(둘러싸다)</span></div>
         <div class="ch-opts"><span class="opt ">① develop</span><span class="opt ">② batter</span><span class="opt ">③ freckle</span><span class="opt ">④ encircle</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>appearance</b> <span class="ch-mean">(외모)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>appearance</b> <span class="ch-mean">(외모)</span></div>
         <div class="ch-opts"><span class="opt ">① stomach</span><span class="opt ">② look</span><span class="opt ">③ such</span><span class="opt ">④ own</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>develop</b> <span class="ch-mean">(발달시키다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>develop</b> <span class="ch-mean">(발달시키다)</span></div>
         <div class="ch-opts"><span class="opt ">① eventful</span><span class="opt ">② grow</span><span class="opt ">③ such</span><span class="opt ">④ track</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>often</b> <span class="ch-mean">(자주)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>often</b> <span class="ch-mean">(자주)</span></div>
         <div class="ch-opts"><span class="opt ">① argue</span><span class="opt ">② classical</span><span class="opt ">③ many times</span><span class="opt ">④ action</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>track</b> <span class="ch-mean">(트랙; 추적하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>track</b> <span class="ch-mean">(트랙; 추적하다)</span></div>
         <div class="ch-opts"><span class="opt ">① stomach</span><span class="opt ">② argue</span><span class="opt ">③ path</span><span class="opt ">④ key</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>key</b> <span class="ch-mean">(중요한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>key</b> <span class="ch-mean">(중요한)</span></div>
         <div class="ch-opts"><span class="opt ">① action</span><span class="opt ">② batter</span><span class="opt ">③ main</span><span class="opt ">④ clinic</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>beverage</b> <span class="ch-mean">(음료)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>beverage</b> <span class="ch-mean">(음료)</span></div>
         <div class="ch-opts"><span class="opt ">① mist</span><span class="opt ">② drink</span><span class="opt ">③ review</span><span class="opt ">④ eventful</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>clinic</b> <span class="ch-mean">(진료소)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>clinic</b> <span class="ch-mean">(진료소)</span></div>
         <div class="ch-opts"><span class="opt ">① review</span><span class="opt ">② hospital</span><span class="opt ">③ mist</span><span class="opt ">④ scar</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>often</b> <span class="ch-mean">(자주)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>often</b> <span class="ch-mean">(자주)</span></div>
         <div class="ch-opts"><span class="opt ">① never</span><span class="opt ">② eventful</span><span class="opt ">③ advise</span><span class="opt ">④ decorate</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>stuffy</b> <span class="ch-mean">(막힌, 답답한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>stuffy</b> <span class="ch-mean">(막힌, 답답한)</span></div>
         <div class="ch-opts"><span class="opt ">① often</span><span class="opt ">② scar</span><span class="opt ">③ classical</span><span class="opt ">④ airy</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -4708,7 +4700,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -5258,82 +5250,79 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>sweep</b> <span class="ch-mean">(쓸다)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>sweep</b> <span class="ch-mean">(쓸다)</span></div>
         <div class="ch-opts"><span class="opt ">① clean</span><span class="opt ">② cultural</span><span class="opt ">③ engineer</span><span class="opt ">④ frown</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>lightly</b> <span class="ch-mean">(가볍게)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>lightly</b> <span class="ch-mean">(가볍게)</span></div>
         <div class="ch-opts"><span class="opt ">① softly</span><span class="opt ">② sweep</span><span class="opt ">③ pretend</span><span class="opt ">④ multiplication</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>opinion</b> <span class="ch-mean">(의견)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>opinion</b> <span class="ch-mean">(의견)</span></div>
         <div class="ch-opts"><span class="opt ">① shortcut</span><span class="opt ">② cycle</span><span class="opt ">③ ability</span><span class="opt ">④ thought</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>aware</b> <span class="ch-mean">(알고 있는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>aware</b> <span class="ch-mean">(알고 있는)</span></div>
         <div class="ch-opts"><span class="opt ">① cycle</span><span class="opt ">② knowing</span><span class="opt ">③ trait</span><span class="opt ">④ engineer</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>caution</b> <span class="ch-mean">(경고하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>caution</b> <span class="ch-mean">(경고하다)</span></div>
         <div class="ch-opts"><span class="opt ">① trait</span><span class="opt ">② warn</span><span class="opt ">③ polish</span><span class="opt ">④ aware</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>rescue</b> <span class="ch-mean">(구조하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>rescue</b> <span class="ch-mean">(구조하다)</span></div>
         <div class="ch-opts"><span class="opt ">① engineer</span><span class="opt ">② allow</span><span class="opt ">③ then</span><span class="opt ">④ save</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>depend</b> <span class="ch-mean">(의지하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>depend</b> <span class="ch-mean">(의지하다)</span></div>
         <div class="ch-opts"><span class="opt ">① head</span><span class="opt ">② rely</span><span class="opt ">③ engineer</span><span class="opt ">④ multiplication</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>trait</b> <span class="ch-mean">(특성)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>trait</b> <span class="ch-mean">(특성)</span></div>
         <div class="ch-opts"><span class="opt ">① engineer</span><span class="opt ">② frown</span><span class="opt ">③ head</span><span class="opt ">④ character</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>cycle</b> <span class="ch-mean">(순환)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>cycle</b> <span class="ch-mean">(순환)</span></div>
         <div class="ch-opts"><span class="opt ">① frown</span><span class="opt ">② pine</span><span class="opt ">③ loop</span><span class="opt ">④ multiplication</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>allow</b> <span class="ch-mean">(허락하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>allow</b> <span class="ch-mean">(허락하다)</span></div>
         <div class="ch-opts"><span class="opt ">① multiplication</span><span class="opt ">② frown</span><span class="opt ">③ let</span><span class="opt ">④ coal</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>polish</b> <span class="ch-mean">(닦다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>polish</b> <span class="ch-mean">(닦다)</span></div>
         <div class="ch-opts"><span class="opt ">① frown</span><span class="opt ">② pine</span><span class="opt ">③ head</span><span class="opt ">④ shine</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>basic</b> <span class="ch-mean">(기본적인)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>basic</b> <span class="ch-mean">(기본적인)</span></div>
         <div class="ch-opts"><span class="opt ">① simple</span><span class="opt ">② striped</span><span class="opt ">③ cycle</span><span class="opt ">④ cultural</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>head</b> <span class="ch-mean">(향하다; 머리)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>head</b> <span class="ch-mean">(향하다; 머리)</span></div>
         <div class="ch-opts"><span class="opt ">① shortcut</span><span class="opt ">② sweep</span><span class="opt ">③ go</span><span class="opt ">④ channel</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>ability</b> <span class="ch-mean">(능력)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>ability</b> <span class="ch-mean">(능력)</span></div>
         <div class="ch-opts"><span class="opt ">① channel</span><span class="opt ">② talent</span><span class="opt ">③ head</span><span class="opt ">④ allow</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>frown</b> <span class="ch-mean">(찡그리다)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>frown</b> <span class="ch-mean">(찡그리다)</span></div>
         <div class="ch-opts"><span class="opt ">① head</span><span class="opt ">② channel</span><span class="opt ">③ lightly</span><span class="opt ">④ smile</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>allow</b> <span class="ch-mean">(허락하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>allow</b> <span class="ch-mean">(허락하다)</span></div>
         <div class="ch-opts"><span class="opt ">① deny</span><span class="opt ">② ability</span><span class="opt ">③ basic</span><span class="opt ">④ rescue</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>lightly</b> <span class="ch-mean">(가볍게)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>lightly</b> <span class="ch-mean">(가볍게)</span></div>
         <div class="ch-opts"><span class="opt ">① rescue</span><span class="opt ">② multiplication</span><span class="opt ">③ basic</span><span class="opt ">④ heavily</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>basic</b> <span class="ch-mean">(기본적인)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>basic</b> <span class="ch-mean">(기본적인)</span></div>
         <div class="ch-opts"><span class="opt ">① ability</span><span class="opt ">② striped</span><span class="opt ">③ complex</span><span class="opt ">④ polish</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -5580,7 +5569,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -6130,66 +6119,63 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>line</b> <span class="ch-mean">(줄)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>line</b> <span class="ch-mean">(줄)</span></div>
         <div class="ch-opts"><span class="opt ">① row</span><span class="opt ">② confidence</span><span class="opt ">③ rob</span><span class="opt ">④ appointment</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>theater</b> <span class="ch-mean">(극장)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>theater</b> <span class="ch-mean">(극장)</span></div>
         <div class="ch-opts"><span class="opt ">① disabled</span><span class="opt ">② ancient</span><span class="opt ">③ beauty</span><span class="opt ">④ cinema</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>stink</b> <span class="ch-mean">(냄새나다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>stink</b> <span class="ch-mean">(냄새나다)</span></div>
         <div class="ch-opts"><span class="opt ">① frill</span><span class="opt ">② beauty</span><span class="opt ">③ theater</span><span class="opt ">④ smell</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>ancient</b> <span class="ch-mean">(고대의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>ancient</b> <span class="ch-mean">(고대의)</span></div>
         <div class="ch-opts"><span class="opt ">① stink</span><span class="opt ">② old</span><span class="opt ">③ monthly</span><span class="opt ">④ loyal</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>sniff</b> <span class="ch-mean">(냄새 맡다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>sniff</b> <span class="ch-mean">(냄새 맡다)</span></div>
         <div class="ch-opts"><span class="opt ">① monthly</span><span class="opt ">② smell</span><span class="opt ">③ language</span><span class="opt ">④ raisin</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>demand</b> <span class="ch-mean">(요구)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>demand</b> <span class="ch-mean">(요구)</span></div>
         <div class="ch-opts"><span class="opt ">① disabled</span><span class="opt ">② line</span><span class="opt ">③ ask</span><span class="opt ">④ setting</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>select</b> <span class="ch-mean">(선택하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>select</b> <span class="ch-mean">(선택하다)</span></div>
         <div class="ch-opts"><span class="opt ">① theater</span><span class="opt ">② microwave</span><span class="opt ">③ ancient</span><span class="opt ">④ choose</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>prepare</b> <span class="ch-mean">(준비하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>prepare</b> <span class="ch-mean">(준비하다)</span></div>
         <div class="ch-opts"><span class="opt ">① get ready</span><span class="opt ">② nephew</span><span class="opt ">③ select</span><span class="opt ">④ anymore</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>rob</b> <span class="ch-mean">(훔치다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>rob</b> <span class="ch-mean">(훔치다)</span></div>
         <div class="ch-opts"><span class="opt ">① nephew</span><span class="opt ">② microwave</span><span class="opt ">③ steal</span><span class="opt ">④ even</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>setting</b> <span class="ch-mean">(배경)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>setting</b> <span class="ch-mean">(배경)</span></div>
         <div class="ch-opts"><span class="opt ">① prepare</span><span class="opt ">② raisin</span><span class="opt ">③ appointment</span><span class="opt ">④ background</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>confidence</b> <span class="ch-mean">(자신감)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>confidence</b> <span class="ch-mean">(자신감)</span></div>
         <div class="ch-opts"><span class="opt ">① appointment</span><span class="opt ">② trust</span><span class="opt ">③ ancient</span><span class="opt ">④ theater</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>appointment</b> <span class="ch-mean">(약속)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>appointment</b> <span class="ch-mean">(약속)</span></div>
         <div class="ch-opts"><span class="opt ">① beauty</span><span class="opt ">② even</span><span class="opt ">③ meeting</span><span class="opt ">④ prepare</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>loyal</b> <span class="ch-mean">(충성스러운)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>loyal</b> <span class="ch-mean">(충성스러운)</span></div>
         <div class="ch-opts"><span class="opt ">① theater</span><span class="opt ">② appointment</span><span class="opt ">③ even</span><span class="opt ">④ faithful</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>ancient</b> <span class="ch-mean">(고대의)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>ancient</b> <span class="ch-mean">(고대의)</span></div>
         <div class="ch-opts"><span class="opt ">① raisin</span><span class="opt ">② line</span><span class="opt ">③ modern</span><span class="opt ">④ theater</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -6436,7 +6422,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -6986,118 +6972,125 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>lyric</b> <span class="ch-mean">(가사)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>lyric</b> <span class="ch-mean">(가사)</span></div>
         <div class="ch-opts"><span class="opt ">① song words</span><span class="opt ">② yet</span><span class="opt ">③ design</span><span class="opt ">④ annoy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>annoy</b> <span class="ch-mean">(짜증나게 하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>annoy</b> <span class="ch-mean">(짜증나게 하다)</span></div>
         <div class="ch-opts"><span class="opt ">① bother</span><span class="opt ">② rainfall</span><span class="opt ">③ misunderstand</span><span class="opt ">④ sample</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>likely</b> <span class="ch-mean">(~할 것 같은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>likely</b> <span class="ch-mean">(~할 것 같은)</span></div>
         <div class="ch-opts"><span class="opt ">① produce</span><span class="opt ">② neighbor</span><span class="opt ">③ joyful</span><span class="opt ">④ possible</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>anybody</b> <span class="ch-mean">(누구든지)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>anybody</b> <span class="ch-mean">(누구든지)</span></div>
         <div class="ch-opts"><span class="opt ">① documentary</span><span class="opt ">② rainfall</span><span class="opt ">③ annoy</span><span class="opt ">④ anyone</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>slip</b> <span class="ch-mean">(미끄러지다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>slip</b> <span class="ch-mean">(미끄러지다)</span></div>
         <div class="ch-opts"><span class="opt ">① frequent</span><span class="opt ">② juicy</span><span class="opt ">③ slide</span><span class="opt ">④ smash</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>propose</b> <span class="ch-mean">(제안하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>propose</b> <span class="ch-mean">(제안하다)</span></div>
         <div class="ch-opts"><span class="opt ">① suggest</span><span class="opt ">② joyful</span><span class="opt ">③ produce</span><span class="opt ">④ frequent</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>produce</b> <span class="ch-mean">(생산하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>produce</b> <span class="ch-mean">(생산하다)</span></div>
         <div class="ch-opts"><span class="opt ">① design</span><span class="opt ">② make</span><span class="opt ">③ joyful</span><span class="opt ">④ likely</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>rainfall</b> <span class="ch-mean">(강우량)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>rainfall</b> <span class="ch-mean">(강우량)</span></div>
         <div class="ch-opts"><span class="opt ">① rain</span><span class="opt ">② sample</span><span class="opt ">③ flash</span><span class="opt ">④ yet</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>pan</b> <span class="ch-mean">(팬)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>pan</b> <span class="ch-mean">(팬)</span></div>
         <div class="ch-opts"><span class="opt ">① design</span><span class="opt ">② frequent</span><span class="opt ">③ frying pan</span><span class="opt ">④ polite</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>smash</b> <span class="ch-mean">(박살 내다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>smash</b> <span class="ch-mean">(박살 내다)</span></div>
         <div class="ch-opts"><span class="opt ">① neighbor</span><span class="opt ">② break</span><span class="opt ">③ dead</span><span class="opt ">④ yet</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>design</b> <span class="ch-mean">(디자인하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>design</b> <span class="ch-mean">(디자인하다)</span></div>
         <div class="ch-opts"><span class="opt ">① smash</span><span class="opt ">② lyric</span><span class="opt ">③ plan</span><span class="opt ">④ flash</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>broad</b> <span class="ch-mean">(넓은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>broad</b> <span class="ch-mean">(넓은)</span></div>
         <div class="ch-opts"><span class="opt ">① tornado</span><span class="opt ">② wide</span><span class="opt ">③ anybody</span><span class="opt ">④ documentary</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>frequent</b> <span class="ch-mean">(자주 일어나는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>frequent</b> <span class="ch-mean">(자주 일어나는)</span></div>
         <div class="ch-opts"><span class="opt ">① often</span><span class="opt ">② flash</span><span class="opt ">③ dead</span><span class="opt ">④ smash</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>polite</b> <span class="ch-mean">(예의 바른)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>polite</b> <span class="ch-mean">(예의 바른)</span></div>
         <div class="ch-opts"><span class="opt ">① likely</span><span class="opt ">② kind</span><span class="opt ">③ design</span><span class="opt ">④ safety</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>tornado</b> <span class="ch-mean">(토네이도)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>tornado</b> <span class="ch-mean">(토네이도)</span></div>
         <div class="ch-opts"><span class="opt ">① storm</span><span class="opt ">② safety</span><span class="opt ">③ annoy</span><span class="opt ">④ pan</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>juicy</b> <span class="ch-mean">(즙이 많은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>juicy</b> <span class="ch-mean">(즙이 많은)</span></div>
         <div class="ch-opts"><span class="opt ">① polite</span><span class="opt ">② yet</span><span class="opt ">③ dead</span><span class="opt ">④ watery</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>joyful</b> <span class="ch-mean">(아주 기뻐하는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">17.</span> <b>joyful</b> <span class="ch-mean">(아주 기뻐하는)</span></div>
         <div class="ch-opts"><span class="opt ">① misunderstand</span><span class="opt ">② rainfall</span><span class="opt ">③ anybody</span><span class="opt ">④ happy</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>misunderstand</b> <span class="ch-mean">(오해하다)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>misunderstand</b> <span class="ch-mean">(오해하다)</span></div>
         <div class="ch-opts"><span class="opt ">① propose</span><span class="opt ">② rainfall</span><span class="opt ">③ lyric</span><span class="opt ">④ understand</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>broad</b> <span class="ch-mean">(넓은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>broad</b> <span class="ch-mean">(넓은)</span></div>
         <div class="ch-opts"><span class="opt ">① joyful</span><span class="opt ">② smash</span><span class="opt ">③ rainfall</span><span class="opt ">④ narrow</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>anybody</b> <span class="ch-mean">(누구든지)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>anybody</b> <span class="ch-mean">(누구든지)</span></div>
         <div class="ch-opts"><span class="opt ">① nobody</span><span class="opt ">② misunderstand</span><span class="opt ">③ documentary</span><span class="opt ">④ pan</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>frequent</b> <span class="ch-mean">(자주 일어나는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>frequent</b> <span class="ch-mean">(자주 일어나는)</span></div>
         <div class="ch-opts"><span class="opt ">① annoy</span><span class="opt ">② polite</span><span class="opt ">③ rare</span><span class="opt ">④ joyful</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>juicy</b> <span class="ch-mean">(즙이 많은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>juicy</b> <span class="ch-mean">(즙이 많은)</span></div>
         <div class="ch-opts"><span class="opt ">① neighbor</span><span class="opt ">② slip</span><span class="opt ">③ dry</span><span class="opt ">④ yet</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>safety</b> <span class="ch-mean">(안전)</span></div>
+      </div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 23</div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>safety</b> <span class="ch-mean">(안전)</span></div>
         <div class="ch-opts"><span class="opt ">① juicy</span><span class="opt ">② broad</span><span class="opt ">③ flash</span><span class="opt ">④ danger</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>likely</b> <span class="ch-mean">(~할 것 같은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>likely</b> <span class="ch-mean">(~할 것 같은)</span></div>
         <div class="ch-opts"><span class="opt ">① unlikely</span><span class="opt ">② rainfall</span><span class="opt ">③ anybody</span><span class="opt ">④ frequent</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>joyful</b> <span class="ch-mean">(아주 기뻐하는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>joyful</b> <span class="ch-mean">(아주 기뻐하는)</span></div>
         <div class="ch-opts"><span class="opt ">① broad</span><span class="opt ">② sad</span><span class="opt ">③ polite</span><span class="opt ">④ dead</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>dead</b> <span class="ch-mean">(죽은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>dead</b> <span class="ch-mean">(죽은)</span></div>
         <div class="ch-opts"><span class="opt ">① documentary</span><span class="opt ">② juicy</span><span class="opt ">③ safety</span><span class="opt ">④ alive</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>polite</b> <span class="ch-mean">(예의 바른)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>polite</b> <span class="ch-mean">(예의 바른)</span></div>
         <div class="ch-opts"><span class="opt ">① broad</span><span class="opt ">② dead</span><span class="opt ">③ rude</span><span class="opt ">④ pan</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -7344,7 +7337,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -7894,98 +7887,95 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>adventure</b> <span class="ch-mean">(모험)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>adventure</b> <span class="ch-mean">(모험)</span></div>
         <div class="ch-opts"><span class="opt ">① honest</span><span class="opt ">② copy</span><span class="opt ">③ archer</span><span class="opt ">④ trip</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>understand</b> <span class="ch-mean">(이해하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>understand</b> <span class="ch-mean">(이해하다)</span></div>
         <div class="ch-opts"><span class="opt ">① medium</span><span class="opt ">② double</span><span class="opt ">③ exist</span><span class="opt ">④ know</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>medium</b> <span class="ch-mean">(중간의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>medium</b> <span class="ch-mean">(중간의)</span></div>
         <div class="ch-opts"><span class="opt ">① habitat</span><span class="opt ">② fat</span><span class="opt ">③ middle</span><span class="opt ">④ copy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>habitat</b> <span class="ch-mean">(서식지)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>habitat</b> <span class="ch-mean">(서식지)</span></div>
         <div class="ch-opts"><span class="opt ">① home</span><span class="opt ">② also</span><span class="opt ">③ archer</span><span class="opt ">④ adventure</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>honest</b> <span class="ch-mean">(정직한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>honest</b> <span class="ch-mean">(정직한)</span></div>
         <div class="ch-opts"><span class="opt ">① truthful</span><span class="opt ">② habitat</span><span class="opt ">③ copy</span><span class="opt ">④ unknown</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>period</b> <span class="ch-mean">(기간)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>period</b> <span class="ch-mean">(기간)</span></div>
         <div class="ch-opts"><span class="opt ">① brand</span><span class="opt ">② birth</span><span class="opt ">③ time</span><span class="opt ">④ length</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>control</b> <span class="ch-mean">(통제하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>control</b> <span class="ch-mean">(통제하다)</span></div>
         <div class="ch-opts"><span class="opt ">① double</span><span class="opt ">② rule</span><span class="opt ">③ length</span><span class="opt ">④ copy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>marriage</b> <span class="ch-mean">(결혼)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>marriage</b> <span class="ch-mean">(결혼)</span></div>
         <div class="ch-opts"><span class="opt ">① appear</span><span class="opt ">② understand</span><span class="opt ">③ wedding</span><span class="opt ">④ brand</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>also</b> <span class="ch-mean">(또한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>also</b> <span class="ch-mean">(또한)</span></div>
         <div class="ch-opts"><span class="opt ">① appear</span><span class="opt ">② too</span><span class="opt ">③ control</span><span class="opt ">④ double</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>unknown</b> <span class="ch-mean">(알려지지 않은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>unknown</b> <span class="ch-mean">(알려지지 않은)</span></div>
         <div class="ch-opts"><span class="opt ">① length</span><span class="opt ">② strange</span><span class="opt ">③ marriage</span><span class="opt ">④ copy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>copy</b> <span class="ch-mean">(복사하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>copy</b> <span class="ch-mean">(복사하다)</span></div>
         <div class="ch-opts"><span class="opt ">① repeat</span><span class="opt ">② understand</span><span class="opt ">③ fat</span><span class="opt ">④ double</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>exist</b> <span class="ch-mean">(존재하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>exist</b> <span class="ch-mean">(존재하다)</span></div>
         <div class="ch-opts"><span class="opt ">① difference</span><span class="opt ">② also</span><span class="opt ">③ live</span><span class="opt ">④ spelling</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>appear</b> <span class="ch-mean">(나타나다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>appear</b> <span class="ch-mean">(나타나다)</span></div>
         <div class="ch-opts"><span class="opt ">① length</span><span class="opt ">② marriage</span><span class="opt ">③ show</span><span class="opt ">④ muscle</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>wage</b> <span class="ch-mean">(임금)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>wage</b> <span class="ch-mean">(임금)</span></div>
         <div class="ch-opts"><span class="opt ">① length</span><span class="opt ">② appear</span><span class="opt ">③ habitat</span><span class="opt ">④ pay</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>tough</b> <span class="ch-mean">(힘든; 강한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>tough</b> <span class="ch-mean">(힘든; 강한)</span></div>
         <div class="ch-opts"><span class="opt ">① understand</span><span class="opt ">② muscle</span><span class="opt ">③ unknown</span><span class="opt ">④ hard</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>difference</b> <span class="ch-mean">(차이)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>difference</b> <span class="ch-mean">(차이)</span></div>
         <div class="ch-opts"><span class="opt ">① archer</span><span class="opt ">② appear</span><span class="opt ">③ brand</span><span class="opt ">④ same</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>unknown</b> <span class="ch-mean">(알려지지 않은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>unknown</b> <span class="ch-mean">(알려지지 않은)</span></div>
         <div class="ch-opts"><span class="opt ">① archer</span><span class="opt ">② rhyme</span><span class="opt ">③ famous</span><span class="opt ">④ birth</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>double</b> <span class="ch-mean">(두 배의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>double</b> <span class="ch-mean">(두 배의)</span></div>
         <div class="ch-opts"><span class="opt ">① wage</span><span class="opt ">② archer</span><span class="opt ">③ understand</span><span class="opt ">④ single</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>fat</b> <span class="ch-mean">(뚱뚱한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>fat</b> <span class="ch-mean">(뚱뚱한)</span></div>
         <div class="ch-opts"><span class="opt ">① honest</span><span class="opt ">② rhyme</span><span class="opt ">③ length</span><span class="opt ">④ thin</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>birth</b> <span class="ch-mean">(탄생)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>birth</b> <span class="ch-mean">(탄생)</span></div>
         <div class="ch-opts"><span class="opt ">① rhyme</span><span class="opt ">② honest</span><span class="opt ">③ death</span><span class="opt ">④ copy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>appear</b> <span class="ch-mean">(나타나다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>appear</b> <span class="ch-mean">(나타나다)</span></div>
         <div class="ch-opts"><span class="opt ">① spelling</span><span class="opt ">② vanish</span><span class="opt ">③ control</span><span class="opt ">④ honest</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>tough</b> <span class="ch-mean">(힘든; 강한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>tough</b> <span class="ch-mean">(힘든; 강한)</span></div>
         <div class="ch-opts"><span class="opt ">① easy</span><span class="opt ">② length</span><span class="opt ">③ spelling</span><span class="opt ">④ medium</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -8232,7 +8222,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -8782,118 +8772,125 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>shortly</b> <span class="ch-mean">(곧)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>shortly</b> <span class="ch-mean">(곧)</span></div>
         <div class="ch-opts"><span class="opt ">① puzzled</span><span class="opt ">② soon</span><span class="opt ">③ couple</span><span class="opt ">④ pleased</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>core</b> <span class="ch-mean">(핵심; 심)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>core</b> <span class="ch-mean">(핵심; 심)</span></div>
         <div class="ch-opts"><span class="opt ">① center</span><span class="opt ">② cheerful</span><span class="opt ">③ lid</span><span class="opt ">④ suck</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>battle</b> <span class="ch-mean">(전투)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>battle</b> <span class="ch-mean">(전투)</span></div>
         <div class="ch-opts"><span class="opt ">① fight</span><span class="opt ">② passionate</span><span class="opt ">③ careless</span><span class="opt ">④ pleased</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>solution</b> <span class="ch-mean">(해결책)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>solution</b> <span class="ch-mean">(해결책)</span></div>
         <div class="ch-opts"><span class="opt ">① architect</span><span class="opt ">② answer</span><span class="opt ">③ cheerful</span><span class="opt ">④ careless</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>puzzled</b> <span class="ch-mean">(어리둥절한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>puzzled</b> <span class="ch-mean">(어리둥절한)</span></div>
         <div class="ch-opts"><span class="opt ">① afterward</span><span class="opt ">② confused</span><span class="opt ">③ cheerful</span><span class="opt ">④ shortly</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>fright</b> <span class="ch-mean">(두려움)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>fright</b> <span class="ch-mean">(두려움)</span></div>
         <div class="ch-opts"><span class="opt ">① passionate</span><span class="opt ">② couple</span><span class="opt ">③ fear</span><span class="opt ">④ architect</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>pleased</b> <span class="ch-mean">(기쁜)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>pleased</b> <span class="ch-mean">(기쁜)</span></div>
         <div class="ch-opts"><span class="opt ">① happy</span><span class="opt ">② couple</span><span class="opt ">③ pat</span><span class="opt ">④ afterward</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>afterward</b> <span class="ch-mean">(후에)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>afterward</b> <span class="ch-mean">(후에)</span></div>
         <div class="ch-opts"><span class="opt ">① solution</span><span class="opt ">② lid</span><span class="opt ">③ later</span><span class="opt ">④ careless</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>couple</b> <span class="ch-mean">(커플; 부부)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>couple</b> <span class="ch-mean">(커플; 부부)</span></div>
         <div class="ch-opts"><span class="opt ">① core</span><span class="opt ">② battle</span><span class="opt ">③ pair</span><span class="opt ">④ lid</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>lid</b> <span class="ch-mean">(뚜껑)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>lid</b> <span class="ch-mean">(뚜껑)</span></div>
         <div class="ch-opts"><span class="opt ">① cover</span><span class="opt ">② equal</span><span class="opt ">③ moist</span><span class="opt ">④ pleased</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bold</b> <span class="ch-mean">(용감한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>bold</b> <span class="ch-mean">(용감한)</span></div>
         <div class="ch-opts"><span class="opt ">① puzzled</span><span class="opt ">② brave</span><span class="opt ">③ solution</span><span class="opt ">④ program</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>moist</b> <span class="ch-mean">(촉촉한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>moist</b> <span class="ch-mean">(촉촉한)</span></div>
         <div class="ch-opts"><span class="opt ">① wet</span><span class="opt ">② bare</span><span class="opt ">③ core</span><span class="opt ">④ shortly</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>equal</b> <span class="ch-mean">(같다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>equal</b> <span class="ch-mean">(같다)</span></div>
         <div class="ch-opts"><span class="opt ">① suck</span><span class="opt ">② lid</span><span class="opt ">③ same</span><span class="opt ">④ puzzled</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>moment</b> <span class="ch-mean">(잠시)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>moment</b> <span class="ch-mean">(잠시)</span></div>
         <div class="ch-opts"><span class="opt ">① battle</span><span class="opt ">② second</span><span class="opt ">③ couple</span><span class="opt ">④ lid</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bare</b> <span class="ch-mean">(벌거벗은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>bare</b> <span class="ch-mean">(벌거벗은)</span></div>
         <div class="ch-opts"><span class="opt ">① battle</span><span class="opt ">② naked</span><span class="opt ">③ puzzled</span><span class="opt ">④ program</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>pat</b> <span class="ch-mean">(토닥이다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>pat</b> <span class="ch-mean">(토닥이다)</span></div>
         <div class="ch-opts"><span class="opt ">① passionate</span><span class="opt ">② pleased</span><span class="opt ">③ bold</span><span class="opt ">④ touch</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>cheerful</b> <span class="ch-mean">(쾌활한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">17.</span> <b>cheerful</b> <span class="ch-mean">(쾌활한)</span></div>
         <div class="ch-opts"><span class="opt ">① happy</span><span class="opt ">② couple</span><span class="opt ">③ bare</span><span class="opt ">④ solution</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>nobody</b> <span class="ch-mean">(아무도 ~ 않다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">18.</span> <b>nobody</b> <span class="ch-mean">(아무도 ~ 않다)</span></div>
         <div class="ch-opts"><span class="opt ">① careless</span><span class="opt ">② afterward</span><span class="opt ">③ bold</span><span class="opt ">④ no one</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>afterward</b> <span class="ch-mean">(후에)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>afterward</b> <span class="ch-mean">(후에)</span></div>
         <div class="ch-opts"><span class="opt ">① architect</span><span class="opt ">② program</span><span class="opt ">③ scene</span><span class="opt ">④ before</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>moist</b> <span class="ch-mean">(촉촉한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>moist</b> <span class="ch-mean">(촉촉한)</span></div>
         <div class="ch-opts"><span class="opt ">① lid</span><span class="opt ">② scene</span><span class="opt ">③ dry</span><span class="opt ">④ shortly</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>careless</b> <span class="ch-mean">(부주의한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>careless</b> <span class="ch-mean">(부주의한)</span></div>
         <div class="ch-opts"><span class="opt ">① core</span><span class="opt ">② careful</span><span class="opt ">③ fright</span><span class="opt ">④ moist</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>nobody</b> <span class="ch-mean">(아무도 ~ 않다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>nobody</b> <span class="ch-mean">(아무도 ~ 않다)</span></div>
         <div class="ch-opts"><span class="opt ">① passionate</span><span class="opt ">② couple</span><span class="opt ">③ anybody</span><span class="opt ">④ cheerful</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>cheerful</b> <span class="ch-mean">(쾌활한)</span></div>
+      </div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 25</div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>cheerful</b> <span class="ch-mean">(쾌활한)</span></div>
         <div class="ch-opts"><span class="opt ">① moist</span><span class="opt ">② note</span><span class="opt ">③ equal</span><span class="opt ">④ sad</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>pleased</b> <span class="ch-mean">(기쁜)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>pleased</b> <span class="ch-mean">(기쁜)</span></div>
         <div class="ch-opts"><span class="opt ">① sad</span><span class="opt ">② bare</span><span class="opt ">③ architect</span><span class="opt ">④ moment</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>solution</b> <span class="ch-mean">(해결책)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>solution</b> <span class="ch-mean">(해결책)</span></div>
         <div class="ch-opts"><span class="opt ">① puzzled</span><span class="opt ">② nobody</span><span class="opt ">③ passionate</span><span class="opt ">④ problem</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>equal</b> <span class="ch-mean">(같다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>equal</b> <span class="ch-mean">(같다)</span></div>
         <div class="ch-opts"><span class="opt ">① cheerful</span><span class="opt ">② different</span><span class="opt ">③ nobody</span><span class="opt ">④ lid</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bold</b> <span class="ch-mean">(용감한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>bold</b> <span class="ch-mean">(용감한)</span></div>
         <div class="ch-opts"><span class="opt ">① nobody</span><span class="opt ">② architect</span><span class="opt ">③ weak</span><span class="opt ">④ suck</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -9140,7 +9137,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -9690,90 +9687,87 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>present</b> <span class="ch-mean">(선물; 현재)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>present</b> <span class="ch-mean">(선물; 현재)</span></div>
         <div class="ch-opts"><span class="opt ">① upon</span><span class="opt ">② gift</span><span class="opt ">③ smoke</span><span class="opt ">④ seem</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>reality</b> <span class="ch-mean">(현실)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>reality</b> <span class="ch-mean">(현실)</span></div>
         <div class="ch-opts"><span class="opt ">① extra</span><span class="opt ">② parental</span><span class="opt ">③ object</span><span class="opt ">④ real life</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>accept</b> <span class="ch-mean">(받아들이다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>accept</b> <span class="ch-mean">(받아들이다)</span></div>
         <div class="ch-opts"><span class="opt ">① take</span><span class="opt ">② face</span><span class="opt ">③ joy</span><span class="opt ">④ germ</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>joy</b> <span class="ch-mean">(기쁨)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>joy</b> <span class="ch-mean">(기쁨)</span></div>
         <div class="ch-opts"><span class="opt ">① extra</span><span class="opt ">② northern</span><span class="opt ">③ explorer</span><span class="opt ">④ happiness</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>state</b> <span class="ch-mean">(상태; 주)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>state</b> <span class="ch-mean">(상태; 주)</span></div>
         <div class="ch-opts"><span class="opt ">① stick</span><span class="opt ">② deaf</span><span class="opt ">③ condition</span><span class="opt ">④ explorer</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>brilliant</b> <span class="ch-mean">(훌륭한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>brilliant</b> <span class="ch-mean">(훌륭한)</span></div>
         <div class="ch-opts"><span class="opt ">① upon</span><span class="opt ">② explorer</span><span class="opt ">③ smart</span><span class="opt ">④ anger</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>seem</b> <span class="ch-mean">(~처럼 보이다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>seem</b> <span class="ch-mean">(~처럼 보이다)</span></div>
         <div class="ch-opts"><span class="opt ">① parental</span><span class="opt ">② look like</span><span class="opt ">③ state</span><span class="opt ">④ portrait</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>stick</b> <span class="ch-mean">(붙이다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>stick</b> <span class="ch-mean">(붙이다)</span></div>
         <div class="ch-opts"><span class="opt ">① parental</span><span class="opt ">② reality</span><span class="opt ">③ glue</span><span class="opt ">④ accept</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>farmland</b> <span class="ch-mean">(농지)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>farmland</b> <span class="ch-mean">(농지)</span></div>
         <div class="ch-opts"><span class="opt ">① object</span><span class="opt ">② farm</span><span class="opt ">③ hump</span><span class="opt ">④ present</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>upon</b> <span class="ch-mean">(~위에)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>upon</b> <span class="ch-mean">(~위에)</span></div>
         <div class="ch-opts"><span class="opt ">① deaf</span><span class="opt ">② state</span><span class="opt ">③ on</span><span class="opt ">④ parental</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>portrait</b> <span class="ch-mean">(초상화)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>portrait</b> <span class="ch-mean">(초상화)</span></div>
         <div class="ch-opts"><span class="opt ">① picture</span><span class="opt ">② brilliant</span><span class="opt ">③ face</span><span class="opt ">④ explorer</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>league</b> <span class="ch-mean">(리그)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>league</b> <span class="ch-mean">(리그)</span></div>
         <div class="ch-opts"><span class="opt ">① accept</span><span class="opt ">② parental</span><span class="opt ">③ group</span><span class="opt ">④ hump</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>extra</b> <span class="ch-mean">(추가의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>extra</b> <span class="ch-mean">(추가의)</span></div>
         <div class="ch-opts"><span class="opt ">① more</span><span class="opt ">② hump</span><span class="opt ">③ face</span><span class="opt ">④ upon</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>meaningful</b> <span class="ch-mean">(의미 있는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>meaningful</b> <span class="ch-mean">(의미 있는)</span></div>
         <div class="ch-opts"><span class="opt ">① anyway</span><span class="opt ">② hump</span><span class="opt ">③ accept</span><span class="opt ">④ important</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>object</b> <span class="ch-mean">(물건; 반대하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>object</b> <span class="ch-mean">(물건; 반대하다)</span></div>
         <div class="ch-opts"><span class="opt ">① state</span><span class="opt ">② reality</span><span class="opt ">③ explorer</span><span class="opt ">④ thing</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>face</b> <span class="ch-mean">(직면하다; 얼굴)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>face</b> <span class="ch-mean">(직면하다; 얼굴)</span></div>
         <div class="ch-opts"><span class="opt ">① stick</span><span class="opt ">② extra</span><span class="opt ">③ meet</span><span class="opt ">④ upon</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>northern</b> <span class="ch-mean">(북쪽의)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>northern</b> <span class="ch-mean">(북쪽의)</span></div>
         <div class="ch-opts"><span class="opt ">① explorer</span><span class="opt ">② hump</span><span class="opt ">③ southern</span><span class="opt ">④ joy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>joy</b> <span class="ch-mean">(기쁨)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>joy</b> <span class="ch-mean">(기쁨)</span></div>
         <div class="ch-opts"><span class="opt ">① germ</span><span class="opt ">② sadness</span><span class="opt ">③ brilliant</span><span class="opt ">④ farmland</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>accept</b> <span class="ch-mean">(받아들이다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>accept</b> <span class="ch-mean">(받아들이다)</span></div>
         <div class="ch-opts"><span class="opt ">① reality</span><span class="opt ">② reject</span><span class="opt ">③ parental</span><span class="opt ">④ stick</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>reality</b> <span class="ch-mean">(현실)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>reality</b> <span class="ch-mean">(현실)</span></div>
         <div class="ch-opts"><span class="opt ">① deaf</span><span class="opt ">② anger</span><span class="opt ">③ northern</span><span class="opt ">④ dream</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -10020,7 +10014,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -10570,106 +10564,113 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>include</b> <span class="ch-mean">(포함하다)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>include</b> <span class="ch-mean">(포함하다)</span></div>
         <div class="ch-opts"><span class="opt ">① receive</span><span class="opt ">② add</span><span class="opt ">③ beginning</span><span class="opt ">④ achieve</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>device</b> <span class="ch-mean">(장치)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>device</b> <span class="ch-mean">(장치)</span></div>
         <div class="ch-opts"><span class="opt ">① achieve</span><span class="opt ">② tool</span><span class="opt ">③ include</span><span class="opt ">④ barely</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>barely</b> <span class="ch-mean">(간신히)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>barely</b> <span class="ch-mean">(간신히)</span></div>
         <div class="ch-opts"><span class="opt ">① anytime</span><span class="opt ">② coral</span><span class="opt ">③ spine</span><span class="opt ">④ hardly</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>receive</b> <span class="ch-mean">(받다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>receive</b> <span class="ch-mean">(받다)</span></div>
         <div class="ch-opts"><span class="opt ">① barely</span><span class="opt ">② canyon</span><span class="opt ">③ coral</span><span class="opt ">④ get</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>achieve</b> <span class="ch-mean">(달성하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>achieve</b> <span class="ch-mean">(달성하다)</span></div>
         <div class="ch-opts"><span class="opt ">① win</span><span class="opt ">② toward</span><span class="opt ">③ anytime</span><span class="opt ">④ plain</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>toward</b> <span class="ch-mean">(~쪽으로)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>toward</b> <span class="ch-mean">(~쪽으로)</span></div>
         <div class="ch-opts"><span class="opt ">① softness</span><span class="opt ">② device</span><span class="opt ">③ include</span><span class="opt ">④ to</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>plain</b> <span class="ch-mean">(평범한; 평원)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>plain</b> <span class="ch-mean">(평범한; 평원)</span></div>
         <div class="ch-opts"><span class="opt ">① flesh</span><span class="opt ">② receive</span><span class="opt ">③ simple</span><span class="opt ">④ glue</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>historical</b> <span class="ch-mean">(역사의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>historical</b> <span class="ch-mean">(역사의)</span></div>
         <div class="ch-opts"><span class="opt ">① toward</span><span class="opt ">② snap</span><span class="opt ">③ old</span><span class="opt ">④ entrance</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>entrance</b> <span class="ch-mean">(입구)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>entrance</b> <span class="ch-mean">(입구)</span></div>
         <div class="ch-opts"><span class="opt ">① online</span><span class="opt ">② else</span><span class="opt ">③ glue</span><span class="opt ">④ way in</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>flesh</b> <span class="ch-mean">(살)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>flesh</b> <span class="ch-mean">(살)</span></div>
         <div class="ch-opts"><span class="opt ">① include</span><span class="opt ">② canyon</span><span class="opt ">③ body</span><span class="opt ">④ else</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>view</b> <span class="ch-mean">(경치)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>view</b> <span class="ch-mean">(경치)</span></div>
         <div class="ch-opts"><span class="opt ">① sight</span><span class="opt ">② canyon</span><span class="opt ">③ entrance</span><span class="opt ">④ else</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>else</b> <span class="ch-mean">(그 밖의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>else</b> <span class="ch-mean">(그 밖의)</span></div>
         <div class="ch-opts"><span class="opt ">① entrance</span><span class="opt ">② snap</span><span class="opt ">③ other</span><span class="opt ">④ spine</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>beginning</b> <span class="ch-mean">(시작)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>beginning</b> <span class="ch-mean">(시작)</span></div>
         <div class="ch-opts"><span class="opt ">① start</span><span class="opt ">② include</span><span class="opt ">③ online</span><span class="opt ">④ anytime</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>playful</b> <span class="ch-mean">(놀기 좋아하는)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>playful</b> <span class="ch-mean">(놀기 좋아하는)</span></div>
         <div class="ch-opts"><span class="opt ">① softness</span><span class="opt ">② successful</span><span class="opt ">③ historical</span><span class="opt ">④ funny</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>canyon</b> <span class="ch-mean">(협곡)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>canyon</b> <span class="ch-mean">(협곡)</span></div>
         <div class="ch-opts"><span class="opt ">① valley</span><span class="opt ">② else</span><span class="opt ">③ successful</span><span class="opt ">④ entrance</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>spine</b> <span class="ch-mean">(척추; 가시)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>spine</b> <span class="ch-mean">(척추; 가시)</span></div>
         <div class="ch-opts"><span class="opt ">① anytime</span><span class="opt ">② back</span><span class="opt ">③ softness</span><span class="opt ">④ achieve</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>include</b> <span class="ch-mean">(포함하다)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>include</b> <span class="ch-mean">(포함하다)</span></div>
         <div class="ch-opts"><span class="opt ">① device</span><span class="opt ">② flesh</span><span class="opt ">③ exclude</span><span class="opt ">④ achieve</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>beginning</b> <span class="ch-mean">(시작)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>beginning</b> <span class="ch-mean">(시작)</span></div>
         <div class="ch-opts"><span class="opt ">① spine</span><span class="opt ">② end</span><span class="opt ">③ toward</span><span class="opt ">④ else</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>entrance</b> <span class="ch-mean">(입구)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>entrance</b> <span class="ch-mean">(입구)</span></div>
         <div class="ch-opts"><span class="opt ">① else</span><span class="opt ">② exit</span><span class="opt ">③ snap</span><span class="opt ">④ flesh</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>receive</b> <span class="ch-mean">(받다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>receive</b> <span class="ch-mean">(받다)</span></div>
         <div class="ch-opts"><span class="opt ">① thief</span><span class="opt ">② view</span><span class="opt ">③ achieve</span><span class="opt ">④ send</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>plain</b> <span class="ch-mean">(평범한; 평원)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>plain</b> <span class="ch-mean">(평범한; 평원)</span></div>
         <div class="ch-opts"><span class="opt ">① barely</span><span class="opt ">② device</span><span class="opt ">③ fancy</span><span class="opt ">④ thief</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>toward</b> <span class="ch-mean">(~쪽으로)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>toward</b> <span class="ch-mean">(~쪽으로)</span></div>
         <div class="ch-opts"><span class="opt ">① snap</span><span class="opt ">② online</span><span class="opt ">③ beginning</span><span class="opt ">④ away from</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>playful</b> <span class="ch-mean">(놀기 좋아하는)</span></div>
+      </div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 27</div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>playful</b> <span class="ch-mean">(놀기 좋아하는)</span></div>
         <div class="ch-opts"><span class="opt ">① device</span><span class="opt ">② serious</span><span class="opt ">③ glue</span><span class="opt ">④ flesh</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>online</b> <span class="ch-mean">(온라인으로)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>online</b> <span class="ch-mean">(온라인으로)</span></div>
         <div class="ch-opts"><span class="opt ">① include</span><span class="opt ">② flesh</span><span class="opt ">③ offline</span><span class="opt ">④ snap</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -10916,7 +10917,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -11466,106 +11467,113 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>string</b> <span class="ch-mean">(끈)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>string</b> <span class="ch-mean">(끈)</span></div>
         <div class="ch-opts"><span class="opt ">① suffer</span><span class="opt ">② solid</span><span class="opt ">③ ton</span><span class="opt ">④ rope</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>stare</b> <span class="ch-mean">(바라보다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>stare</b> <span class="ch-mean">(바라보다)</span></div>
         <div class="ch-opts"><span class="opt ">① string</span><span class="opt ">② supper</span><span class="opt ">③ look</span><span class="opt ">④ rotten</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>stable</b> <span class="ch-mean">(안정된; 마구간)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>stable</b> <span class="ch-mean">(안정된; 마구간)</span></div>
         <div class="ch-opts"><span class="opt ">① steady</span><span class="opt ">② choice</span><span class="opt ">③ clearly</span><span class="opt ">④ hometown</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>enemy</b> <span class="ch-mean">(적)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>enemy</b> <span class="ch-mean">(적)</span></div>
         <div class="ch-opts"><span class="opt ">① stable</span><span class="opt ">② ton</span><span class="opt ">③ rival</span><span class="opt ">④ solid</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>basis</b> <span class="ch-mean">(기초)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>basis</b> <span class="ch-mean">(기초)</span></div>
         <div class="ch-opts"><span class="opt ">① bit</span><span class="opt ">② stable</span><span class="opt ">③ ton</span><span class="opt ">④ base</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>beg</b> <span class="ch-mean">(간청하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>beg</b> <span class="ch-mean">(간청하다)</span></div>
         <div class="ch-opts"><span class="opt ">① rotten</span><span class="opt ">② completely</span><span class="opt ">③ ask</span><span class="opt ">④ overseas</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>completely</b> <span class="ch-mean">(완전히)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>completely</b> <span class="ch-mean">(완전히)</span></div>
         <div class="ch-opts"><span class="opt ">① beg</span><span class="opt ">② choice</span><span class="opt ">③ overseas</span><span class="opt ">④ fully</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bit</b> <span class="ch-mean">(조금)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>bit</b> <span class="ch-mean">(조금)</span></div>
         <div class="ch-opts"><span class="opt ">① beg</span><span class="opt ">② a little</span><span class="opt ">③ rotten</span><span class="opt ">④ solid</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>rotten</b> <span class="ch-mean">(썩은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>rotten</b> <span class="ch-mean">(썩은)</span></div>
         <div class="ch-opts"><span class="opt ">① choice</span><span class="opt ">② bad</span><span class="opt ">③ basis</span><span class="opt ">④ medal</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>supper</b> <span class="ch-mean">(저녁 식사)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>supper</b> <span class="ch-mean">(저녁 식사)</span></div>
         <div class="ch-opts"><span class="opt ">① rotten</span><span class="opt ">② stare</span><span class="opt ">③ stable</span><span class="opt ">④ dinner</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>medal</b> <span class="ch-mean">(메달)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>medal</b> <span class="ch-mean">(메달)</span></div>
         <div class="ch-opts"><span class="opt ">① clearly</span><span class="opt ">② enemy</span><span class="opt ">③ award</span><span class="opt ">④ suffer</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>grab</b> <span class="ch-mean">(붙잡다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>grab</b> <span class="ch-mean">(붙잡다)</span></div>
         <div class="ch-opts"><span class="opt ">① medal</span><span class="opt ">② hold</span><span class="opt ">③ protein</span><span class="opt ">④ beg</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>solid</b> <span class="ch-mean">(고체의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>solid</b> <span class="ch-mean">(고체의)</span></div>
         <div class="ch-opts"><span class="opt ">① medal</span><span class="opt ">② stare</span><span class="opt ">③ hard</span><span class="opt ">④ overseas</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>clearly</b> <span class="ch-mean">(또렷하게)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>clearly</b> <span class="ch-mean">(또렷하게)</span></div>
         <div class="ch-opts"><span class="opt ">① suffer</span><span class="opt ">② beg</span><span class="opt ">③ solve</span><span class="opt ">④ plainly</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>solve</b> <span class="ch-mean">(해결하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>solve</b> <span class="ch-mean">(해결하다)</span></div>
         <div class="ch-opts"><span class="opt ">① enemy</span><span class="opt ">② stable</span><span class="opt ">③ bit</span><span class="opt ">④ fix</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>terrible</b> <span class="ch-mean">(끔찍한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>terrible</b> <span class="ch-mean">(끔찍한)</span></div>
         <div class="ch-opts"><span class="opt ">① clearly</span><span class="opt ">② grab</span><span class="opt ">③ completely</span><span class="opt ">④ awful</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>cause</b> <span class="ch-mean">(원인)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">17.</span> <b>cause</b> <span class="ch-mean">(원인)</span></div>
         <div class="ch-opts"><span class="opt ">① reason</span><span class="opt ">② protein</span><span class="opt ">③ ton</span><span class="opt ">④ enemy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>overseas</b> <span class="ch-mean">(해외에)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">18.</span> <b>overseas</b> <span class="ch-mean">(해외에)</span></div>
         <div class="ch-opts"><span class="opt ">① solid</span><span class="opt ">② terrible</span><span class="opt ">③ abroad</span><span class="opt ">④ enemy</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>solid</b> <span class="ch-mean">(고체의)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>solid</b> <span class="ch-mean">(고체의)</span></div>
         <div class="ch-opts"><span class="opt ">① if</span><span class="opt ">② enemy</span><span class="opt ">③ completely</span><span class="opt ">④ liquid</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>completely</b> <span class="ch-mean">(완전히)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>completely</b> <span class="ch-mean">(완전히)</span></div>
         <div class="ch-opts"><span class="opt ">① rotten</span><span class="opt ">② solve</span><span class="opt ">③ partly</span><span class="opt ">④ ton</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>rotten</b> <span class="ch-mean">(썩은)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>rotten</b> <span class="ch-mean">(썩은)</span></div>
         <div class="ch-opts"><span class="opt ">① suffer</span><span class="opt ">② stable</span><span class="opt ">③ solid</span><span class="opt ">④ fresh</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>supper</b> <span class="ch-mean">(저녁 식사)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>supper</b> <span class="ch-mean">(저녁 식사)</span></div>
         <div class="ch-opts"><span class="opt ">① breakfast</span><span class="opt ">② solid</span><span class="opt ">③ clearly</span><span class="opt ">④ ton</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>terrible</b> <span class="ch-mean">(끔찍한)</span></div>
+      </div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 28</div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>terrible</b> <span class="ch-mean">(끔찍한)</span></div>
         <div class="ch-opts"><span class="opt ">① bit</span><span class="opt ">② stable</span><span class="opt ">③ good</span><span class="opt ">④ hometown</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>enemy</b> <span class="ch-mean">(적)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>enemy</b> <span class="ch-mean">(적)</span></div>
         <div class="ch-opts"><span class="opt ">① stable</span><span class="opt ">② solid</span><span class="opt ">③ clearly</span><span class="opt ">④ friend</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -11812,7 +11820,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:26px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -12362,106 +12370,113 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>purchase</b> <span class="ch-mean">(구입하다)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>purchase</b> <span class="ch-mean">(구입하다)</span></div>
         <div class="ch-opts"><span class="opt ">① award</span><span class="opt ">② buy</span><span class="opt ">③ celebrate</span><span class="opt ">④ national</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>celebrate</b> <span class="ch-mean">(축하하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>celebrate</b> <span class="ch-mean">(축하하다)</span></div>
         <div class="ch-opts"><span class="opt ">① main</span><span class="opt ">② party</span><span class="opt ">③ neat</span><span class="opt ">④ seal</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>capture</b> <span class="ch-mean">(붙잡다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>capture</b> <span class="ch-mean">(붙잡다)</span></div>
         <div class="ch-opts"><span class="opt ">① roast</span><span class="opt ">② practice</span><span class="opt ">③ catch</span><span class="opt ">④ purchase</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>direct</b> <span class="ch-mean">(지도하다; 직접적인)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>direct</b> <span class="ch-mean">(지도하다; 직접적인)</span></div>
         <div class="ch-opts"><span class="opt ">① capture</span><span class="opt ">② private</span><span class="opt ">③ deal</span><span class="opt ">④ lead</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>relate</b> <span class="ch-mean">(관련시키다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>relate</b> <span class="ch-mean">(관련시키다)</span></div>
         <div class="ch-opts"><span class="opt ">① award</span><span class="opt ">② oak</span><span class="opt ">③ connect</span><span class="opt ">④ celebrate</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>bathe</b> <span class="ch-mean">(씻다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>bathe</b> <span class="ch-mean">(씻다)</span></div>
         <div class="ch-opts"><span class="opt ">① wash</span><span class="opt ">② progress</span><span class="opt ">③ oak</span><span class="opt ">④ deal</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>deal</b> <span class="ch-mean">(거래; 다루다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>deal</b> <span class="ch-mean">(거래; 다루다)</span></div>
         <div class="ch-opts"><span class="opt ">① direct</span><span class="opt ">② seal</span><span class="opt ">③ progress</span><span class="opt ">④ trade</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>total</b> <span class="ch-mean">(전체의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>total</b> <span class="ch-mean">(전체의)</span></div>
         <div class="ch-opts"><span class="opt ">① purchase</span><span class="opt ">② main</span><span class="opt ">③ differently</span><span class="opt ">④ whole</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>pale</b> <span class="ch-mean">(창백한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>pale</b> <span class="ch-mean">(창백한)</span></div>
         <div class="ch-opts"><span class="opt ">① usual</span><span class="opt ">② white</span><span class="opt ">③ circus</span><span class="opt ">④ main</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>award</b> <span class="ch-mean">(상)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>award</b> <span class="ch-mean">(상)</span></div>
         <div class="ch-opts"><span class="opt ">① prize</span><span class="opt ">② capture</span><span class="opt ">③ purchase</span><span class="opt ">④ celebrate</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>neat</b> <span class="ch-mean">(단정한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>neat</b> <span class="ch-mean">(단정한)</span></div>
         <div class="ch-opts"><span class="opt ">① clean</span><span class="opt ">② capture</span><span class="opt ">③ award</span><span class="opt ">④ practice</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>usual</b> <span class="ch-mean">(보통의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>usual</b> <span class="ch-mean">(보통의)</span></div>
         <div class="ch-opts"><span class="opt ">① direct</span><span class="opt ">② normal</span><span class="opt ">③ main</span><span class="opt ">④ bathe</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>male</b> <span class="ch-mean">(남성의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>male</b> <span class="ch-mean">(남성의)</span></div>
         <div class="ch-opts"><span class="opt ">① lifestyle</span><span class="opt ">② deal</span><span class="opt ">③ bathe</span><span class="opt ">④ boy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>practice</b> <span class="ch-mean">(연습하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>practice</b> <span class="ch-mean">(연습하다)</span></div>
         <div class="ch-opts"><span class="opt ">① direct</span><span class="opt ">② male</span><span class="opt ">③ private</span><span class="opt ">④ study</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>main</b> <span class="ch-mean">(주된)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">15.</span> <b>main</b> <span class="ch-mean">(주된)</span></div>
         <div class="ch-opts"><span class="opt ">① progress</span><span class="opt ">② chief</span><span class="opt ">③ national</span><span class="opt ">④ relate</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>roast</b> <span class="ch-mean">(굽다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">16.</span> <b>roast</b> <span class="ch-mean">(굽다)</span></div>
         <div class="ch-opts"><span class="opt ">① oak</span><span class="opt ">② circus</span><span class="opt ">③ bake</span><span class="opt ">④ usual</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>private</b> <span class="ch-mean">(개인적인)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>private</b> <span class="ch-mean">(개인적인)</span></div>
         <div class="ch-opts"><span class="opt ">① national</span><span class="opt ">② practice</span><span class="opt ">③ public</span><span class="opt ">④ circus</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>neat</b> <span class="ch-mean">(단정한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>neat</b> <span class="ch-mean">(단정한)</span></div>
         <div class="ch-opts"><span class="opt ">① messy</span><span class="opt ">② relate</span><span class="opt ">③ deal</span><span class="opt ">④ differently</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>male</b> <span class="ch-mean">(남성의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>male</b> <span class="ch-mean">(남성의)</span></div>
         <div class="ch-opts"><span class="opt ">① bloody</span><span class="opt ">② differently</span><span class="opt ">③ roast</span><span class="opt ">④ female</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>differently</b> <span class="ch-mean">(다르게)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>differently</b> <span class="ch-mean">(다르게)</span></div>
         <div class="ch-opts"><span class="opt ">① deal</span><span class="opt ">② same</span><span class="opt ">③ purchase</span><span class="opt ">④ pale</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>total</b> <span class="ch-mean">(전체의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>total</b> <span class="ch-mean">(전체의)</span></div>
         <div class="ch-opts"><span class="opt ">① purchase</span><span class="opt ">② roast</span><span class="opt ">③ part</span><span class="opt ">④ bathe</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>purchase</b> <span class="ch-mean">(구입하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>purchase</b> <span class="ch-mean">(구입하다)</span></div>
         <div class="ch-opts"><span class="opt ">① direct</span><span class="opt ">② bloody</span><span class="opt ">③ progress</span><span class="opt ">④ sell</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>capture</b> <span class="ch-mean">(붙잡다)</span></div>
+      </div></div>
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 29</div>
+      <div class="ph-title"><span class="pt-ko">동의어 &middot; 반의어 고르기</span><span class="pt-en">Choose Synonym / Antonym</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
+    <div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>capture</b> <span class="ch-mean">(붙잡다)</span></div>
         <div class="ch-opts"><span class="opt ">① practice</span><span class="opt ">② pale</span><span class="opt ">③ national</span><span class="opt ">④ release</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>usual</b> <span class="ch-mean">(보통의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>usual</b> <span class="ch-mean">(보통의)</span></div>
         <div class="ch-opts"><span class="opt ">① total</span><span class="opt ">② oak</span><span class="opt ">③ deal</span><span class="opt ">④ special</span></div>
-      </li></ol>
+      </div></div>
   </section>
   <section class="page">
     
@@ -12700,7 +12715,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
-    <table class="wr">
+    <table class="wr" style="--wrh:27px; --wmf:11.5px">
       <thead>
         <tr><th class="wh-no">No.</th><th class="wh-eng">단어</th><th class="wh-mean">뜻</th><th>3번 쓰기</th></tr>
       </thead>
@@ -13240,80 +13255,77 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
     <p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 <b>반의어(반대말)</b>를 보기에서 고르세요.</p>
-    <div class="ch-sec">■ 동의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>motor</b> <span class="ch-mean">(모터)</span></div>
+    <div class="ch-sec">■ 동의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>motor</b> <span class="ch-mean">(모터)</span></div>
         <div class="ch-opts"><span class="opt ">① beside</span><span class="opt ">② helicopter</span><span class="opt ">③ purpose</span><span class="opt ">④ engine</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>purpose</b> <span class="ch-mean">(목적)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>purpose</b> <span class="ch-mean">(목적)</span></div>
         <div class="ch-opts"><span class="opt ">① motor</span><span class="opt ">② goal</span><span class="opt ">③ rude</span><span class="opt ">④ sentence</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>sight</b> <span class="ch-mean">(풍경; 시력)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>sight</b> <span class="ch-mean">(풍경; 시력)</span></div>
         <div class="ch-opts"><span class="opt ">① delete</span><span class="opt ">② rude</span><span class="opt ">③ burner</span><span class="opt ">④ view</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>rude</b> <span class="ch-mean">(무례한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>rude</b> <span class="ch-mean">(무례한)</span></div>
         <div class="ch-opts"><span class="opt ">① mean</span><span class="opt ">② pleasure</span><span class="opt ">③ beside</span><span class="opt ">④ delete</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>spot</b> <span class="ch-mean">(장소)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">5.</span> <b>spot</b> <span class="ch-mean">(장소)</span></div>
         <div class="ch-opts"><span class="opt ">① place</span><span class="opt ">② burner</span><span class="opt ">③ record</span><span class="opt ">④ sight</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>sense</b> <span class="ch-mean">(감각; 느끼다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">6.</span> <b>sense</b> <span class="ch-mean">(감각; 느끼다)</span></div>
         <div class="ch-opts"><span class="opt ">① prefer</span><span class="opt ">② steak</span><span class="opt ">③ feel</span><span class="opt ">④ delete</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>beside</b> <span class="ch-mean">(옆에)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">7.</span> <b>beside</b> <span class="ch-mean">(옆에)</span></div>
         <div class="ch-opts"><span class="opt ">① next to</span><span class="opt ">② attention</span><span class="opt ">③ helicopter</span><span class="opt ">④ repair</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>repair</b> <span class="ch-mean">(수리하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">8.</span> <b>repair</b> <span class="ch-mean">(수리하다)</span></div>
         <div class="ch-opts"><span class="opt ">① helicopter</span><span class="opt ">② motor</span><span class="opt ">③ peace</span><span class="opt ">④ fix</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>delete</b> <span class="ch-mean">(삭제하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">9.</span> <b>delete</b> <span class="ch-mean">(삭제하다)</span></div>
         <div class="ch-opts"><span class="opt ">① repair</span><span class="opt ">② prefer</span><span class="opt ">③ erase</span><span class="opt ">④ motor</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>attention</b> <span class="ch-mean">(주의)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">10.</span> <b>attention</b> <span class="ch-mean">(주의)</span></div>
         <div class="ch-opts"><span class="opt ">① sense</span><span class="opt ">② focus</span><span class="opt ">③ steak</span><span class="opt ">④ sprinkle</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>teen</b> <span class="ch-mean">(십 대)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">11.</span> <b>teen</b> <span class="ch-mean">(십 대)</span></div>
         <div class="ch-opts"><span class="opt ">① teenager</span><span class="opt ">② burner</span><span class="opt ">③ laziness</span><span class="opt ">④ pleasure</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>pleasure</b> <span class="ch-mean">(즐거움)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">12.</span> <b>pleasure</b> <span class="ch-mean">(즐거움)</span></div>
         <div class="ch-opts"><span class="opt ">① sight</span><span class="opt ">② motor</span><span class="opt ">③ attention</span><span class="opt ">④ joy</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>connect</b> <span class="ch-mean">(연결하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">13.</span> <b>connect</b> <span class="ch-mean">(연결하다)</span></div>
         <div class="ch-opts"><span class="opt ">① join</span><span class="opt ">② motor</span><span class="opt ">③ rude</span><span class="opt ">④ teen</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>prefer</b> <span class="ch-mean">(더 좋아하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">14.</span> <b>prefer</b> <span class="ch-mean">(더 좋아하다)</span></div>
         <div class="ch-opts"><span class="opt ">① sentence</span><span class="opt ">② connect</span><span class="opt ">③ like more</span><span class="opt ">④ sight</span></div>
-      </li></ol>
-    <div class="ch-sec">■ 반의어 고르기</div>
-    <ol class="ch">
-      <li>
-        <div class="ch-q"><b>delete</b> <span class="ch-mean">(삭제하다)</span></div>
+      </div></div><div class="ch-sec">■ 반의어 고르기</div><div class="ch-list">
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">1.</span> <b>delete</b> <span class="ch-mean">(삭제하다)</span></div>
         <div class="ch-opts"><span class="opt ">① laziness</span><span class="opt ">② peace</span><span class="opt ">③ prefer</span><span class="opt ">④ save</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>peace</b> <span class="ch-mean">(평화)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">2.</span> <b>peace</b> <span class="ch-mean">(평화)</span></div>
         <div class="ch-opts"><span class="opt ">① sense</span><span class="opt ">② war</span><span class="opt ">③ sentence</span><span class="opt ">④ sprinkle</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>repair</b> <span class="ch-mean">(수리하다)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">3.</span> <b>repair</b> <span class="ch-mean">(수리하다)</span></div>
         <div class="ch-opts"><span class="opt ">① pleasure</span><span class="opt ">② lonely</span><span class="opt ">③ burner</span><span class="opt ">④ break</span></div>
-      </li>
-      <li>
-        <div class="ch-q"><b>rude</b> <span class="ch-mean">(무례한)</span></div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-q"><span class="ch-no">4.</span> <b>rude</b> <span class="ch-mean">(무례한)</span></div>
         <div class="ch-opts"><span class="opt ">① sprinkle</span><span class="opt ">② beside</span><span class="opt ">③ purpose</span><span class="opt ">④ polite</span></div>
-      </li></ol>
+      </div></div>
   </section></body></html>
