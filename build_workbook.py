@@ -117,15 +117,16 @@ def page_memorize(day_name, words):
     """딸기케이크식 4단 자가시험 노트(빈칸). 단어를 직접 쓰게 하고, 단어 수에 맞춰 행 높이 자동 조정.
     단어목록 바로 뒤에 배치해 '외우는 단계'를 강제한다."""
     n = max(len(words), 1)
-    # 행 높이: 하단 로고 여백 확보하며 한 페이지에 들어가도록 (행 영역 예산 ~600px)
-    row_h = max(18, min(34, 600 // n))
+    # 행 높이: 하단 로고 여백 확보하며 한 페이지에 들어가도록.
+    # 오답 정리 6줄(2줄 추가)만큼 행 영역 예산을 줄임(600 -> 545).
+    row_h = max(17, min(34, 545 // n))
     rows = []
     for i in range(1, n + 1):
         rows.append(
             f'<tr><td class="mz-no">{i}</td>'
             f'<td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td>'
             f'<td class="mz-fold mz-mark">□</td></tr>')
-    oa = "".join('<div class="mz-oa-line"></div>' for _ in range(4))
+    oa = "".join('<div class="mz-oa-line"></div>' for _ in range(6))   # 오답 정리 6줄
     return f"""
   <section class="page">
     {page_head(day_name, "단어 암기 노트", "Memorize &amp; Self-Test")}
