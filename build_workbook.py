@@ -100,10 +100,14 @@ def page_wordlist(day_name, words):
         <td class="c-ant">{esc(w['antonyms'] or '-')}</td>
         <td class="c-syn">{esc(w['synonyms'] or '-')}</td>
       </tr>""")
+    # 단어 수가 많아도 한 페이지에 들어가도록 여백/글자크기 자동 축소
+    n = max(len(words), 1)
+    wlp = 7 if n <= 20 else (5 if n <= 25 else 4)
+    wlf = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
     return f"""
   <section class="page">
     {page_head(day_name, "단어 목록", "Word List")}
-    <table class="wl">
+    <table class="wl" style="--wlp:{wlp}px; --wlf:{wlf}px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -201,12 +205,18 @@ def _fillblank_parts(words, seed, answer):
 
 def page_fillblank(day_name, words, seed, answer=False):
     bank_html, items_html = _fillblank_parts(words, seed, answer)
+    # 문항 수가 많아도 한 페이지에 들어가도록 간격/글자크기/빈칸폭 자동 축소
+    n = max(len(words), 1)
+    fbm = 17 if n <= 20 else (11 if n <= 25 else 7)
+    fbl = 1.7 if n <= 20 else (1.5 if n <= 25 else 1.35)
+    fbf = 13 if n <= 20 else (12 if n <= 25 else 11.5)
+    fbb = 120 if n <= 20 else (100 if n <= 25 else 88)
     return f"""
   <section class="page">
     {page_head(day_name, "예문 빈칸 채우기", "Fill in the Blank")}
     <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
     <div class="bank">{bank_html}</div>
-    <ol class="fb">{items_html}</ol>
+    <ol class="fb" style="--fbm:{fbm}px; --fbl:{fbl}; --fbf:{fbf}px; --fbb:{fbb}px">{items_html}</ol>
   </section>"""
 
 
@@ -234,11 +244,15 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
         <td class="{qcls}">{q}</td>
         <td class="rv-a">{ansline}</td>
       </tr>""")
+    # 단어 수가 많아도 한 페이지에 들어가도록 행 여백/글자크기 자동 축소(30단어에서 넘치던 문제)
+    n = max(len(ws), 1)
+    pad = 9 if n <= 20 else (6 if n <= 25 else 4)
+    rv_fs = 13 if n <= 20 else (12 if n <= 25 else 11.5)
     return f"""
   <section class="page">
     {page_head(cur_day, f"누적 복습 시험 &middot; {esc(target_day_name)}", "Review Test")}
     <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
-    <table class="rv">
+    <table class="rv" style="--rvp:{pad}px; --rvf:{rv_fs}px">
       <tbody>{''.join(items)}</tbody>
     </table>
   </section>"""
@@ -404,7 +418,7 @@ body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); ma
 /* 단어표 */
 table.wl { width:100%; border-collapse:collapse; }
 table.wl th { background:var(--teal); color:#fff; font-size:12px; padding:8px 6px; font-weight:700; }
-table.wl td { border:1px solid var(--line); padding:7px 7px; vertical-align:top; font-size:12.5px; }
+table.wl td { border:1px solid var(--line); padding:var(--wlp,7px) 7px; vertical-align:top; font-size:var(--wlf,12.5px); line-height:1.3; }
 table.wl tr:nth-child(even) td { background:var(--teal-bg2); }
 .c-no { text-align:center; color:var(--muted); width:26px; }
 .c-eng { font-weight:800; color:var(--ink); width:82px; }
@@ -430,15 +444,15 @@ table.wr td { border-bottom:1px solid var(--line); height:var(--wrh,38px); verti
 .chip { display:inline-block; background:#fff; border:1px solid var(--teal-lt); border-radius:13px;
   padding:2px 11px; margin:2px 3px; font-size:12px; font-weight:600; color:var(--ink); }
 ol.fb { margin:0; padding-left:22px; }
-ol.fb li { margin-bottom:17px; line-height:1.7; page-break-inside:avoid; break-inside:avoid; }
-.fb-sent { font-size:13px; }
+ol.fb li { margin-bottom:var(--fbm,17px); line-height:var(--fbl,1.7); page-break-inside:avoid; break-inside:avoid; }
+.fb-sent { font-size:var(--fbf,13px); }
 .fb-mean { font-size:11px; color:var(--muted); margin-left:6px; }
-.blank { display:inline-block; min-width:120px; border-bottom:1.6px solid var(--ink); }
+.blank { display:inline-block; min-width:var(--fbb,120px); border-bottom:1.6px solid var(--ink); }
 .ans { color:#c47a3d; font-weight:800; margin-left:4px; }
 
 /* 복습 시험 */
 table.rv { width:100%; border-collapse:collapse; }
-table.rv td { border-bottom:1px solid var(--line); padding:9px 7px; font-size:13px; }
+table.rv td { border-bottom:1px solid var(--line); padding:var(--rvp,9px) 7px; font-size:var(--rvf,13px); }
 .rv-no { width:28px; text-align:center; color:var(--muted); }
 .rv-eng { font-weight:800; width:180px; color:var(--teal); }
 .rv-mean { width:180px; }
