@@ -72,8 +72,11 @@ def main():
     ap.add_argument("--unit-label", default="DAY", help="유닛 라벨: DAY 또는 Unit")
     ap.add_argument("--from-unit", type=int, default=1)
     ap.add_argument("--to-unit", type=int, default=999)
+    ap.add_argument("--zero-pad", action="store_true",
+                    help="유닛 번호 0-패딩(DAY 01). Bricks는 패딩 없음(Unit 1)이 관례라 기본 off.")
     ap.add_argument("--out", required=True, help="출력 xlsx 경로")
     args = ap.parse_args()
+    fmt = (lambda n: f"{args.unit_label} {n:02d}") if args.zero_pad else (lambda n: f"{args.unit_label} {n}")
 
     data = parse(args.pdf, args.book)
     units = sorted(u for u in data if args.from_unit <= u <= args.to_unit)
@@ -82,9 +85,9 @@ def main():
     ws.append(HEADER)
     review = []
     for u in units:
-        review.append(f"===== {args.unit_label} {u:02d} ({len(data[u])} words) =====")
+        review.append(f"===== {fmt(u)} ({len(data[u])} words) =====")
         for i, (eng, mean) in enumerate(data[u], 1):
-            ws.append([args.book, f"{args.unit_label} {u:02d}", i, eng, mean, None, None, None])
+            ws.append([args.book, fmt(u), i, eng, mean, None, None, None])
             review.append(f"{i:2d}. {eng:<18} | {mean}")
         review.append("")
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
