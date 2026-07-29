@@ -1,11 +1,35 @@
 # 진행 상황 (어휘 워크북 자동 생성기)
 
-> 마지막 업데이트: 2026-07-24
+> 마지막 업데이트: 2026-07-30
 
 ---
-## 🔖 다음 세션 인수인계 (직장 PC에서 이어서) — 먼저 읽기
+## 🔖 다음 세션 인수인계 — 먼저 읽기
 
-**Bricks 시리즈 7종은 전부 완료됨.** 남은 일은 아래 두 갈래.
+### ⏭️ 바로 다음 할 일: 남은 4종을 3권으로 재생성 (2026-07-30 지시, 착수 직전 중단)
+`--merge-choice --fit-choice`, 레이아웃 기본 v1. 분권 수는 자투리가 마지막 권에
+흡수되는 `volume_ranges` 동작을 감안해 검증 완료(60→20, 50→16, 40→13이면 정확히 3권).
+```
+python build_workbook.py "excel/능률VOCA 중등 기본.xlsx"             --split 20 --answer --merge-choice --fit-choice --out "output_new/능률VOCA 중등 기본"
+python build_workbook.py "excel/능률VOCA 중등 필수.xlsx"             --split 16 --answer --merge-choice --fit-choice --out "output_new/능률VOCA 중등 필수"
+python build_workbook.py "excel/능률VOCA 중등 고난도.xlsx"           --split 13 --answer --merge-choice --fit-choice --out "output_new/능률VOCA 중등 고난도"
+python build_workbook.py "excel/뜯어먹는 중학 기본 영단어 1200.xlsx" --split 20 --answer --merge-choice --fit-choice --out "output_new/뜯어먹는 중학 기본 영단어 1200"
+```
+생성 후 구버전 권 파일 삭제 → 페이지 타입별 장수·미분류 0 확인 → PROGRESS 갱신 → 커밋·푸시.
+
+예상: 중등 기본 419p(고르기 1장 58/60유닛) / 중등 필수 371p(26/50) / 중등 고난도 299p(18/40)
+/ 뜯어먹는 417p(60/60 — 원래 다 1장이라 분권만 바뀜). 중등 필수·고난도는 동의어 비중이
+높아(80%/63%) 고르기 문항이 43·35개까지 가므로 일부 유닛이 2장으로 남는 게 정상.
+
+⚠️ **미해결**: `excel/능률VOCA 중등 기본.xlsx`의 `book_name`이 `주니어 능률 VOAC 기본`
+(VOCA 오타) → 출력 파일명에 그대로 나옴. 고칠지 사용자 확인 필요.
+
+⚠️ **원칙**: 레이아웃 수정은 **지시받은 교재에만**. 공통 코드를 직접 고치지 말고 기본
+꺼짐 CLI 옵션으로 추가한 뒤, 완료된 교재를 다시 뽑아 기존 HTML과 공백 무시 대조로
+동일함을 확인하고 커밋할 것.
+
+---
+
+**Bricks 시리즈 7종은 전부 완료됨.** 아래는 이전 인수인계 내용.
 
 ### ① (빠름·생성 불필요) 페이지번호 없는 완료본 7종 재생성
 능률 4종 + Bricks 3100/3900/4800은 **데이터는 완전한데 페이지 번호가 없음**(그 기능 추가 전에 만든 것). 재생성만 하면 됨.
