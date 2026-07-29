@@ -22,6 +22,11 @@ import sys
 import subprocess
 import argparse
 
+# --layout v2 (Bricks 4800 전용). 기본 v1은 기존 교재와 동일한 지면을 그대로 유지한다.
+#   v2: 로고를 지면별로 배치(암기노트·쓰기는 머리말 오른쪽), 쓰기 연습을 22행+나머지 2장으로 분할,
+#       하단 로고 자리를 본문에서 비워 겹치지 않게 함.
+LAYOUT2 = False
+
 # ---------------------------------------------------------------- 데이터 로드
 def load_words(xlsx_path):
     wb = openpyxl.load_workbook(xlsx_path, read_only=True, data_only=True)
@@ -102,8 +107,12 @@ def page_wordlist(day_name, words):
       </tr>""")
     # 단어 수가 많아도 한 페이지에 들어가도록 여백/글자크기 자동 축소
     n = max(len(words), 1)
-    wlp = 7 if n <= 20 else (6 if n <= 25 else 5)
-    wlf = 12.5 if n <= 20 else (12 if n <= 25 else 11.5)
+    if LAYOUT2:   # 하단 로고 자리를 비워도 여유가 있어 오히려 키움
+        wlp = 7 if n <= 20 else (6 if n <= 25 else 5)
+        wlf = 12.5 if n <= 20 else (12 if n <= 25 else 11.5)
+    else:
+        wlp = 7 if n <= 20 else (5 if n <= 25 else 4)
+        wlf = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
     return f"""
   <section class="page">
     {page_head(day_name, "단어 목록", "Word List")}
@@ -122,10 +131,15 @@ def page_memorize(day_name, words):
     """딸기케이크식 4단 자가시험 노트(빈칸). 단어를 직접 쓰게 하고, 단어 수에 맞춰 행 높이 자동 조정.
     단어목록 바로 뒤에 배치해 '외우는 단계'를 강제한다."""
     n = max(len(words), 1)
-    # 로고를 머리말로 올려 하단까지 다 쓴다. 행 영역 예산 880px 안에서 행을 최대한 키우고,
-    # 남는 높이에 맞춰 오답 정리 줄 수를 정한다(모자라면 오답 정리를 뺀다).
-    row_h = max(24, min(34, 855 // n))
-    oa_lines = max(0, min(6, (855 - row_h * n - 40) // 25))
+    if LAYOUT2:
+        # 로고를 머리말로 올려 하단까지 다 쓴다. 예산 안에서 행을 최대한 키우고,
+        # 남는 높이에 맞춰 오답 정리 줄 수를 정한다(모자라면 오답 정리를 뺀다).
+        row_h = max(24, min(34, 855 // n))
+        oa_lines = max(0, min(6, (855 - row_h * n - 40) // 25))
+    else:
+        # 하단 로고 여백을 확보하며 한 페이지에. 오답 정리 6줄만큼 행 예산을 줄임(600 -> 545).
+        row_h = max(17, min(34, 545 // n))
+        oa_lines = 6
     rows = []
     for i in range(1, n + 1):
         rows.append(
@@ -136,7 +150,7 @@ def page_memorize(day_name, words):
     oa_html = (f'<div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 '
                f'(단어 + 뜻)</div>{oa}</div>') if oa_lines else ""
     return f"""
-  <section class="page page-hl">
+  <section class="page{' page-hl' if LAYOUT2 else ''}">
     {page_head(day_name, "단어 암기 노트", "Memorize &amp; Self-Test", logo_top=True)}
     <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
       <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
@@ -164,11 +178,12 @@ def page_writing(day_name, words, seed):
     """쓰기 연습. 행이 눌리지 않도록 한 장에 WRITE_SLOTS행까지만 넣고 나머지는 다음 장. -> 페이지 리스트"""
     ws = words[:]
     random.Random(seed).shuffle(ws)
-    chunks = [ws[s:s + WRITE_SLOTS] for s in range(0, len(ws), WRITE_SLOTS)] or [[]]
+    step = WRITE_SLOTS if LAYOUT2 else len(ws)   # v1은 분할 없이 한 장
+    chunks = [ws[s:s + step] for s in range(0, len(ws), max(step, 1))] or [[]]
     pages = []
     for ci, chunk in enumerate(chunks):
         rows = []
-        for j, w in enumerate(chunk, ci * WRITE_SLOTS + 1):
+        for j, w in enumerate(chunk, ci * step + 1):
             rows.append(f"""
       <tr>
         <td class="w-no">{j}</td>
@@ -176,13 +191,17 @@ def page_writing(day_name, words, seed):
         <td class="w-mean">{esc(w['meaning'])}</td>
         <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
       </tr>""")
-        # 로고를 머리말로 올렸으므로 하단까지 쓴다. 행 높이는 예산 안에서 최대한 크게.
         n = max(len(chunk), 1)
-        row_h = max(26, min(42, 860 // n))
-        mean_fs = 12.5 if n <= 22 else 11.5
+        if LAYOUT2:   # 로고를 머리말로 올렸으므로 하단까지 쓴다
+            row_h = max(26, min(42, 860 // n))
+            mean_fs = 12.5 if n <= 22 else 11.5
+        else:
+            # 뜻이 길어 2줄로 줄바꿈되는 행이 있어 여유를 더 둠(25단어에서 넘치던 문제)
+            row_h = max(21, min(38, 660 // n))
+            mean_fs = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
         cont = " (계속)" if ci else ""
         pages.append(f"""
-  <section class="page page-hl">
+  <section class="page{' page-hl' if LAYOUT2 else ''}">
     {page_head(day_name, f"쓰기 연습{cont}", "Write &amp; Remember", logo_top=True)}
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
     <table class="wr" style="--wrh:{row_h}px; --wmf:{mean_fs}px">
@@ -259,8 +278,12 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
       </tr>""")
     # 단어 수가 많아도 한 페이지에 들어가도록 행 여백/글자크기 자동 축소(30단어에서 넘치던 문제)
     n = max(len(ws), 1)
-    pad = 9 if n <= 20 else (8 if n <= 25 else 6)
-    rv_fs = 13 if n <= 20 else (12.5 if n <= 25 else 12)
+    if LAYOUT2:
+        pad = 9 if n <= 20 else (8 if n <= 25 else 6)
+        rv_fs = 13 if n <= 20 else (12.5 if n <= 25 else 12)
+    else:
+        pad = 9 if n <= 20 else (6 if n <= 25 else 4)
+        rv_fs = 13 if n <= 20 else (12 if n <= 25 else 11.5)
     return f"""
   <section class="page">
     {page_head(cur_day, f"누적 복습 시험 &middot; {esc(target_day_name)}", "Review Test")}
@@ -397,9 +420,10 @@ def page_practice_merged(day_name, words, seed, answer=False):
 def page_head(day_name, title_ko, title_en, logo_top=False):
     """logo_top=True면 로고를 머리말 오른쪽(학습한 날짜 뒤)에 넣는다.
     쓰기 칸이 페이지 하단까지 꽉 차는 지면(암기 노트·쓰기 연습)에서 하단 로고와 겹치지 않게 하기 위함."""
-    lg = f'<img class="ph-logo" src="{logo_datauri()}" alt="logo">' if logo_top else ""
+    top = logo_top and LAYOUT2
+    lg = f'<img class="ph-logo" src="{logo_datauri()}" alt="logo">' if top else ""
     return f"""
-    <div class="phead{' phead-lg' if logo_top else ''}">
+    <div class="phead{' phead-lg' if top else ''}">
       <div class="ph-day">{esc(day_name)}</div>
       <div class="ph-title"><span class="pt-ko">{title_ko}</span><span class="pt-en">{title_en}</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span>{lg}</div>
@@ -407,7 +431,9 @@ def page_head(day_name, title_ko, title_en, logo_top=False):
 
 
 def page_foot():
-    """지면 우하단 로고. 머리말에 로고를 올린 페이지에서는 호출하지 않는다."""
+    """지면 우하단 로고. v1은 body에 fixed 로고 하나를 두므로 지면별로는 넣지 않는다."""
+    if not LAYOUT2:
+        return ""
     return f'<img class="pagelogo" src="{logo_datauri()}" alt="logo">'
 
 
@@ -421,17 +447,11 @@ CSS = """
 @page { size: A4; margin: 13mm 11mm 13mm 11mm; }
 * { box-sizing: border-box; }
 body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); margin:0; font-size:13px; }
-/* 지면 1장 = .page 1개. 높이를 A4 본문 상자에 고정해 로고를 지면 기준으로 배치한다.
-   (A4 297mm - 상하 여백 26mm = 271mm. 반올림 오차로 빈 페이지가 생기지 않게 1mm 뺌) */
-.page { page-break-after: always; position:relative; height:270mm; padding-bottom:14mm; }
+.page { page-break-after: always; }
 .page:last-child { page-break-after: auto; }
-/* 로고를 머리말로 올린 지면은 하단 여백이 필요 없다 */
-.page-hl { padding-bottom:0; }
 
 .phead { display:flex; align-items:flex-end; justify-content:space-between;
   border-bottom:3px solid var(--teal); padding-bottom:6px; margin-bottom:11px; }
-.ph-logo { width:24mm; vertical-align:middle; margin-left:12px; }
-.phead-lg .ph-name { display:flex; align-items:center; }
 .ph-day { font-size:18px; font-weight:800; color:var(--teal); letter-spacing:.5px; }
 .ph-title { text-align:center; }
 .pt-ko { display:block; font-size:19px; font-weight:800; color:var(--ink); }
@@ -439,8 +459,8 @@ body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); ma
 .ph-name { font-size:12px; color:var(--muted); }
 .nline { display:inline-block; width:120px; border-bottom:1px solid var(--sand); margin-left:4px; }
 
-/* 지면 우하단 로고 */
-.pagelogo { position:absolute; bottom:1mm; right:2mm; width:30mm; height:auto; opacity:.95; }
+/* 페이지 로고 (매 페이지 우하단 반복) */
+.pagelogo { position:fixed; bottom:1mm; right:2mm; width:30mm; height:auto; opacity:.95; }
 .guide { background:var(--teal-bg); border-left:4px solid var(--teal); padding:7px 11px; margin:0 0 12px;
   font-size:12.5px; color:var(--ink); border-radius:3px; }
 .guide b { color:var(--teal); }
@@ -524,6 +544,17 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
 .mz-oa-line:last-child { margin-bottom:0; }
 """
 
+# --layout v2 전용 덧씌우기 (Bricks 4800).
+# 지면 1장 = .page 1개로 높이를 A4 본문 상자에 고정해 로고를 지면 기준으로 배치한다.
+# (A4 297mm - 상하 여백 26mm = 271mm. 반올림 오차로 빈 페이지가 생기지 않게 1mm 뺌)
+CSS_V2 = """
+.page { position:relative; height:270mm; padding-bottom:14mm; }
+.page-hl { padding-bottom:0; }          /* 로고를 머리말로 올린 지면은 하단 여백 불필요 */
+.pagelogo { position:absolute; }
+.ph-logo { width:24mm; vertical-align:middle; margin-left:12px; }
+.phead-lg .ph-name { display:flex; align-items:center; }
+"""
+
 
 # ---------------------------------------------------------------- 유닛 페이지 조립
 def build_unit_pages(units, i, answer=False, merge_choice=False, merge_practice=False):
@@ -601,10 +632,13 @@ def build_html(book_name, units, day_from, day_to, answer=False, title_suffix=""
         body.extend(build_unit_pages(units, i, answer=answer,
                                      merge_choice=merge_choice, merge_practice=merge_practice))
     title = f"{book_name}{title_suffix} 워크북" + (" (정답)" if answer else "")
+    # v1: body에 fixed 로고 하나가 전 지면에 반복. v2: 지면마다 page_foot()/머리말 로고.
+    logo = logo_datauri()
+    logo_html = "" if LAYOUT2 or not logo else f'<img class="pagelogo" src="{logo}" alt="logo">'
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <title>{esc(title)}</title><style>{font_face_css()}
-{CSS}</style></head>
-<body>{''.join(body)}</body></html>"""
+{CSS}{CSS_V2 if LAYOUT2 else ""}</style></head>
+<body>{logo_html}{''.join(body)}</body></html>"""
 
 
 # ---------------------------------------------------------------- PDF 변환
@@ -714,7 +748,13 @@ def main():
                     help="동의어/반의어 고르기를 한 페이지로 합침 (동의/반의 적은 교재 종이 절약).")
     ap.add_argument("--merge-practice", dest="merge_practice", action="store_true",
                     help="예문 빈칸+동의어+반의어를 한 페이지로 합침 (단어 아주 적은 교재. --merge-choice 대체).")
+    ap.add_argument("--layout", choices=["v1", "v2"], default="v1",
+                    help="v2: 지면별 로고 배치(암기노트·쓰기는 머리말) + 쓰기 연습 22행 분할. "
+                         "현재 Bricks 4800 전용. 기본 v1은 기존 교재 지면 그대로.")
     args = ap.parse_args()
+
+    global LAYOUT2
+    LAYOUT2 = (args.layout == "v2")
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)
