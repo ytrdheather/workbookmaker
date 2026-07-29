@@ -102,8 +102,8 @@ def page_wordlist(day_name, words):
       </tr>""")
     # 단어 수가 많아도 한 페이지에 들어가도록 여백/글자크기 자동 축소
     n = max(len(words), 1)
-    wlp = 7 if n <= 20 else (5 if n <= 25 else 4)
-    wlf = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
+    wlp = 7 if n <= 20 else (6 if n <= 25 else 5)
+    wlf = 12.5 if n <= 20 else (12 if n <= 25 else 11.5)
     return f"""
   <section class="page">
     {page_head(day_name, "단어 목록", "Word List")}
@@ -113,6 +113,7 @@ def page_wordlist(day_name, words):
       </thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
+    {page_foot()}
   </section>"""
 
 
@@ -121,19 +122,22 @@ def page_memorize(day_name, words):
     """딸기케이크식 4단 자가시험 노트(빈칸). 단어를 직접 쓰게 하고, 단어 수에 맞춰 행 높이 자동 조정.
     단어목록 바로 뒤에 배치해 '외우는 단계'를 강제한다."""
     n = max(len(words), 1)
-    # 행 높이: 하단 로고 여백 확보하며 한 페이지에 들어가도록.
-    # 오답 정리 6줄(2줄 추가)만큼 행 영역 예산을 줄임(600 -> 545).
-    row_h = max(17, min(34, 545 // n))
+    # 로고를 머리말로 올려 하단까지 다 쓴다. 행 영역 예산 880px 안에서 행을 최대한 키우고,
+    # 남는 높이에 맞춰 오답 정리 줄 수를 정한다(모자라면 오답 정리를 뺀다).
+    row_h = max(24, min(34, 855 // n))
+    oa_lines = max(0, min(6, (855 - row_h * n - 40) // 25))
     rows = []
     for i in range(1, n + 1):
         rows.append(
             f'<tr><td class="mz-no">{i}</td>'
             f'<td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td>'
             f'<td class="mz-fold mz-mark">□</td></tr>')
-    oa = "".join('<div class="mz-oa-line"></div>' for _ in range(6))   # 오답 정리 6줄
+    oa = "".join('<div class="mz-oa-line"></div>' for _ in range(oa_lines))
+    oa_html = (f'<div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 '
+               f'(단어 + 뜻)</div>{oa}</div>') if oa_lines else ""
     return f"""
-  <section class="page">
-    {page_head(day_name, "단어 암기 노트", "Memorize &amp; Self-Test")}
+  <section class="page page-hl">
+    {page_head(day_name, "단어 암기 노트", "Memorize &amp; Self-Test", logo_top=True)}
     <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
       <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
       <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
@@ -148,31 +152,38 @@ def page_memorize(day_name, words):
       </tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
-    <div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 (단어 + 뜻)</div>{oa}</div>
+    {oa_html}
   </section>"""
 
 
 # ---------------------------------------------------------------- 페이지: 4회 쓰기
+WRITE_SLOTS = 22   # 쓰기 연습 한 장에 넣는 행 수(넘치면 다음 장으로)
+
+
 def page_writing(day_name, words, seed):
+    """쓰기 연습. 행이 눌리지 않도록 한 장에 WRITE_SLOTS행까지만 넣고 나머지는 다음 장. -> 페이지 리스트"""
     ws = words[:]
     random.Random(seed).shuffle(ws)
-    rows = []
-    for i, w in enumerate(ws, 1):
-        rows.append(f"""
+    chunks = [ws[s:s + WRITE_SLOTS] for s in range(0, len(ws), WRITE_SLOTS)] or [[]]
+    pages = []
+    for ci, chunk in enumerate(chunks):
+        rows = []
+        for j, w in enumerate(chunk, ci * WRITE_SLOTS + 1):
+            rows.append(f"""
       <tr>
-        <td class="w-no">{i}</td>
+        <td class="w-no">{j}</td>
         <td class="w-eng">{esc(w['english'])}</td>
         <td class="w-mean">{esc(w['meaning'])}</td>
         <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
       </tr>""")
-    # 행 높이/뜻 글자크기: 단어 수가 많아도 한 페이지에 들어가도록 자동 축소.
-    # (뜻이 길어 2줄로 줄바꿈되는 행이 있어 여유를 더 둠 — 25단어에서 넘치던 문제)
-    n = max(len(ws), 1)
-    row_h = max(21, min(38, 660 // n))
-    mean_fs = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
-    return f"""
-  <section class="page">
-    {page_head(day_name, "쓰기 연습", "Write &amp; Remember")}
+        # 로고를 머리말로 올렸으므로 하단까지 쓴다. 행 높이는 예산 안에서 최대한 크게.
+        n = max(len(chunk), 1)
+        row_h = max(26, min(42, 860 // n))
+        mean_fs = 12.5 if n <= 22 else 11.5
+        cont = " (계속)" if ci else ""
+        pages.append(f"""
+  <section class="page page-hl">
+    {page_head(day_name, f"쓰기 연습{cont}", "Write &amp; Remember", logo_top=True)}
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
     <table class="wr" style="--wrh:{row_h}px; --wmf:{mean_fs}px">
       <thead>
@@ -180,7 +191,8 @@ def page_writing(day_name, words, seed):
       </thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
-  </section>"""
+  </section>""")
+    return pages
 
 
 # ---------------------------------------------------------------- 페이지: 예문 빈칸
@@ -217,6 +229,7 @@ def page_fillblank(day_name, words, seed, answer=False):
     <p class="guide">뜻을 참고하여 빈칸에 알맞은 단어를 <b>단어 은행</b>에서 골라 쓰세요.</p>
     <div class="bank">{bank_html}</div>
     <ol class="fb" style="--fbm:{fbm}px; --fbl:{fbl}; --fbf:{fbf}px; --fbb:{fbb}px">{items_html}</ol>
+    {page_foot()}
   </section>"""
 
 
@@ -246,8 +259,8 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
       </tr>""")
     # 단어 수가 많아도 한 페이지에 들어가도록 행 여백/글자크기 자동 축소(30단어에서 넘치던 문제)
     n = max(len(ws), 1)
-    pad = 9 if n <= 20 else (6 if n <= 25 else 4)
-    rv_fs = 13 if n <= 20 else (12 if n <= 25 else 11.5)
+    pad = 9 if n <= 20 else (8 if n <= 25 else 6)
+    rv_fs = 13 if n <= 20 else (12.5 if n <= 25 else 12)
     return f"""
   <section class="page">
     {page_head(cur_day, f"누적 복습 시험 &middot; {esc(target_day_name)}", "Review Test")}
@@ -255,6 +268,7 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
     <table class="rv" style="--rvp:{pad}px; --rvf:{rv_fs}px">
       <tbody>{''.join(items)}</tbody>
     </table>
+    {page_foot()}
   </section>"""
 
 
@@ -308,6 +322,7 @@ def _choice_pages(day_name, title_ko, title_en, guide, sections, slots=CHOICE_SL
     {page_head(day_name, title_ko, title_en)}
     {guide}
     {''.join(cur)}
+    {page_foot()}
   </section>""")
         cur, used = [], 0
 
@@ -374,17 +389,26 @@ def page_practice_merged(day_name, words, seed, answer=False):
     <div class="ch-list">{syn_html}</div>
     <div class="ch-sec">■ 반의어 고르기</div>
     <div class="ch-list">{ant_html}</div>
+    {page_foot()}
   </section>"""
 
 
-# ---------------------------------------------------------------- 공통 헤더
-def page_head(day_name, title_ko, title_en):
+# ---------------------------------------------------------------- 공통 헤더 / 로고
+def page_head(day_name, title_ko, title_en, logo_top=False):
+    """logo_top=True면 로고를 머리말 오른쪽(학습한 날짜 뒤)에 넣는다.
+    쓰기 칸이 페이지 하단까지 꽉 차는 지면(암기 노트·쓰기 연습)에서 하단 로고와 겹치지 않게 하기 위함."""
+    lg = f'<img class="ph-logo" src="{logo_datauri()}" alt="logo">' if logo_top else ""
     return f"""
-    <div class="phead">
+    <div class="phead{' phead-lg' if logo_top else ''}">
       <div class="ph-day">{esc(day_name)}</div>
       <div class="ph-title"><span class="pt-ko">{title_ko}</span><span class="pt-en">{title_en}</span></div>
-      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span>{lg}</div>
     </div>"""
+
+
+def page_foot():
+    """지면 우하단 로고. 머리말에 로고를 올린 페이지에서는 호출하지 않는다."""
+    return f'<img class="pagelogo" src="{logo_datauri()}" alt="logo">'
 
 
 # ---------------------------------------------------------------- CSS
@@ -397,11 +421,17 @@ CSS = """
 @page { size: A4; margin: 13mm 11mm 13mm 11mm; }
 * { box-sizing: border-box; }
 body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); margin:0; font-size:13px; }
-.page { page-break-after: always; }
+/* 지면 1장 = .page 1개. 높이를 A4 본문 상자에 고정해 로고를 지면 기준으로 배치한다.
+   (A4 297mm - 상하 여백 26mm = 271mm. 반올림 오차로 빈 페이지가 생기지 않게 1mm 뺌) */
+.page { page-break-after: always; position:relative; height:270mm; padding-bottom:14mm; }
 .page:last-child { page-break-after: auto; }
+/* 로고를 머리말로 올린 지면은 하단 여백이 필요 없다 */
+.page-hl { padding-bottom:0; }
 
 .phead { display:flex; align-items:flex-end; justify-content:space-between;
   border-bottom:3px solid var(--teal); padding-bottom:6px; margin-bottom:11px; }
+.ph-logo { width:24mm; vertical-align:middle; margin-left:12px; }
+.phead-lg .ph-name { display:flex; align-items:center; }
 .ph-day { font-size:18px; font-weight:800; color:var(--teal); letter-spacing:.5px; }
 .ph-title { text-align:center; }
 .pt-ko { display:block; font-size:19px; font-weight:800; color:var(--ink); }
@@ -409,8 +439,8 @@ body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); ma
 .ph-name { font-size:12px; color:var(--muted); }
 .nline { display:inline-block; width:120px; border-bottom:1px solid var(--sand); margin-left:4px; }
 
-/* 페이지 로고 (매 페이지 우하단 반복) */
-.pagelogo { position:fixed; bottom:1mm; right:2mm; width:30mm; height:auto; opacity:.95; }
+/* 지면 우하단 로고 */
+.pagelogo { position:absolute; bottom:1mm; right:2mm; width:30mm; height:auto; opacity:.95; }
 .guide { background:var(--teal-bg); border-left:4px solid var(--teal); padding:7px 11px; margin:0 0 12px;
   font-size:12.5px; color:var(--ink); border-radius:3px; }
 .guide b { color:var(--teal); }
@@ -503,7 +533,7 @@ def build_unit_pages(units, i, answer=False, merge_choice=False, merge_practice=
     pages = []
     pages.append(page_wordlist(name, words))
     pages.append(page_memorize(name, words))   # 단어목록 뒤 → '외우는 단계' 강제
-    pages.append(page_writing(name, words, seed=base + 1))
+    pages.extend(page_writing(name, words, seed=base + 1))
     # 누적 복습: N-2, N-1
     if i - 2 >= 0:
         tname, twords = units[i - 2]
@@ -544,16 +574,24 @@ def font_face_css():
     return "\n".join(rules)
 
 
+_LOGO_CACHE = None
+
+
 def logo_datauri():
     """source/logo.png -> data URI. 없으면 빈 문자열."""
+    global _LOGO_CACHE
+    if _LOGO_CACHE is not None:
+        return _LOGO_CACHE
     import base64
     here = os.path.dirname(os.path.abspath(__file__))
     fp = os.path.join(here, "source", "logo.png")
     if not os.path.exists(fp):
-        return ""
-    with open(fp, "rb") as f:
-        b64 = base64.b64encode(f.read()).decode("ascii")
-    return "data:image/png;base64," + b64
+        _LOGO_CACHE = ""
+    else:
+        with open(fp, "rb") as f:
+            b64 = base64.b64encode(f.read()).decode("ascii")
+        _LOGO_CACHE = "data:image/png;base64," + b64
+    return _LOGO_CACHE
 
 
 def build_html(book_name, units, day_from, day_to, answer=False, title_suffix="",
@@ -563,12 +601,10 @@ def build_html(book_name, units, day_from, day_to, answer=False, title_suffix=""
         body.extend(build_unit_pages(units, i, answer=answer,
                                      merge_choice=merge_choice, merge_practice=merge_practice))
     title = f"{book_name}{title_suffix} 워크북" + (" (정답)" if answer else "")
-    logo = logo_datauri()
-    logo_html = f'<img class="pagelogo" src="{logo}" alt="logo">' if logo else ""
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <title>{esc(title)}</title><style>{font_face_css()}
 {CSS}</style></head>
-<body>{logo_html}{''.join(body)}</body></html>"""
+<body>{''.join(body)}</body></html>"""
 
 
 # ---------------------------------------------------------------- PDF 변환
