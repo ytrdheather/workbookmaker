@@ -27,6 +27,10 @@ import argparse
 #       하단 로고 자리를 본문에서 비워 겹치지 않게 함.
 LAYOUT2 = False
 
+# --fit-choice: 동의/반의 합친 지면이 조금 넘칠 때 여백·글자를 줄여 한 장에 밀어 넣는다.
+# 기본 꺼짐(끄면 넘치는 만큼 다음 장으로 — 기존 교재 지면 그대로).
+FIT_CHOICE = False
+
 # ---------------------------------------------------------------- 데이터 로드
 def load_words(xlsx_path):
     wb = openpyxl.load_workbook(xlsx_path, read_only=True, data_only=True)
@@ -326,10 +330,20 @@ def _choice_items(words, kind, rnd, answer):
     return items
 
 
-CHOICE_SLOTS = 24   # 고르기 페이지 한 장에 들어가는 항목 수(섹션 제목도 1칸 차지)
+CHOICE_SLOTS = 24     # 고르기 페이지 한 장에 들어가는 항목 수(섹션 제목도 1칸 차지)
+CHOICE_FIT_MAX = 30   # 이 칸수까지는 여백/글자를 줄여서라도 한 장에. 넘으면 그냥 다음 장으로.
 
 
-def _choice_pages(day_name, title_ko, title_en, guide, sections, slots=CHOICE_SLOTS):
+def _choice_density(slots):
+    """필요한 칸수에 맞춘 여백/글자 축소값. 기본 밀도(<=CHOICE_SLOTS)면 빈 문자열."""
+    if slots <= CHOICE_SLOTS:
+        return ""
+    if slots <= 27:
+        return "--chm:2px; --chq:11px; --cho:10.5px"
+    return "--chm:1px; --chq:10.5px; --cho:10px; --chop:0px"
+
+
+def _choice_pages(day_name, title_ko, title_en, guide, sections, slots=CHOICE_SLOTS, style=""):
     """고르기 항목을 페이지 단위로 '직접' 나눈다.
     Chrome이 인쇄에서 break-inside:avoid를 자주 무시해 문제/선택지가 갈라지므로,
     넘침을 브라우저에 맡기지 않고 여기서 항목 수를 세어 페이지를 끊는다.
@@ -340,11 +354,12 @@ def _choice_pages(day_name, title_ko, title_en, guide, sections, slots=CHOICE_SL
         nonlocal cur, used
         if not cur:
             return
+        body = f'<div class="ch-body" style="{style}">{"".join(cur)}</div>' if style else "".join(cur)
         pages.append(f"""
   <section class="page">
     {page_head(day_name, title_ko, title_en)}
     {guide}
-    {''.join(cur)}
+    {body}
     {page_foot()}
   </section>""")
         cur, used = [], 0
@@ -390,8 +405,14 @@ def page_choice_merged(day_name, words, seed, answer=False):
     aitems = _choice_items(words, "antonyms", random.Random(seed + 50), answer)
     guide = ('<p class="guide">각 단어의 <b>동의어(비슷한 말)</b> 또는 '
              '<b>반의어(반대말)</b>를 보기에서 고르세요.</p>')
+    # 필요한 칸수(항목 + 섹션 제목 2개). 조금만 줄이면 한 장에 들어가는 경우는 줄여서 한 장에.
+    need = max(len(sitems), 1) + max(len(aitems), 1) + 2
+    slots, style = CHOICE_SLOTS, ""
+    if FIT_CHOICE and CHOICE_SLOTS < need <= CHOICE_FIT_MAX:
+        slots, style = need, _choice_density(need)
     return _choice_pages(day_name, "동의어 &middot; 반의어 고르기", "Choose Synonym / Antonym",
-                         guide, [("동의어 고르기", sitems), ("반의어 고르기", aitems)])
+                         guide, [("동의어 고르기", sitems), ("반의어 고르기", aitems)],
+                         slots=slots, style=style)
 
 
 def page_practice_merged(day_name, words, seed, answer=False):
@@ -512,17 +533,18 @@ table.rv td { border-bottom:1px solid var(--line); padding:var(--rvp,9px) 7px; f
 /* 고르기 */
 /* 고르기 항목: <li>는 Chrome 인쇄에서 break-inside가 무시되므로 블록 div로 만든다 */
 .ch-list { margin:0; padding-left:4px; }
-.ch-item { margin-bottom:4px; padding-left:16px; text-indent:-16px;
+/* --chm/--chq/--cho/--chop: 항목이 많은 유닛에서 한 장에 넣기 위한 축소값(기본값 = 원래 크기) */
+.ch-item { margin-bottom:var(--chm,4px); padding-left:16px; text-indent:-16px;
   page-break-inside:avoid; break-inside:avoid; }
 .ch-item > * { text-indent:0; }
-.ch-no { color:var(--muted); font-size:11.5px; }
-.ch-q { font-size:11.5px; margin-bottom:1px; }
+.ch-no { color:var(--muted); font-size:var(--chq,11.5px); }
+.ch-q { font-size:var(--chq,11.5px); margin-bottom:1px; }
 .ch-q b { color:var(--teal); }
-.ch-mean { color:var(--muted); font-size:11px; font-weight:400; }
+.ch-mean { color:var(--muted); font-size:calc(var(--chq,11.5px) - 0.5px); font-weight:400; }
 /* flex를 쓰면 Chrome 인쇄에서 break-inside:avoid가 무시돼 문제/선택지가 갈라짐 -> inline-block */
 .ch-opts { display:block; page-break-inside:avoid; break-inside:avoid; }
 .opt { display:inline-block; border:1px solid var(--line); border-radius:5px;
-  padding:1px 8px; font-size:11px; margin:0 4px 2px 0; }
+  padding:var(--chop,1px) 8px; font-size:var(--cho,11px); margin:0 4px 2px 0; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
 .ch-sec { font-size:12.5px; font-weight:800; color:var(--teal); margin:7px 0 4px; }
@@ -748,13 +770,17 @@ def main():
                     help="동의어/반의어 고르기를 한 페이지로 합침 (동의/반의 적은 교재 종이 절약).")
     ap.add_argument("--merge-practice", dest="merge_practice", action="store_true",
                     help="예문 빈칸+동의어+반의어를 한 페이지로 합침 (단어 아주 적은 교재. --merge-choice 대체).")
+    ap.add_argument("--fit-choice", dest="fit_choice", action="store_true",
+                    help="--merge-choice 지면이 조금 넘칠 때 여백/글자를 줄여 한 장에 넣음 "
+                         f"(최대 {CHOICE_FIT_MAX}칸까지. 그 이상은 그대로 다음 장으로).")
     ap.add_argument("--layout", choices=["v1", "v2"], default="v1",
                     help="v2: 지면별 로고 배치(암기노트·쓰기는 머리말) + 쓰기 연습 22행 분할. "
                          "현재 Bricks 4800 전용. 기본 v1은 기존 교재 지면 그대로.")
     args = ap.parse_args()
 
-    global LAYOUT2
+    global LAYOUT2, FIT_CHOICE
     LAYOUT2 = (args.layout == "v2")
+    FIT_CHOICE = args.fit_choice
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)
