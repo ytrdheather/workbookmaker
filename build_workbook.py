@@ -31,6 +31,16 @@ LAYOUT2 = False
 # 기본 꺼짐(끄면 넘치는 만큼 다음 장으로 — 기존 교재 지면 그대로).
 FIT_CHOICE = False
 
+# --logo-top: v2의 로고 배치만 떼어 쓴다. 암기 노트·쓰기 연습은 로고를 머리말 오른쪽
+# (학습한 날짜 뒤)으로 올리고, 나머지 지면은 우하단에 지면별로 넣는다. 하단이 비므로
+# 그 두 지면은 세로 예산을 늘려 잡는다. v2와 달리 쓰기 연습을 분할하지 않는다.
+LOGO_TOP = False
+
+
+def logo_on_top():
+    """암기 노트·쓰기 연습에서 로고를 머리말로 올리는가."""
+    return LAYOUT2 or LOGO_TOP
+
 # ---------------------------------------------------------------- 데이터 로드
 def load_words(xlsx_path):
     wb = openpyxl.load_workbook(xlsx_path, read_only=True, data_only=True)
@@ -140,6 +150,11 @@ def page_memorize(day_name, words):
         # 남는 높이에 맞춰 오답 정리 줄 수를 정한다(모자라면 오답 정리를 뺀다).
         row_h = max(24, min(34, 855 // n))
         oa_lines = max(0, min(6, (855 - row_h * n - 40) // 25))
+    elif LOGO_TOP:
+        # 로고가 머리말로 올라가 하단이 비므로 행 예산을 늘린다. 오답 정리 6줄은
+        # 고정으로 두고(855에서 그 상자 높이 170만큼 뺀 685), 남는 만큼 행을 키운다.
+        row_h = max(17, min(34, 685 // n))
+        oa_lines = 6
     else:
         # 하단 로고 여백을 확보하며 한 페이지에. 오답 정리 6줄만큼 행 예산을 줄임(600 -> 545).
         row_h = max(17, min(34, 545 // n))
@@ -154,7 +169,7 @@ def page_memorize(day_name, words):
     oa_html = (f'<div class="mz-oa"><div class="mz-oa-t">⑤ 오답 정리 — 틀린 단어만 다시 '
                f'(단어 + 뜻)</div>{oa}</div>') if oa_lines else ""
     return f"""
-  <section class="page{' page-hl' if LAYOUT2 else ''}">
+  <section class="page{' page-hl' if logo_on_top() else ''}">
     {page_head(day_name, "단어 암기 노트", "Memorize &amp; Self-Test", logo_top=True)}
     <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
       <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
@@ -196,16 +211,17 @@ def page_writing(day_name, words, seed):
         <td class="w-write"><span class="wl3"></span><span class="wl3"></span><span class="wl3"></span></td>
       </tr>""")
         n = max(len(chunk), 1)
-        if LAYOUT2:   # 로고를 머리말로 올렸으므로 하단까지 쓴다
-            row_h = max(26, min(42, 860 // n))
-            mean_fs = 12.5 if n <= 22 else 11.5
+        if logo_on_top():   # 로고를 머리말로 올렸으므로 하단까지 쓴다
+            # 뜻이 길어 2줄로 접히는 행이 있어, 행이 많으면 최소 높이를 낮춰 한 장에 유지한다.
+            row_h = max(23, min(42, 860 // n))
+            mean_fs = 12.5 if n <= 22 else (11.5 if n <= 26 else 11)
         else:
             # 뜻이 길어 2줄로 줄바꿈되는 행이 있어 여유를 더 둠(25단어에서 넘치던 문제)
             row_h = max(21, min(38, 660 // n))
             mean_fs = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
         cont = " (계속)" if ci else ""
         pages.append(f"""
-  <section class="page{' page-hl' if LAYOUT2 else ''}">
+  <section class="page{' page-hl' if logo_on_top() else ''}">
     {page_head(day_name, f"쓰기 연습{cont}", "Write &amp; Remember", logo_top=True)}
     <p class="guide">뜻과 단어를 확인하고, 오른쪽 줄에 <b>영어 단어를 3번</b> 따라 쓰세요. <b>따라 쓸 때는 반드시 큰 소리로 단어를 읽으세요.</b></p>
     <table class="wr" style="--wrh:{row_h}px; --wmf:{mean_fs}px">
@@ -443,7 +459,7 @@ def page_practice_merged(day_name, words, seed, answer=False):
 def page_head(day_name, title_ko, title_en, logo_top=False):
     """logo_top=True면 로고를 머리말 오른쪽(학습한 날짜 뒤)에 넣는다.
     쓰기 칸이 페이지 하단까지 꽉 차는 지면(암기 노트·쓰기 연습)에서 하단 로고와 겹치지 않게 하기 위함."""
-    top = logo_top and LAYOUT2
+    top = logo_top and logo_on_top()
     lg = f'<img class="ph-logo" src="{logo_datauri()}" alt="logo">' if top else ""
     return f"""
     <div class="phead{' phead-lg' if top else ''}">
@@ -454,8 +470,8 @@ def page_head(day_name, title_ko, title_en, logo_top=False):
 
 
 def page_foot():
-    """지면 우하단 로고. v1은 body에 fixed 로고 하나를 두므로 지면별로는 넣지 않는다."""
-    if not LAYOUT2:
+    """지면 우하단 로고. 기본 v1은 body에 fixed 로고 하나를 두므로 지면별로는 넣지 않는다."""
+    if not logo_on_top():
         return ""
     return f'<img class="pagelogo" src="{logo_datauri()}" alt="logo">'
 
@@ -572,6 +588,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
 # 지면 1장 = .page 1개로 높이를 A4 본문 상자에 고정해 로고를 지면 기준으로 배치한다.
 # (A4 297mm - 상하 여백 26mm = 271mm. 반올림 오차로 빈 페이지가 생기지 않게 1mm 뺌)
 CSS_V2 = """
+/* --layout v2 와 --logo-top 이 공유하는 로고 배치용 규칙 */
 .page { position:relative; height:270mm; padding-bottom:14mm; }
 .page-hl { padding-bottom:0; }          /* 로고를 머리말로 올린 지면은 하단 여백 불필요 */
 .pagelogo { position:absolute; }
@@ -658,10 +675,10 @@ def build_html(book_name, units, day_from, day_to, answer=False, title_suffix=""
     title = f"{book_name}{title_suffix} 워크북" + (" (정답)" if answer else "")
     # v1: body에 fixed 로고 하나가 전 지면에 반복. v2: 지면마다 page_foot()/머리말 로고.
     logo = logo_datauri()
-    logo_html = "" if LAYOUT2 or not logo else f'<img class="pagelogo" src="{logo}" alt="logo">'
+    logo_html = "" if logo_on_top() or not logo else f'<img class="pagelogo" src="{logo}" alt="logo">'
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <title>{esc(title)}</title><style>{font_face_css()}
-{CSS}{CSS_V2 if LAYOUT2 else ""}</style></head>
+{CSS}{CSS_V2 if logo_on_top() else ""}</style></head>
 <body>{logo_html}{''.join(body)}</body></html>"""
 
 
@@ -775,14 +792,18 @@ def main():
     ap.add_argument("--fit-choice", dest="fit_choice", action="store_true",
                     help="--merge-choice 지면이 조금 넘칠 때 여백/글자를 줄여 한 장에 넣음 "
                          f"(최대 {CHOICE_FIT_MAX}칸까지. 그 이상은 그대로 다음 장으로).")
+    ap.add_argument("--logo-top", dest="logo_top", action="store_true",
+                    help="암기 노트·쓰기 연습은 로고를 머리말 오른쪽(학습한 날짜 뒤)으로 올리고 "
+                         "나머지 지면은 우하단에. 하단이 비는 만큼 두 지면의 행을 키움.")
     ap.add_argument("--layout", choices=["v1", "v2"], default="v1",
                     help="v2: 지면별 로고 배치(암기노트·쓰기는 머리말) + 쓰기 연습 22행 분할. "
                          "현재 Bricks 4800 전용. 기본 v1은 기존 교재 지면 그대로.")
     args = ap.parse_args()
 
-    global LAYOUT2, FIT_CHOICE
+    global LAYOUT2, FIT_CHOICE, LOGO_TOP
     LAYOUT2 = (args.layout == "v2")
     FIT_CHOICE = args.fit_choice
+    LOGO_TOP = args.logo_top
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)
