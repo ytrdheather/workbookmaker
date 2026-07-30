@@ -62,6 +62,11 @@ FIT_WORDLIST = False
 # 문제 칸을 넓히고, 그래도 넘치는 만큼 글자를 줄인다.
 FLAT_REVIEW = False
 
+# --fill-review: 누적 복습 시험에서 아래로 남는 여백을 행 간격으로 돌려 지면을 채운다.
+# 표 위 여백 70pt, 하단 로고 시작 769pt 기준으로 쓸 수 있는 높이가 약 932px.
+FILL_REVIEW = False
+REVIEW_BODY_PX = 932
+
 
 def _text_w(s, fs):
     """문자열의 대략적인 렌더 폭(px). 한글·전각은 1em, 그 외는 0.55em으로 잡는다."""
@@ -356,6 +361,9 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
             rv_fs = max(9.5, round(rv_fs * QMAX / widest, 1))
             widest = max((_text_w(t, rv_fs) for t in qtexts), default=0) + 14
         qw_css = f"; --rvq:{max(180, min(QMAX, int(widest) + 1))}px"
+    if FILL_REVIEW:
+        # 행 높이 = 글자 줄높이(1.35em) + 위아래 여백 + 경계선 1px.
+        pad = max(pad, min(12, int((REVIEW_BODY_PX / n - rv_fs * 1.35 - 1) / 2)))
     return f"""
   <section class="page">
     {page_head(cur_day, f"누적 복습 시험 &middot; {esc(target_day_name)}", "Review Test")}
@@ -860,6 +868,8 @@ def main():
                     help="단어 목록이 넘칠 때 여백/글자를 더 줄여 한 유닛을 한 장에.")
     ap.add_argument("--flat-review", dest="flat_review", action="store_true",
                     help="누적 복습 시험의 문제가 두 줄로 접히지 않게 문제 칸을 넓힘.")
+    ap.add_argument("--fill-review", dest="fill_review", action="store_true",
+                    help="누적 복습 시험에서 아래로 남는 여백을 행 간격으로 돌려 지면을 채움.")
     ap.add_argument("--logo-top", dest="logo_top", action="store_true",
                     help="암기 노트·쓰기 연습은 로고를 머리말 오른쪽(학습한 날짜 뒤)으로 올리고 "
                          "나머지 지면은 우하단에. 하단이 비는 만큼 두 지면의 행을 키움.")
@@ -869,7 +879,7 @@ def main():
     args = ap.parse_args()
 
     global LAYOUT2, FIT_CHOICE, LOGO_TOP, WRITE_SPLIT, MEMO_SPLIT, BALANCE_CHOICE
-    global FIT_WORDLIST, FLAT_REVIEW
+    global FIT_WORDLIST, FLAT_REVIEW, FILL_REVIEW
     LAYOUT2 = (args.layout == "v2")
     FIT_CHOICE = args.fit_choice
     LOGO_TOP = args.logo_top
@@ -878,6 +888,7 @@ def main():
     BALANCE_CHOICE = args.balance_choice
     FIT_WORDLIST = args.fit_wordlist
     FLAT_REVIEW = args.flat_review
+    FILL_REVIEW = args.fill_review
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)

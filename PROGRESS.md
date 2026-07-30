@@ -62,6 +62,8 @@ find "output_new/<교재>" -maxdepth 1 -type f ! -name '*권*' -delete   # 구 �
   넘치던 교재용. **중등 고난도 전용.**
 - `--flat-review` 누적 복습 문제 칸을 넓혀 두 줄로 접히지 않게(최대 430px, 그래도 길면 글자 축소).
   **중등 고난도 전용.**
+- `--fill-review` 누적 복습에서 아래로 남는 여백을 행 간격으로 돌려 지면을 채움
+  (쓸 수 있는 높이 932px 기준으로 행 여백 역산, 최대 12px). **중등 고난도 전용.**
 - `--logo-top` 암기 노트·쓰기 연습만 로고를 머리말 오른쪽(학습한 날짜 뒤)으로, 나머지 지면은 우하단에.
   하단이 비는 만큼 두 지면의 행 예산을 키움(암기 545→685, 쓰기 660→860). v2와 달리 쓰기를 분할하지 않아
   24단어도 한 장에 들어감. **능률 중등 필수 전용.**
@@ -87,7 +89,7 @@ find "output_new/<교재>" -maxdepth 1 -type f ! -name '*권*' -delete   # 구 �
 | 뜯어먹는 1200 | ✅ 완료 | 3권(20DAY), merge-choice, 페이지번호 O |
 | Bricks 1500 | ✅ 완료 | 2권(102·108p), Unit1-15 보강, merge-choice, 페이지번호 O |
 | Bricks 2300 | ✅ 완료 | 2권(138·147p), Unit1-15 보강, merge-choice, 페이지번호 O |
-| 능률VOCA 중등 고난도 | ✅ 점검·수정 완료 | 1200단어/40DAY → **3권(125·130·140p)**. merge-choice·balance-choice·write-split 20·memo-split 20·fit-wordlist·flat-review |
+| 능률VOCA 중등 고난도 | ✅ 점검·수정 완료 | 1200단어/40DAY → **3권(125·130·140p)**. merge-choice·balance-choice·write-split 20·memo-split 20·fit-wordlist·flat-review·fill-review |
 
 **아직 페이지번호 없는 완료본**(능률 4종 + Bricks 3100/3900/4800): 페이지번호는 재생성해야 붙음.
 합치기 추천 — 능률 초등기본은 merge-choice, 나머지는 분리. 분권/합치기 최종안은 아래 '분권 재검토' 참고. 시간 될 때 일괄 재생성.
