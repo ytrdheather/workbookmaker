@@ -5,23 +5,19 @@
 ---
 ## 🔖 다음 세션 인수인계 — 먼저 읽기
 
-### ⏭️ 바로 다음 할 일: 남은 4종을 3권으로 재생성 (2026-07-30 지시, 착수 직전 중단)
+### ⏭️ 바로 다음 할 일: 남은 3종을 3권으로 재생성 (중등 기본은 2026-07-30 완료)
 `--merge-choice --fit-choice`, 레이아웃 기본 v1. 분권 수는 자투리가 마지막 권에
 흡수되는 `volume_ranges` 동작을 감안해 검증 완료(60→20, 50→16, 40→13이면 정확히 3권).
 ```
-python build_workbook.py "excel/능률VOCA 중등 기본.xlsx"             --split 20 --answer --merge-choice --fit-choice --out "output_new/능률VOCA 중등 기본"
 python build_workbook.py "excel/능률VOCA 중등 필수.xlsx"             --split 16 --answer --merge-choice --fit-choice --out "output_new/능률VOCA 중등 필수"
 python build_workbook.py "excel/능률VOCA 중등 고난도.xlsx"           --split 13 --answer --merge-choice --fit-choice --out "output_new/능률VOCA 중등 고난도"
 python build_workbook.py "excel/뜯어먹는 중학 기본 영단어 1200.xlsx" --split 20 --answer --merge-choice --fit-choice --out "output_new/뜯어먹는 중학 기본 영단어 1200"
 ```
 생성 후 구버전 권 파일 삭제 → 페이지 타입별 장수·미분류 0 확인 → PROGRESS 갱신 → 커밋·푸시.
 
-예상: 중등 기본 419p(고르기 1장 58/60유닛) / 중등 필수 371p(26/50) / 중등 고난도 299p(18/40)
+예상: 중등 필수 371p(고르기 1장 26/50유닛) / 중등 고난도 299p(18/40)
 / 뜯어먹는 417p(60/60 — 원래 다 1장이라 분권만 바뀜). 중등 필수·고난도는 동의어 비중이
 높아(80%/63%) 고르기 문항이 43·35개까지 가므로 일부 유닛이 2장으로 남는 게 정상.
-
-⚠️ **미해결**: `excel/능률VOCA 중등 기본.xlsx`의 `book_name`이 `주니어 능률 VOAC 기본`
-(VOCA 오타) → 출력 파일명에 그대로 나옴. 고칠지 사용자 확인 필요.
 
 ⚠️ **원칙**: 레이아웃 수정은 **지시받은 교재에만**. 공통 코드를 직접 고치지 말고 기본
 꺼짐 CLI 옵션으로 추가한 뒤, 완료된 교재를 다시 뽑아 기존 HTML과 공백 무시 대조로
@@ -75,7 +71,8 @@ find "output_new/<교재>" -maxdepth 1 -type f ! -name '*권*' -delete   # 구 �
 |---|---|---|
 | 능률 초등기본 | ✅ 점검·수정 완료 | merge-choice·16DAY/권 → 2권(109·112p) |
 | 능률 초등필수 | ✅ 점검·수정 완료 | merge-choice·fit-choice·16DAY/권 → 2권(109·112p) |
-| 능률 중등기본/중등필수 | ✅ 완료(구버전) | **페이지번호 없음** → 재생성 필요(아래) |
+| 능률 중등기본 | ✅ 점검·수정 완료 | merge-choice·fit-choice·20DAY/권 → 3권(137·142·140p) |
+| 능률 중등필수 | ✅ 완료(구버전) | **페이지번호 없음** → 재생성 필요(아래) |
 | Bricks 3100/3900/4800 | ✅ 점검·수정 완료 | 각 2권. 4800만 `--layout v2`(로고 겹침 해소) |
 | Bricks 300 | ✅ 완료 | 2권, merge-practice, 페이지번호 O |
 | Bricks 900 | ✅ 완료 | 2권, Unit16-30 보강, merge-choice, 페이지번호 O |
@@ -125,7 +122,7 @@ HTML로 조립하고 헤드리스 Chrome으로 PDF까지 뽑는 도구.
 |---|---|---|---|
 | 능률VOCA 초등 기본 | | 406 | ~21 |
 | 능률VOCA 초등 필수 | | 550 | ~28 |
-| 능률VOCA 중등 기본 | 주니어 능률 VOAC 기본 | 1200 | 60 |
+| 능률VOCA 중등 기본 | 주니어 능률 VOCA 기본 | 1200 | 60 |
 | 능률VOCA 중등 필수 | | 1128 | ~57 |
 | Bricks Vocabulary 300 | Bricks Vocabulary 300 | 320 | 16 |
 | Bricks Vocabulary 900 | | 999 | 50 |
@@ -138,9 +135,10 @@ HTML로 조립하고 헤드리스 Chrome으로 PDF까지 뽑는 도구.
 - `Bricks Vocabulary 300.xlsx`는 원래 헤더가 달라(`Unit Name/Number/Word...`) 표준 스키마로 정규화함(320단어, book_name 추가).
 
 ## 교재별 진행 (하나씩 순차 처리)
-- **능률VOCA 중등 기본** (= "주니어 능률 VOAC 기본", 1200단어 / DAY 01~60)
+- **능률VOCA 중등 기본** (= "주니어 능률 VOCA 기본", 1200단어 / DAY 01~60)
   - ✅ DAY 1~3 샘플 생성 → 레이아웃 승인 완료. 결과물: `output_new/능률VOCA 중등 기본/`
-  - ✅ 전량 생성 완료. 입력: `excel/능률VOCA 중등 기본.xlsx`. **10유닛/권 분권 → 6권**(DAY 1-10/11-20/…/51-60).
+  - ✅ 점검·수정 완료. 입력: `excel/능률VOCA 중등 기본.xlsx`. **`--merge-choice --fit-choice` + 20유닛/권 → 3권**(137·142·140p).
+    엑셀 `book_name` 오타 VOAC→VOCA 수정(파일명 반영). 오답 정리 6줄. 고르기 1장 58/60유닛.
 - **능률VOCA 초등 기본** (406단어 / 32유닛, DAY 01~39 중 32개)
   - ✅ 점검·수정 완료. 입력: `excel/능률VOCA 초등 기본.xlsx`. **`--merge-choice` + 16유닛/권 → 2권**(109·112p).
     유닛당 12~14단어라 고르기 문항 최대 12개 → 동의/반의 합쳐 1장. 전 페이지 타입 유닛당 1장, 미분류 0.

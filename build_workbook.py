@@ -340,7 +340,9 @@ def _choice_density(slots):
         return ""
     if slots <= 27:
         return "--chm:2px; --chq:11px; --cho:10.5px"
-    return "--chm:1px; --chq:10.5px; --cho:10px; --chop:0px"
+    # 30칸은 여백이 거의 안 남아, 앞 지면 누적 반올림에 따라 항목 하나가 다음 장으로
+    # 새는 일이 있었다(중등 기본 DAY 55). 항목 간격을 0으로 둬 한 항목분 여유를 남긴다.
+    return "--chm:0px; --chq:10.5px; --cho:10px; --chop:0px"
 
 
 def _choice_pages(day_name, title_ko, title_en, guide, sections, slots=CHOICE_SLOTS, style=""):
