@@ -54,7 +54,8 @@ find "output_new/<교재>" -maxdepth 1 -type f ! -name '*권*' -delete   # 구 �
 - `--fit-choice` `--merge-choice` 지면이 조금 넘칠 때 여백/글자를 줄여 한 장에(최대 30칸까지,
   그 이상은 그대로 다음 장). 끄면 기존 지면 그대로 — 3900처럼 이미 확정된 교재엔 붙이지 말 것.
 - `--write-split N` / `--memo-split N` 쓰기 연습 / 암기 노트를 N행씩 분할(0=한 장).
-  30단어를 한 장에 넣으면 칸이 22·18px까지 눌려 못 쓴다. **중등 고난도(둘 다 20) 전용.**
+  30단어를 한 장에 넣으면 칸이 22·18px까지 눌려 못 쓴다. **중등 고난도(둘 다 15) 전용.**
+  분할하면 남는 높이를 행에 돌려줌(상한 44px — 48px은 80장이 넘쳐 실측으로 확정).
 - `--balance-choice` 고르기가 두 장으로 나뉠 때 앞 장을 24칸까지 채우지 않고 고르게 나눔
   (24 + 나머지 2개 같은 지면 방지). **중등 고난도 전용.**
   ※ 고난도는 `--fit-choice`를 쓰지 않는다 — 28~30칸을 밀어 넣으면 항목 간격이 0이 돼 다 붙어 보인다.
@@ -89,7 +90,7 @@ find "output_new/<교재>" -maxdepth 1 -type f ! -name '*권*' -delete   # 구 �
 | 뜯어먹는 1200 | ✅ 완료 | 3권(20DAY), merge-choice, 페이지번호 O |
 | Bricks 1500 | ✅ 완료 | 2권(102·108p), Unit1-15 보강, merge-choice, 페이지번호 O |
 | Bricks 2300 | ✅ 완료 | 2권(138·147p), Unit1-15 보강, merge-choice, 페이지번호 O |
-| 능률VOCA 중등 고난도 | ✅ 점검·수정 완료 | 1200단어/40DAY → **3권(125·130·140p)**. merge-choice·balance-choice·write-split 20·memo-split 20·fit-wordlist·flat-review·fill-review |
+| 능률VOCA 중등 고난도 | ✅ 점검·수정 완료 | 1200단어/40DAY → **3권(125·130·140p)**. merge-choice·balance-choice·write-split 15·memo-split 15·fit-wordlist·flat-review·fill-review |
 
 **아직 페이지번호 없는 완료본**(능률 4종 + Bricks 3100/3900/4800): 페이지번호는 재생성해야 붙음.
 합치기 추천 — 능률 초등기본은 merge-choice, 나머지는 분리. 분권/합치기 최종안은 아래 '분권 재검토' 참고. 시간 될 때 일괄 재생성.

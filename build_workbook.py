@@ -51,6 +51,13 @@ WRITE_SPLIT = 0
 # 30단어를 한 장에 넣으면 행이 18px까지 눌려 쓸 수 없어지는 것을 푸는 용도.
 MEMO_SPLIT = 0
 
+# 쓰기/암기를 나눈 지면은 남는 높이를 행에 돌려준다(안 그러면 아래가 크게 빔).
+# 뜻이 2줄로 접히는 행이 있어 그만큼 여유를 두고 상한을 잡았다(실측값).
+SPLIT_ROW_MAX_WRITE = 44
+SPLIT_ROW_MAX_MEMO = 44
+SPLIT_BODY_PX_WRITE = 860
+SPLIT_BODY_PX_MEMO = 700
+
 # --balance-choice: 고르기가 두 장 이상으로 나뉠 때 앞 장을 꽉 채우지 않고 고르게 나눈다.
 # (24 + 나머지 2개 같은 지면을 막는다.)
 BALANCE_CHOICE = False
@@ -196,6 +203,10 @@ def _memorize_page(day_name, n, offset, ci):
         # 고정으로 두고(855에서 그 상자 높이 170만큼 뺀 685), 남는 만큼 행을 키운다.
         row_h = max(17, min(34, 685 // n))
         oa_lines = 6
+    elif MEMO_SPLIT:
+        # 나눠서 행이 적어진 만큼 행을 키워 지면을 채운다(오답 정리 6줄은 그대로).
+        row_h = max(17, min(SPLIT_ROW_MAX_MEMO, SPLIT_BODY_PX_MEMO // n))
+        oa_lines = 6
     else:
         # 하단 로고 여백을 확보하며 한 페이지에. 오답 정리 6줄만큼 행 예산을 줄임(600 -> 545).
         row_h = max(17, min(34, 545 // n))
@@ -261,6 +272,10 @@ def page_writing(day_name, words, seed):
             # 뜻이 길어 2줄로 접히는 행이 있어, 행이 많으면 최소 높이를 낮춰 한 장에 유지한다.
             row_h = max(23, min(42, 860 // n))
             mean_fs = 12.5 if n <= 22 else (11.5 if n <= 26 else 11)
+        elif WRITE_SPLIT:
+            # 나눠서 행이 적어진 만큼 행을 키워 지면을 채운다.
+            row_h = max(21, min(SPLIT_ROW_MAX_WRITE, SPLIT_BODY_PX_WRITE // n))
+            mean_fs = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
         else:
             # 뜻이 길어 2줄로 줄바꿈되는 행이 있어 여유를 더 둠(25단어에서 넘치던 문제)
             row_h = max(21, min(38, 660 // n))
