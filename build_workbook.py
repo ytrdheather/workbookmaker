@@ -41,6 +41,23 @@ def logo_on_top():
     """암기 노트·쓰기 연습에서 로고를 머리말로 올리는가."""
     return LAYOUT2 or LOGO_TOP
 
+
+# --write-split N: 쓰기 연습을 N행씩 나눈다(0이면 분할 없이 한 장).
+# 단어가 많은 교재에서 쓰기 칸이 너무 눌리는 것을 푸는 용도.
+WRITE_SPLIT = 0
+
+# --fit-wordlist: 단어 목록이 한 장을 넘길 때 여백·글자를 더 줄여 한 유닛을 한 장에 담는다.
+FIT_WORDLIST = False
+
+# --flat-review: 누적 복습 시험의 문제(단어/뜻)가 두 줄로 접히지 않도록
+# 문제 칸을 넓히고, 그래도 넘치는 만큼 글자를 줄인다.
+FLAT_REVIEW = False
+
+
+def _text_w(s, fs):
+    """문자열의 대략적인 렌더 폭(px). 한글·전각은 1em, 그 외는 0.55em으로 잡는다."""
+    return sum((1.0 if ord(c) > 0x1100 else 0.55) for c in s) * fs
+
 # ---------------------------------------------------------------- 데이터 로드
 def load_words(xlsx_path):
     wb = openpyxl.load_workbook(xlsx_path, read_only=True, data_only=True)
@@ -124,6 +141,9 @@ def page_wordlist(day_name, words):
     if LAYOUT2:   # 하단 로고 자리를 비워도 여유가 있어 오히려 키움
         wlp = 7 if n <= 20 else (6 if n <= 25 else 5)
         wlf = 12.5 if n <= 20 else (12 if n <= 25 else 11.5)
+    elif FIT_WORDLIST and n > 25:
+        # 예문·의미가 길어 마지막 한두 행이 다음 장으로 넘치던 교재용(중등 고난도 30단어).
+        wlp, wlf = 2, 10.5
     else:
         wlp = 7 if n <= 20 else (5 if n <= 25 else 4)
         wlf = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
@@ -197,7 +217,12 @@ def page_writing(day_name, words, seed):
     """쓰기 연습. 행이 눌리지 않도록 한 장에 WRITE_SLOTS행까지만 넣고 나머지는 다음 장. -> 페이지 리스트"""
     ws = words[:]
     random.Random(seed).shuffle(ws)
-    step = WRITE_SLOTS if LAYOUT2 else len(ws)   # v1은 분할 없이 한 장
+    if WRITE_SPLIT:
+        step = WRITE_SPLIT
+    elif LAYOUT2:
+        step = WRITE_SLOTS
+    else:
+        step = len(ws)   # 기본 v1은 분할 없이 한 장
     chunks = [ws[s:s + step] for s in range(0, len(ws), max(step, 1))] or [[]]
     pages = []
     for ci, chunk in enumerate(chunks):
@@ -279,6 +304,7 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
     ws = words[:]
     rnd.shuffle(ws)
     items = []
+    qtexts = []
     for i, w in enumerate(ws, 1):
         ask_meaning = rnd.random() < 0.5  # True: 단어 주고 뜻 쓰기 / False: 뜻 주고 단어 쓰기
         if ask_meaning:
@@ -289,6 +315,7 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
             q = esc(w["meaning"])
             a = esc(w["english"])
             qcls = "rv-mean"
+        qtexts.append(w["english"] if ask_meaning else w["meaning"])
         ansline = f'<span class="ans">{a}</span>' if answer else ''
         items.append(f"""
       <tr>
@@ -304,11 +331,20 @@ def page_review(cur_day, target_day_name, words, seed, answer=False):
     else:
         pad = 9 if n <= 20 else (6 if n <= 25 else 4)
         rv_fs = 13 if n <= 20 else (12 if n <= 25 else 11.5)
+    qw_css = ""
+    if FLAT_REVIEW:
+        # 문제 칸을 넓혀 두 줄로 접히는 것을 없앤다. 답 쓰는 칸은 최소 260px 남긴다.
+        QMAX = 430
+        widest = max((_text_w(t, rv_fs) for t in qtexts), default=0) + 14
+        if widest > QMAX:      # 그래도 넘치면 넘치는 비율만큼 글자를 줄임
+            rv_fs = max(9.5, round(rv_fs * QMAX / widest, 1))
+            widest = max((_text_w(t, rv_fs) for t in qtexts), default=0) + 14
+        qw_css = f"; --rvq:{max(180, min(QMAX, int(widest) + 1))}px"
     return f"""
   <section class="page">
     {page_head(cur_day, f"누적 복습 시험 &middot; {esc(target_day_name)}", "Review Test")}
     <p class="guide">단어는 뜻을, 뜻은 단어를 쓰세요.</p>
-    <table class="rv" style="--rvp:{pad}px; --rvf:{rv_fs}px">
+    <table class="rv" style="--rvp:{pad}px; --rvf:{rv_fs}px{qw_css}">
       <tbody>{''.join(items)}</tbody>
     </table>
     {page_foot()}
@@ -543,8 +579,9 @@ ol.fb li { margin-bottom:var(--fbm,17px); line-height:var(--fbl,1.7); page-break
 table.rv { width:100%; border-collapse:collapse; }
 table.rv td { border-bottom:1px solid var(--line); padding:var(--rvp,9px) 7px; font-size:var(--rvf,13px); }
 .rv-no { width:28px; text-align:center; color:var(--muted); }
-.rv-eng { font-weight:800; width:180px; color:var(--teal); }
-.rv-mean { width:180px; }
+/* --rvq: --flat-review에서 문제가 한 줄에 들어가도록 넓힌 문제 칸 너비(기본은 기존 180px) */
+.rv-eng { font-weight:800; width:var(--rvq,180px); color:var(--teal); }
+.rv-mean { width:var(--rvq,180px); }
 .rv-a { }
 .wline { display:inline-block; width:90%; border-bottom:1px solid var(--line); }
 
@@ -792,6 +829,12 @@ def main():
     ap.add_argument("--fit-choice", dest="fit_choice", action="store_true",
                     help="--merge-choice 지면이 조금 넘칠 때 여백/글자를 줄여 한 장에 넣음 "
                          f"(최대 {CHOICE_FIT_MAX}칸까지. 그 이상은 그대로 다음 장으로).")
+    ap.add_argument("--write-split", dest="write_split", type=int, default=0, metavar="N",
+                    help="쓰기 연습을 N행씩 나눔(0=한 장). 예: 30단어를 --write-split 20 → 20+10 두 장.")
+    ap.add_argument("--fit-wordlist", dest="fit_wordlist", action="store_true",
+                    help="단어 목록이 넘칠 때 여백/글자를 더 줄여 한 유닛을 한 장에.")
+    ap.add_argument("--flat-review", dest="flat_review", action="store_true",
+                    help="누적 복습 시험의 문제가 두 줄로 접히지 않게 문제 칸을 넓힘.")
     ap.add_argument("--logo-top", dest="logo_top", action="store_true",
                     help="암기 노트·쓰기 연습은 로고를 머리말 오른쪽(학습한 날짜 뒤)으로 올리고 "
                          "나머지 지면은 우하단에. 하단이 비는 만큼 두 지면의 행을 키움.")
@@ -800,10 +843,13 @@ def main():
                          "현재 Bricks 4800 전용. 기본 v1은 기존 교재 지면 그대로.")
     args = ap.parse_args()
 
-    global LAYOUT2, FIT_CHOICE, LOGO_TOP
+    global LAYOUT2, FIT_CHOICE, LOGO_TOP, WRITE_SPLIT, FIT_WORDLIST, FLAT_REVIEW
     LAYOUT2 = (args.layout == "v2")
     FIT_CHOICE = args.fit_choice
     LOGO_TOP = args.logo_top
+    WRITE_SPLIT = args.write_split
+    FIT_WORDLIST = args.fit_wordlist
+    FLAT_REVIEW = args.flat_review
 
     books = load_words(args.xlsx)
     os.makedirs(args.out, exist_ok=True)
