@@ -14,6 +14,7 @@
   7. 동의어 고르기 (4지선다)
 """
 import openpyxl
+import math
 import random
 import html
 import re
@@ -45,6 +46,14 @@ def logo_on_top():
 # --write-split N: 쓰기 연습을 N행씩 나눈다(0이면 분할 없이 한 장).
 # 단어가 많은 교재에서 쓰기 칸이 너무 눌리는 것을 푸는 용도.
 WRITE_SPLIT = 0
+
+# --memo-split N: 단어 암기 노트를 N행씩 나눈다(0이면 한 장).
+# 30단어를 한 장에 넣으면 행이 18px까지 눌려 쓸 수 없어지는 것을 푸는 용도.
+MEMO_SPLIT = 0
+
+# --balance-choice: 고르기가 두 장 이상으로 나뉠 때 앞 장을 꽉 채우지 않고 고르게 나눈다.
+# (24 + 나머지 2개 같은 지면을 막는다.)
+BALANCE_CHOICE = False
 
 # --fit-wordlist: 단어 목록이 한 장을 넘길 때 여백·글자를 더 줄여 한 유닛을 한 장에 담는다.
 FIT_WORDLIST = False
@@ -163,8 +172,15 @@ def page_wordlist(day_name, words):
 # ---------------------------------------------------------------- 페이지: 암기 노트
 def page_memorize(day_name, words):
     """딸기케이크식 4단 자가시험 노트(빈칸). 단어를 직접 쓰게 하고, 단어 수에 맞춰 행 높이 자동 조정.
-    단어목록 바로 뒤에 배치해 '외우는 단계'를 강제한다."""
-    n = max(len(words), 1)
+    단어목록 바로 뒤에 배치해 '외우는 단계'를 강제한다. -> 페이지 리스트"""
+    total = max(len(words), 1)
+    step = MEMO_SPLIT if MEMO_SPLIT else total
+    return [_memorize_page(day_name, min(step, total - s), s, ci)
+            for ci, s in enumerate(range(0, total, max(step, 1)))]
+
+
+def _memorize_page(day_name, n, offset, ci):
+    n = max(n, 1)
     if LAYOUT2:
         # 로고를 머리말로 올려 하단까지 다 쓴다. 예산 안에서 행을 최대한 키우고,
         # 남는 높이에 맞춰 오답 정리 줄 수를 정한다(모자라면 오답 정리를 뺀다).
@@ -180,7 +196,7 @@ def page_memorize(day_name, words):
         row_h = max(17, min(34, 545 // n))
         oa_lines = 6
     rows = []
-    for i in range(1, n + 1):
+    for i in range(offset + 1, offset + n + 1):
         rows.append(
             f'<tr><td class="mz-no">{i}</td>'
             f'<td class="mz-fold"></td><td class="mz-fold"></td><td class="mz-fold"></td>'
@@ -190,7 +206,7 @@ def page_memorize(day_name, words):
                f'(단어 + 뜻)</div>{oa}</div>') if oa_lines else ""
     return f"""
   <section class="page{' page-hl' if logo_on_top() else ''}">
-    {page_head(day_name, "단어 암기 노트", "Memorize &amp; Self-Test", logo_top=True)}
+    {page_head(day_name, f"단어 암기 노트{' (계속)' if ci else ''}", "Memorize &amp; Self-Test", logo_top=True)}
     <p class="guide"><b>① 단어</b> — 단어 목록을 보고 영어를 옮겨 씁니다. &nbsp;
       <b>② 뜻</b> — 단어를 보고 뜻을 <b>외워서</b> 씁니다(모르면 다른 색 펜). &nbsp;
       <b>③ 스펠링</b> — 오른쪽 점선을 접어 단어를 가리고, 뜻만 보고 씁니다. &nbsp;
@@ -464,6 +480,11 @@ def page_choice_merged(day_name, words, seed, answer=False):
     slots, style = CHOICE_SLOTS, ""
     if FIT_CHOICE and CHOICE_SLOTS < need <= CHOICE_FIT_MAX:
         slots, style = need, _choice_density(need)
+    elif BALANCE_CHOICE and need > CHOICE_SLOTS:
+        # 앞 장을 24칸까지 채우면 뒷장에 2~3문항만 남는 지면이 생긴다. 장수는 그대로 두고
+        # 고르게 나눈다(+1은 다음 장에서 섹션 제목이 다시 붙는 몫).
+        npages = math.ceil(need / CHOICE_SLOTS)
+        slots = math.ceil(need / npages) + 1
     return _choice_pages(day_name, "동의어 &middot; 반의어 고르기", "Choose Synonym / Antonym",
                          guide, [("동의어 고르기", sitems), ("반의어 고르기", aitems)],
                          slots=slots, style=style)
@@ -641,7 +662,7 @@ def build_unit_pages(units, i, answer=False, merge_choice=False, merge_practice=
     base = (i + 1) * 1000
     pages = []
     pages.append(page_wordlist(name, words))
-    pages.append(page_memorize(name, words))   # 단어목록 뒤 → '외우는 단계' 강제
+    pages.extend(page_memorize(name, words))   # 단어목록 뒤 → '외우는 단계' 강제
     pages.extend(page_writing(name, words, seed=base + 1))
     # 누적 복습: N-2, N-1
     if i - 2 >= 0:
@@ -831,6 +852,10 @@ def main():
                          f"(최대 {CHOICE_FIT_MAX}칸까지. 그 이상은 그대로 다음 장으로).")
     ap.add_argument("--write-split", dest="write_split", type=int, default=0, metavar="N",
                     help="쓰기 연습을 N행씩 나눔(0=한 장). 예: 30단어를 --write-split 20 → 20+10 두 장.")
+    ap.add_argument("--memo-split", dest="memo_split", type=int, default=0, metavar="N",
+                    help="단어 암기 노트를 N행씩 나눔(0=한 장). 30단어에서 행이 눌려 못 쓸 때.")
+    ap.add_argument("--balance-choice", dest="balance_choice", action="store_true",
+                    help="고르기가 두 장으로 나뉠 때 앞 장을 꽉 채우지 않고 고르게 나눔.")
     ap.add_argument("--fit-wordlist", dest="fit_wordlist", action="store_true",
                     help="단어 목록이 넘칠 때 여백/글자를 더 줄여 한 유닛을 한 장에.")
     ap.add_argument("--flat-review", dest="flat_review", action="store_true",
@@ -843,11 +868,14 @@ def main():
                          "현재 Bricks 4800 전용. 기본 v1은 기존 교재 지면 그대로.")
     args = ap.parse_args()
 
-    global LAYOUT2, FIT_CHOICE, LOGO_TOP, WRITE_SPLIT, FIT_WORDLIST, FLAT_REVIEW
+    global LAYOUT2, FIT_CHOICE, LOGO_TOP, WRITE_SPLIT, MEMO_SPLIT, BALANCE_CHOICE
+    global FIT_WORDLIST, FLAT_REVIEW
     LAYOUT2 = (args.layout == "v2")
     FIT_CHOICE = args.fit_choice
     LOGO_TOP = args.logo_top
     WRITE_SPLIT = args.write_split
+    MEMO_SPLIT = args.memo_split
+    BALANCE_CHOICE = args.balance_choice
     FIT_WORDLIST = args.fit_wordlist
     FLAT_REVIEW = args.flat_review
 
