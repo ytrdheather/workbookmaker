@@ -249,7 +249,8 @@ def page_play(day_name, words, seed, answer=False):
 def page_review(label, words, seed, answer=False):
     """2개 DAY를 묶은 복습. 앞쪽은 영어를 보고 뜻을, 뒤쪽은 뜻을 보고 영어를 쓴다.
 
-    뜻→영어는 저학년에게 어려우므로 단어 은행을 준다(고르는 게 아니라 보고 쓰는 것)."""
+    뜻→영어에 단어 은행을 주면 보기 수와 문항 수가 같아 옮겨 적기·소거법으로 풀려
+    시험이 되지 않는다. 대신 첫 글자와 글자 수만 알려 준다."""
     rnd = random.Random(seed)
     order = list(words)
     rnd.shuffle(order)
@@ -257,16 +258,18 @@ def page_review(label, words, seed, answer=False):
     to_ko, to_en = order[:half], order[half:]
 
     ko = []
-    for i, w in enumerate(to_ko, 1):
+    for w in to_ko:
         fill = f'<span class="rv-w">{esc(w["meaning"])}</span>' if answer else ""
         ko.append(f'<li><span class="rv-q">{esc(w["english"])}</span>'
                   f'<span class="rv-line">{fill}</span></li>')
 
-    bank = sorted((esc(w["english"]) for w in to_en), key=str.lower)
     en = []
-    for i, w in enumerate(to_en, 1):
+    for w in to_en:
+        a = alpha_only(w["english"])
+        hint = ("%s %s" % (a[0], "_" * max(len(a) - 1, 1))) if a else ""
         ghost = (f'<span class="rv-a">{esc(w["english"])}</span>') if answer else ""
         en.append(f'<li><span class="rv-q">{esc(w["meaning"])}</span>'
+                  f'<span class="rv-hint">{esc(hint)}</span>'
                   f'{_fourline(ghost, "rv-fl")}</li>')
 
     return f"""
@@ -274,8 +277,8 @@ def page_review(label, words, seed, answer=False):
     {page_head(label, "누적 복습", "Review Test")}
     <div class="sec-t">1. 영어를 보고 <b>뜻</b>을 쓰세요.</div>
     <ol class="rv rv-ko">{''.join(ko)}</ol>
-    <div class="sec-t">2. 뜻을 보고 <b>영어</b>를 쓰세요.</div>
-    <div class="bank">{' &nbsp;·&nbsp; '.join(bank)}</div>
+    <div class="sec-t">2. 뜻을 보고 <b>영어</b>를 쓰세요.
+      <span class="sec-n">첫 글자와 글자 수가 힌트예요.</span></div>
     <ol class="rv rv-en">{''.join(en)}</ol>
   </section>"""
 
@@ -391,8 +394,8 @@ body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); ma
 .rv-w { color:#e2564d; font-weight:600; font-size:13.5px; }
 .rv-fl { flex:1; height:var(--rvflh) !important; }
 .rv-a { color:#e2564d; }
-.bank { border:1px dashed var(--teal-lt); background:var(--teal-bg2); border-radius:7px;
-  padding:8px 12px; margin-bottom:10px; font-size:13.5px; line-height:1.8; text-align:center; }
+.rv-hint { min-width:78px; color:var(--muted); font-size:13px; letter-spacing:1px; }
+.sec-n { font-weight:400; font-size:12px; color:var(--muted); margin-left:6px; }
 
 /* 4. 첫 글자 힌트 */
 .hb { margin:0; padding-left:20px; }
