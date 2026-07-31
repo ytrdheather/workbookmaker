@@ -70,6 +70,23 @@ for n in 1 2 3 4; do python build_junior.py "excel/초등영어 단어가 된다
 ⚠️ 지면을 `<div class="unit">`로 감싸므로 `.page:last-child`는 '유닛의 마지막 장'을 뜻한다.
 그대로 두면 유닛마다 페이지 나눔이 빠져 다음 유닛이 같은 장에 이어붙는다(`.unit:last-child`로 한정).
 
+### 제본용 후처리 — `make_print_ready.py` (2026-08-01)
+판매용 교재(A4 무선제본·양면 컬러)로 낼 때 쓴다. **워크북을 다시 만들지 않고 PDF만 손본다.**
+```
+python make_print_ready.py "output_new/<교재>" --out "print_ready/<교재>"
+```
+- 안쪽(제본 쪽) 20mm / 바깥 14mm / 위 18mm. 본문 188→176.7mm, 축소 약 93%.
+- 홀수 쪽은 골이 왼쪽, 짝수 쪽은 오른쪽으로 번갈아 배치.
+- **짝수 쪽 로고를 좌하단으로 이동** — 안 그러면 책등에 물린다.
+  PDF 안의 이미지를 추출해 재삽입하면 알파가 빠져 배경이 검게 나오므로
+  `source/logo.png`를 직접 넣는다.
+- 본문 범위는 **전 쪽**을 재야 한다(표본만 보면 삐져나간 지면을 놓쳐 1mm 모자람).
+
+⚠️ **30단어 교재는 축소 금지.** 단어 목록 본문이 8pt 아래로 내려간다(실측):
+중등 고난도 7.9→7.4pt, Bricks 3900 8.2→7.7pt. 이 둘은 단어 목록을 2장으로 나눈 뒤
+축소할 것(분권은 `--split`이 정하므로 **권수는 안 늘고 권당 13~15쪽만 늘어남**).
+24~25단어(중등 필수·Bricks 2300·3100)는 8.1pt로 버티므로 그대로 축소 가능.
+
 ### PDF→엑셀 표준 절차 (Bricks 900·1500·2300에서 검증된 방식)
 1. **추출**: `python import_pdf.py "PDFs/<파일>.pdf" --book "<book_name>" --unit-label <DAY|Unit> [--from-unit A --to-unit B] [--zero-pad] --out "scratch/x.xlsx"`
    → 스켈레톤 xlsx + `.review.txt`. **유닛당 단어수가 일정한지 먼저 확인**(들쭉날쭉하면 파싱 이상).
