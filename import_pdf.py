@@ -49,12 +49,16 @@ def parse(pdf_path, book_name):
                 or l.startswith(book_name) or l.startswith("Name") or "Show and Prove" in l)
 
     result = {}
+    unit = None
     for pg in d:
         t = pg.get_text()
         m = foot.search(t)
-        unit = int(m.group(1)) if m else None
-        if unit is None:
-            continue
+        if m:
+            unit = int(m.group(1))
+        elif unit is None:
+            continue   # 첫 꼬리말 이전의 표지/안내 쪽
+        # 꼬리말은 각 유닛 첫 쪽 하단에만 있다. 뒤따르는 꼬리말 없는 쪽은 같은 유닛의
+        # 나머지이므로 직전 유닛에 이어붙인다(능률 고등·수능처럼 한 DAY가 2~3쪽인 교재).
         lines = [l.strip().replace("\xa0", " ").strip() for l in t.splitlines()]
         content = [l for l in lines if not is_noise(l)]
         entries = []
@@ -62,9 +66,10 @@ def parse(pdf_path, book_name):
             if has_hangul(l):
                 if entries:
                     entries[-1][1].append(l)
-            else:
+            elif l:
                 entries.append([l, []])
-        result[unit] = [(e, clean_meaning(ml)) for e, ml in entries]
+        result.setdefault(unit, []).extend(
+            (e, clean_meaning(ml)) for e, ml in entries)
     return result
 
 
