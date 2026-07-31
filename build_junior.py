@@ -431,14 +431,14 @@ def density(words):
         "--flf": "%dpx" % (28 if longest <= 8 else (24 if longest <= 11 else 20)),
         "--mh": "%dpx" % (38 if n <= 9 else (34 if n <= 10 else 29)),
         "--qgap": "%dpx" % (17 if n <= 9 else (14 if n <= 10 else 9)),
-        "--hgap": "%dpx" % (9 if n <= 8 else 7),
+        "--hgap": "%dpx" % (9 if n <= 8 else (7 if n <= 10 else 4)),
         "--mth": "%dpx" % (34 if n <= 10 else 31),
         "--mtxh": "%dpx" % (28 if n <= 10 else 25),
         "--rvgap": "%dpx" % (10 if n <= 18 else 7),
         "--rvflh": "%dpx" % (34 if n <= 18 else 30),
         "--gs": str(GRID),
         # 낱말 찾기 격자와 첫글자 목록이 한 장을 나눠 쓰므로, 단어가 많으면 격자를 줄인다.
-        "--wsw": "%dmm" % (118 if n <= 8 else (112 if n <= 9 else (106 if n <= 10 else 100))),
+        "--wsw": "%dmm" % (118 if n <= 8 else (112 if n <= 9 else (106 if n <= 10 else 94))),
     }
 
 

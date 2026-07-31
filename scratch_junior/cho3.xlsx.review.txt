@@ -1,0 +1,290 @@
+===== DAY 01 (10 words) =====
+ 1. nature             | 자연, 자연의
+ 2. hill               | 언덕
+ 3. cave               | 동굴
+ 4. lake               | 호수
+ 5. forest             | 숲
+ 6. field              | 들판, 분야
+ 7. stone              | 돌, 돌로 만든
+ 8. rock               | 바위, 록 음악, 흔들다
+ 9. wood               | 나무, 목재, 숲
+10. sand               | 모래, 모래로 닦다
+
+===== DAY 02 (10 words) =====
+ 1. space              | 우주, 공간
+ 2. star               | 별
+ 3. Sun                | 태양
+ 4. Earth              | 지구
+ 5. Moon               | 달
+ 6. land               | 육지, 땅, 착륙하다
+ 7. ocean              | 바다
+ 8. sky                | 하늘
+ 9. mountain           | 산
+10. river              | 강
+
+===== DAY 03 (9 words) =====
+ 1. season             | 계절, 양념하다
+ 2. spring             | 봄, 샘, 용수철, 뛰어오르다
+ 3. summer             | 여름
+ 4. fall               | 가을, 떨어지다, 폭포
+ 5. winter             | 겨울
+ 6. leaf               | 나뭇잎
+ 7. branch             | 나뭇가지, 지점, 지부
+ 8. grass              | 풀, 잔디
+ 9. plant              | 식물, 심다
+
+===== DAY 04 (10 words) =====
+ 1. yacht              | 요트
+ 2. dolphin            | 돌고래
+ 3. island             | 섬
+ 4. tent               | 텐트
+ 5. beach              | 해변
+ 6. wave               | 파도
+ 7. sea                | 바다
+ 8. sandcastle         | 모래성
+ 9. turtle             | 거북이
+10. boat               | 보트
+
+===== DAY 05 (10 words) =====
+ 1. subject            | 과목, 주제, 신하
+ 2. textbook           | 교과서
+ 3. Korean             | 한국어, 한국의
+ 4. English            | 영어, 영국의
+ 5. social studies     | 사회
+ 6. history            | 역사
+ 7. math               | 수학
+ 8. science            | 과학
+ 9. art                | 미술, 예술
+10. music              | 음악
+
+===== DAY 06 (9 words) =====
+ 1. grade              | 학년, 성적, 채점하다
+ 2. class              | 수업, 반
+ 3. vacation           | 방학
+ 4. homework           | 숙제
+ 5. quiz               | 퀴즈
+ 6. test               | 시험, 시험하다
+ 7. score              | 점수, 득점하다
+ 8. practice           | 연습, 연습하다
+ 9. exercise           | 운동, 연습 문제, 운동하다
+
+===== DAY 07 (9 words) =====
+ 1. elementary school  | 초등학교
+ 2. middle school      | 중학교
+ 3. high school        | 고등학교
+ 4. college            | 대학(교)
+ 5. university         | 대학교
+ 6. school uniform     | 교복
+ 7. gym                | 체육관
+ 8. pool               | 수영장
+ 9. locker             | 사물함
+
+===== DAY 08 (10 words) =====
+ 1. team               | 팀
+ 2. player             | 선수
+ 3. coach              | 코치, 코치하다
+ 4. cheer              | 응원하다, 응원
+ 5. throw              | 던지다, 던지기
+ 6. kick               | 차다, 발차기
+ 7. pass               | 패스하다, 패스
+ 8. hit                | 치다, 타격
+ 9. catch              | 잡다, 잡기
+10. jump rope          | 줄넘기하다, 줄넘기
+
+===== DAY 09 (10 words) =====
+ 1. plan               | 계획, 계획하다
+ 2. chance             | 기회, 가능성
+ 3. dream              | 꿈, 꿈을 꾸다
+ 4. job                | 직업, 일, 과제
+ 5. work               | 일하다, 일, 작업
+ 6. become             | ~이 되다
+ 7. doctor             | 의사
+ 8. nurse              | 간호사
+ 9. firefighter        | 소방관
+10. police officer     | 경찰관
+
+===== DAY 10 (12 words) =====
+ 1. singer             | 가수
+ 2. dancer             | 댄서, 무용수
+ 3. actor              | 배우
+ 4. artist             | 예술가, 화가
+ 5. musician           | 음악가
+ 6. pianist            | 피아니스트
+ 7. designer           | 디자이너
+ 8. model              | 모델
+ 9. astronaut          | 우주비행사
+10. cook               | 요리사
+11. baker              | 제빵사
+12. soccer player      | 축구 선수
+
+===== DAY 11 (9 words) =====
+ 1. vet                | 수의사, 심사하다
+ 2. dentist            | 치과 의사
+ 3. soldier            | 군인
+ 4. pilot              | 조종사
+ 5. flight attendant   | 승무원
+ 6. photographer       | 사진작가
+ 7. scientist          | 과학자
+ 8. engineer           | 엔지니어
+ 9. lawyer             | 변호사
+
+===== DAY 12 (11 words) =====
+ 1. call               | 전화하다, 부르다, 전화
+ 2. speak              | 말하다, 연설하다
+ 3. wait               | 기다리다, 기다림
+ 4. meet               | 만나다, 충족시키다
+ 5. search             | 찾다, 검색
+ 6. give               | 주다, 기부하다
+ 7. collect            | 모으다, 수집하다
+ 8. send               | 보내다, 전송하다
+ 9. join               | 가입하다, 합치다
+10. choose             | 선택하다, 고르다
+11. teach              | 가르치다, 교육하다
+
+===== DAY 13 (11 words) =====
+ 1. Korea              | 한국
+ 2. the U.S.           | 미국
+ 3. China              | 중국
+ 4. France             | 프랑스
+ 5. India              | 인도
+ 6. Canada             | 캐나다
+ 7. nation             | 나라, 국가
+ 8. north              | 북쪽, 북쪽의, 북쪽으로
+ 9. west               | 서쪽, 서쪽의, 서쪽으로
+10. east               | 동쪽, 동쪽의, 동쪽으로
+11. south              | 남쪽, 남쪽의, 남쪽으로
+
+===== DAY 14 (10 words) =====
+ 1. Korean             | 한국의, 한국어, 한국인
+ 2. American           | 미국의, 미국인
+ 3. Chinese            | 중국의, 중국어, 중국인
+ 4. French             | 프랑스의, 프랑스어, 프랑스인
+ 5. Indian             | 인도의, 인도인
+ 6. Canadian           | 캐나다의, 캐나다인
+ 7. world              | 세계
+ 8. culture            | 문화
+ 9. language           | 언어
+10. flag               | 국기
+
+===== DAY 15 (10 words) =====
+ 1. trip               | 여행, 발이 걸리다
+ 2. tour               | 관광, 투어, 관광하다
+ 3. travel             | 여행, 여행하다
+ 4. go on a trip       | 여행을 가다
+ 5. tourist            | 관광객
+ 6. passport           | 여권
+ 7. map                | 지도, 지도를 그리다
+ 8. visit              | 방문, 방문하다
+ 9. hotel              | 호텔
+10. stay               | 머무름, 머무르다
+
+===== DAY 16 (9 words) =====
+ 1. building           | 건물, 건축
+ 2. tower              | 탑
+ 3. bridge             | 다리
+ 4. palace             | 궁전
+ 5. design             | 디자인, 설계하다
+ 6. build              | 짓다
+ 7. town               | 마을
+ 8. city               | 도시
+ 9. country            | 나라, 시골
+
+===== DAY 17 (10 words) =====
+ 1. place              | 장소, 놓다, 두다
+ 2. library            | 도서관
+ 3. post office        | 우체국
+ 4. museum             | 박물관
+ 5. police station     | 경찰서
+ 6. fire station       | 소방서
+ 7. bank               | 은행
+ 8. city hall          | 시청
+ 9. hospital           | 병원
+10. stadium            | 경기장
+
+===== DAY 18 (12 words) =====
+ 1. straight           | 똑바른, 일직선의, 똑바로
+ 2. left               | 왼쪽의, 왼쪽
+ 3. right              | 오른쪽의, 오른쪽, 맞는, 올바른
+ 4. turn left          | 왼쪽으로 돌다
+ 5. go straight        | 똑바로 가다
+ 6. turn right         | 오른쪽으로 돌다
+ 7. corner             | 모퉁이, 코너
+ 8. block              | 블록, 구역
+ 9. cross              | 건너다
+10. top                | 위, 꼭대기
+11. middle             | 가운데, 중간
+12. bottom             | 아래, 맨 밑
+
+===== DAY 19 (10 words) =====
+ 1. here               | 여기에
+ 2. there              | 거기에, 저기의
+ 3. near               | 가까이에, 가까운, ~근처에
+ 4. close to           | ~에 가까운, 거의
+ 5. far from           | ~에서 먼, 전혀 ~아닌
+ 6. across from        | ~의 맞은편에
+ 7. around             | ~주위에, 주변에
+ 8. above              | ~위에, 위쪽에
+ 9. below              | ~아래에, 아래쪽에
+10. beside             | ~옆에, ~와 비교하여
+
+===== DAY 20 (12 words) =====
+ 1. car                | 자동차
+ 2. bus                | 버스
+ 3. subway             | 지하철
+ 4. train              | 기차
+ 5. ship               | 배
+ 6. airplane           | 비행기
+ 7. taxi               | 택시
+ 8. truck              | 트럭
+ 9. helicopter         | 헬리콥터
+10. take               | 타다, 데려가다, 가져가다
+11. get on             | 타다
+12. get off            | 내리다
+
+===== DAY 21 (10 words) =====
+ 1. market             | 시장, 판매하다
+ 2. store              | 가게, 상점, 저장하다
+ 3. shop               | 가게, 쇼핑하다
+ 4. customer           | 손님, 고객
+ 5. clerk              | 점원
+ 6. bakery             | 빵집
+ 7. bookstore          | 서점
+ 8. flower shop        | 꽃집
+ 9. department store   | 백화점
+10. restaurant         | 식당, 레스토랑
+
+===== DAY 22 (11 words) =====
+ 1. sell               | 팔다, 다 팔리다
+ 2. buy                | 사다, 구매
+ 3. pay                | 지불하다, 급여
+ 4. cost               | (비용이) 들다, 비용
+ 5. expensive          | 비싼
+ 6. cheap              | 저렴한, 질 낮은
+ 7. sale               | 판매, 할인 판매
+ 8. money              | 돈
+ 9. credit card        | 신용카드
+10. cash               | 현금
+11. coin               | 동전
+
+===== DAY 23 (10 words) =====
+ 1. eat out            | 외식하다
+ 2. menu               | 메뉴
+ 3. order              | 주문하다, 주문
+ 4. lemonade           | 레모네이드
+ 5. chopsticks         | 젓가락
+ 6. noodle             | 국수, 면
+ 7. dish               | 요리, 음식, 접시
+ 8. pancake            | 팬케이크
+ 9. spaghetti          | 스파게티
+10. steak              | 스테이크
+
+===== DAY 24 (9 words) =====
+ 1. taste              | 맛, 맛보다
+ 2. yummy              | 맛있는
+ 3. delicious          | 맛있는
+ 4. fresh              | 신선한, 상쾌한
+ 5. sweet              | 달콤한, 친절한
+ 6. salty              | 짠
+ 7. sour               | 신
+ 8. bitter             | 쓴
+ 9. spicy              | 매운

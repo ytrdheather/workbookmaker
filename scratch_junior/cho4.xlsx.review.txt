@@ -1,0 +1,309 @@
+===== DAY 01 (11 words) =====
+ 1. discuss            | 토론하다, 논의하다
+ 2. decide             | 결정하다
+ 3. agree              | 동의하다
+ 4. forget             | 잊다
+ 5. remember           | 기억하다
+ 6. think              | 생각하다
+ 7. understand         | 이해하다
+ 8. solve              | 풀다, 해결하다
+ 9. problem            | 문제
+10. question           | 질문
+11. guess              | 추측하다
+
+===== DAY 02 (10 words) =====
+ 1. believe            | 믿다
+ 2. hope               | 바라다, 희망
+ 3. lie                | 눕다, 거짓말하다, 거짓말
+ 4. hate               | 싫어하다, 증오
+ 5. invite             | 초대하다
+ 6. hurry              | 서두르다, 서두름
+ 7. arrive             | 도착하다
+ 8. invent             | 발명하다
+ 9. fix                | 고치다, 고정시키다
+10. rest               | 쉬다, 휴식, 나머지
+
+===== DAY 03 (11 words) =====
+ 1. start              | 시작하다, 시작
+ 2. finish             | 끝내다, 끝
+ 3. begin              | 시작하다, 시작
+ 4. end                | 끝나다, 끝
+ 5. need               | 필요하다, 필요
+ 6. help               | 돕다, 도움
+ 7. bring              | 가져오다
+ 8. borrow             | 빌리다
+ 9. want               | 원하다, 원함
+10. find               | 찾다, 발견
+11. use                | 사용하다, 사용
+
+===== DAY 04 (9 words) =====
+ 1. who                | 누구
+ 2. what               | 무엇
+ 3. when               | 언제
+ 4. where              | 어디
+ 5. how                | 어떻게
+ 6. why                | 왜
+ 7. how many           | 얼마나 많은 (셀 수 있는)
+ 8. how much           | 얼마나 많은 (셀 수 없는)
+ 9. how old            | 몇 살
+
+===== DAY 05 (11 words) =====
+ 1. get up             | 일어나다
+ 2. go to bed          | 자러 가다
+ 3. have breakfast     | 아침을 먹다
+ 4. have lunch         | 점심을 먹다
+ 5. have dinner        | 저녁을 먹다
+ 6. go to school       | 학교에 가다
+ 7. come home          | 집에 오다
+ 8. do my homework     | 숙제를 하다
+ 9. ride a bike        | 자전거를 타다
+10. wash the dishes    | 설거지를 하다
+11. brush my teeth     | 이를 닦다
+
+===== DAY 06 (12 words) =====
+ 1. January            | 1월
+ 2. February           | 2월
+ 3. March              | 3월
+ 4. April              | 4월
+ 5. May                | 5월
+ 6. June               | 6월
+ 7. July               | 7월
+ 8. August             | 8월
+ 9. September          | 9월
+10. October            | 10월
+11. November           | 11월
+12. December           | 12월
+
+===== DAY 07 (12 words) =====
+ 1. first              | 첫 번째의, 먼저
+ 2. second             | 두 번째의, 초(시간)
+ 3. third              | 세 번째의, 3분의 1
+ 4. fourth             | 네 번째의, 4분의 1
+ 5. fifth              | 다섯 번째의, 5분의 1
+ 6. sixth              | 여섯 번째의, 6분의 1
+ 7. seventh            | 일곱 번째의, 7분의 1
+ 8. eighth             | 여덟 번째의, 8분의 1
+ 9. ninth              | 아홉 번째의, 9분의 1
+10. tenth              | 열 번째의, 10분의 1
+11. eleventh           | 열한 번째의, 11분의 1
+12. twelfth            | 열두 번째의, 12분의 1
+
+===== DAY 08 (10 words) =====
+ 1. time               | 시간, 때, 시각
+ 2. calendar           | 달력
+ 3. second             | 초, 두 번째의
+ 4. minute             | 분, 아주 작은
+ 5. hour               | 시간(한 시간)
+ 6. past               | 과거, 지난, ~을 지나서
+ 7. now                | 지금
+ 8. future             | 미래, 미래의
+ 9. a.m.               | 오전
+10. p.m.               | 오후
+
+===== DAY 09 (12 words) =====
+ 1. enjoy              | 즐기다, ~을 좋아하다
+ 2. favorite           | 가장 좋아하는, 가장 좋아하는 것
+ 3. interesting        | 흥미로운
+ 4. boring             | 지루한
+ 5. free time          | 자유 시간
+ 6. hobby              | 취미
+ 7. comic book         | 만화책
+ 8. game               | 게임, 경기
+ 9. show               | 공연, 보여주다
+10. movie              | 영화
+11. musical            | 뮤지컬, 음악의
+12. theater            | 극장, 연극
+
+===== DAY 10 (10 words) =====
+ 1. king               | 왕
+ 2. queen              | 여왕
+ 3. prince             | 왕자
+ 4. princess           | 공주
+ 5. knight             | 기사
+ 6. castle             | 성
+ 7. angel              | 천사
+ 8. ghost              | 유령
+ 9. fairy tale         | 동화
+10. story              | 이야기
+
+===== DAY 11 (9 words) =====
+ 1. go shopping        | 쇼핑하러 가다
+ 2. go camping         | 캠핑하러 가다
+ 3. go fishing         | 낚시하러 가다
+ 4. go skating         | 스케이트 타러 가다
+ 5. go skiing          | 스키 타러 가다
+ 6. go running         | 달리기하러 가다
+ 7. go hiking          | 등산하러 가다
+ 8. go swimming        | 수영하러 가다
+ 9. go surfing         | 서핑하러 가다
+
+===== DAY 12 (9 words) =====
+ 1. Christmas          | 크리스마스
+ 2. letter             | 편지, 글자
+ 3. present            | 선물, 참석한, 있는, 발표하다, 제시하다
+ 4. marry              | 결혼하다
+ 5. wedding            | 결혼식
+ 6. festival           | 축제
+ 7. holiday            | 휴일, 공휴일
+ 8. prize              | 상, 상품
+ 9. luck               | 운, 행운
+
+===== DAY 13 (11 words) =====
+ 1. skin               | 피부, 껍질
+ 2. bone               | 뼈
+ 3. blood              | 피
+ 4. brain              | 뇌
+ 5. heart              | 심장, 마음
+ 6. forehead           | 이마
+ 7. eyebrow            | 눈썹
+ 8. cheek              | 뺨
+ 9. voice              | 목소리
+10. height             | 키, 높이
+11. weight             | 몸무게, 무게
+
+===== DAY 14 (11 words) =====
+ 1. belt               | 벨트, 허리띠
+ 2. scarf              | 스카프, 목도리
+ 3. sweater            | 스웨터
+ 4. jeans              | 청바지
+ 5. button             | 단추, 버튼, 단추를 채우다
+ 6. pocket             | 주머니
+ 7. sneakers           | 운동화
+ 8. sunglasses         | 선글라스
+ 9. wallet             | 지갑
+10. key                | 열쇠, 키, 핵심적인, 중요한
+11. cell phone         | 휴대폰
+
+===== DAY 15 (10 words) =====
+ 1. soap               | 비누
+ 2. shampoo            | 샴푸
+ 3. toothbrush         | 칫솔
+ 4. toothpaste         | 치약
+ 5. towel              | 수건
+ 6. mirror             | 거울
+ 7. take a shower      | 샤워하다
+ 8. closet             | 옷장
+ 9. pillow             | 베개
+10. blanket            | 담요
+
+===== DAY 16 (12 words) =====
+ 1. sick               | 아픈, 메스꺼운
+ 2. cold               | 감기, 차가운, 추운
+ 3. fever              | 열
+ 4. runny nose         | 콧물
+ 5. stomachache        | 복통, 배앓이
+ 6. toothache          | 치통
+ 7. headache           | 두통
+ 8. hurt               | 아프다, 다치게 하다
+ 9. medicine           | 약
+10. health             | 건강
+11. healthy            | 건강한
+12. virus              | 바이러스
+
+===== DAY 17 (12 words) =====
+ 1. wolf               | 늑대
+ 2. fox                | 여우
+ 3. kangaroo           | 캥거루
+ 4. eagle              | 독수리
+ 5. iguana             | 이구아나
+ 6. alligator          | 악어
+ 7. penguin            | 펭귄
+ 8. swan               | 백조
+ 9. parrot             | 앵무새
+10. cage               | 우리, 새장
+11. fence              | 울타리
+12. tail               | 꼬리
+
+===== DAY 18 (12 words) =====
+ 1. water              | 물, 물을 주다
+ 2. air                | 공기, 환기시키다
+ 3. fire               | 불, 해고하다
+ 4. energy             | 에너지
+ 5. gold               | 금, 금색의
+ 6. silver             | 은, 은색의
+ 7. save               | 절약하다, 저장하다, 구하다
+ 8. recycle            | 재활용하다
+ 9. bottle             | 병
+10. can                | 캔, ~할 수 있다
+11. glass              | 유리, 유리컵
+12. plastic            | 플라스틱, 플라스틱으로 만든
+
+===== DAY 19 (12 words) =====
+ 1. nice               | 좋은, 멋진, 잘, 좋게
+ 2. fun                | 재미, 즐거움, 재미있는
+ 3. high               | 높은, 높이
+ 4. dark               | 어두운, 어둠
+ 5. soft               | 부드러운, 부드럽게
+ 6. hard               | 딱딱한, 어려운, 열심히
+ 7. clean              | 깨끗한, 청소하다
+ 8. dirty              | 더러운, 더럽히다
+ 9. easy               | 쉬운, 쉽게
+10. difficult          | 어려운, 어렵게
+11. same               | 같은, 같은 것
+12. different          | 다른, 다르게
+
+===== DAY 20 (12 words) =====
+ 1. strong             | 강한, 힘센
+ 2. weak               | 약한
+ 3. full               | 가득 찬
+ 4. empty              | 비어 있는
+ 5. wet                | 젖은
+ 6. dry                | 마른, 건조한
+ 7. clever             | 영리한, 똑똑한
+ 8. fat                | 뚱뚱한
+ 9. important          | 중요한
+10. quick              | 빠른
+11. dead               | 죽은
+12. clear              | 맑은, 깨끗한
+
+===== DAY 21 (12 words) =====
+ 1. street             | 거리, 길
+ 2. road               | 도로, 길
+ 3. highway            | 고속도로
+ 4. traffic jam        | 교통 체증
+ 5. crosswalk          | 횡단보도
+ 6. traffic light      | 신호등
+ 7. drive              | 운전하다
+ 8. speed              | 속도
+ 9. seat belt          | 안전벨트
+10. helmet             | 헬멧
+11. safe               | 안전한
+12. dangerous          | 위험한
+
+===== DAY 22 (9 words) =====
+ 1. never              | 결코 ~않다
+ 2. sometimes          | 때때로
+ 3. often              | 자주
+ 4. usually            | 보통
+ 5. always             | 항상
+ 6. once               | 한 번, ~하자마자
+ 7. twice              | 두 번
+ 8. every              | 모든
+ 9. only               | 오직, 단지, 유일한
+
+===== DAY 23 (12 words) =====
+ 1. afraid             | 두려운, 겁먹은
+ 2. calm               | 차분한, 침착한
+ 3. fine               | 괜찮은, 벌금, 잘, 좋게
+ 4. glad               | 기쁜, 반가운
+ 5. curious            | 궁금한, 호기심 있는
+ 6. fantastic          | 환상적인, 멋진
+ 7. lonely             | 외로운
+ 8. upset              | 속상한, 화난, 속상하게 하다
+ 9. great              | 훌륭한, 대단한, 위대한
+10. famous             | 유명한
+11. rich               | 부유한, 부자인, 풍부한
+12. poor               | 가난한, 불쌍한, 형편없는, 좋지 않은
+
+===== DAY 24 (11 words) =====
+ 1. dot                | 점
+ 2. line               | 선
+ 3. size               | 크기
+ 4. circle             | 원
+ 5. triangle           | 삼각형
+ 6. square             | 정사각형
+ 7. large              | 큰
+ 8. heavy              | 무거운
+ 9. light              | 가벼운, 빛, 불을 켜다
+10. long               | 긴, 오랫동안
+11. short              | 짧은, 키가 작은

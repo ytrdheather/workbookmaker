@@ -43,6 +43,12 @@ put puts take takes look looks listen listens help helps
 sweet kind strong tall clean soft heavy high tail best pretty every
 today tonight tomorrow lunch dinner breakfast song paper wall
 sky sun grass hat pool wet dry happy sad tall short high low
+live lives made deep was were last well side please tea coffee
+dollar dollars third fourth fifth next stop line street
+seoul busan
+age tell tells will soon pen lost leaves box thin almost lot ideas
+smile beats wings turn turns idea
+cannot must wide did done job
 teeth feet legs arms hands eyes ears fingers toes friends brothers sisters
 doctor nurse car bus rope boat word hour minute sticker game fun loud
 after before together out again around only also just about
@@ -119,12 +125,12 @@ def main():
     data = load_data()
     ok = True
     book_words = set()
-    for n in (1, 2):
+    for n in (1, 2, 3, 4):
         ws = openpyxl.load_workbook(os.path.join(HERE, "cho%d.xlsx" % n),
                                     read_only=True).active
         for r in list(ws.iter_rows(min_row=2, values_only=True)):
             book_words.add(r[3])
-    for n in (1, 2):
+    for n in (1, 2, 3, 4):
         src = os.path.join(HERE, "cho%d.xlsx" % n)
         out = os.path.join(HERE, "초등영어 단어가 된다_%d.xlsx" % n)
         wb, rows, filled, noword, toolong, hard = build(src, out, data, book_words)
