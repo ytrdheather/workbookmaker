@@ -47,6 +47,9 @@ def logo_on_top():
 # 단어가 많은 교재에서 쓰기 칸이 너무 눌리는 것을 푸는 용도.
 WRITE_SPLIT = 0
 
+# --split-wordlist N: 단어 목록을 N개씩 나눈다(0이면 한 장).
+#   판매용 제본은 93% 축소를 거치므로 30단어를 한 장에 우겨넣으면 인쇄물이 7.4pt가 된다.
+WORDLIST_SPLIT = 0
 # --memo-split N: 단어 암기 노트를 N행씩 나눈다(0이면 한 장).
 # 30단어를 한 장에 넣으면 행이 18px까지 눌려 쓸 수 없어지는 것을 푸는 용도.
 MEMO_SPLIT = 0
@@ -146,6 +149,14 @@ def blank_out(example, english):
 
 # ---------------------------------------------------------------- 페이지: 단어표
 def page_wordlist(day_name, words):
+    """단어 목록. WORDLIST_SPLIT이 있으면 N개씩 나눠 여러 장으로. -> 페이지 리스트"""
+    total = max(len(words), 1)
+    step = WORDLIST_SPLIT if WORDLIST_SPLIT else total
+    return [_wordlist_page(day_name, words[s:s + step], ci)
+            for ci, s in enumerate(range(0, total, max(step, 1)))]
+
+
+def _wordlist_page(day_name, words, ci=0):
     rows = []
     for w in words:
         rows.append(f"""
@@ -159,7 +170,11 @@ def page_wordlist(day_name, words):
       </tr>""")
     # 단어 수가 많아도 한 페이지에 들어가도록 여백/글자크기 자동 축소
     n = max(len(words), 1)
-    if LAYOUT2:   # 하단 로고 자리를 비워도 여유가 있어 오히려 키움
+    if WORDLIST_SPLIT:
+        # 판매용 제본 대비. make_print_ready.py가 93% 축소하므로 인쇄물에서 9pt를
+        # 넘기려면 축소 전 9.7pt(약 13px) 이상이어야 한다. 나눠서 행이 줄었으니 여유 있음.
+        wlp, wlf = 9, 13.5
+    elif LAYOUT2:   # 하단 로고 자리를 비워도 여유가 있어 오히려 키움
         wlp = 7 if n <= 20 else (6 if n <= 25 else 5)
         wlf = 12.5 if n <= 20 else (12 if n <= 25 else 11.5)
     elif FIT_WORDLIST and n > 25:
@@ -170,7 +185,7 @@ def page_wordlist(day_name, words):
         wlf = 12.5 if n <= 20 else (11.5 if n <= 25 else 11)
     return f"""
   <section class="page">
-    {page_head(day_name, "단어 목록", "Word List")}
+    {page_head(day_name, f"단어 목록{' (계속)' if ci else ''}", "Word List")}
     <table class="wl" style="--wlp:{wlp}px; --wlf:{wlf}px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
@@ -684,7 +699,7 @@ def build_unit_pages(units, i, answer=False, merge_choice=False, merge_practice=
     name, words = units[i]
     base = (i + 1) * 1000
     pages = []
-    pages.append(page_wordlist(name, words))
+    pages.extend(page_wordlist(name, words))
     pages.extend(page_memorize(name, words))   # 단어목록 뒤 → '외우는 단계' 강제
     pages.extend(page_writing(name, words, seed=base + 1))
     # 누적 복습: N-2, N-1
@@ -875,6 +890,8 @@ def main():
                          f"(최대 {CHOICE_FIT_MAX}칸까지. 그 이상은 그대로 다음 장으로).")
     ap.add_argument("--write-split", dest="write_split", type=int, default=0, metavar="N",
                     help="쓰기 연습을 N행씩 나눔(0=한 장). 예: 30단어를 --write-split 20 → 20+10 두 장.")
+    ap.add_argument("--split-wordlist", dest="split_wordlist", type=int, default=0, metavar="N",
+                    help="단어 목록을 N개씩 나눠 여러 장으로(제본용). 글자도 13.5px로 키운다.")
     ap.add_argument("--memo-split", dest="memo_split", type=int, default=0, metavar="N",
                     help="단어 암기 노트를 N행씩 나눔(0=한 장). 30단어에서 행이 눌려 못 쓸 때.")
     ap.add_argument("--balance-choice", dest="balance_choice", action="store_true",
@@ -894,12 +911,14 @@ def main():
     args = ap.parse_args()
 
     global LAYOUT2, FIT_CHOICE, LOGO_TOP, WRITE_SPLIT, MEMO_SPLIT, BALANCE_CHOICE
+    global WORDLIST_SPLIT
     global FIT_WORDLIST, FLAT_REVIEW, FILL_REVIEW
     LAYOUT2 = (args.layout == "v2")
     FIT_CHOICE = args.fit_choice
     LOGO_TOP = args.logo_top
     WRITE_SPLIT = args.write_split
     MEMO_SPLIT = args.memo_split
+    WORDLIST_SPLIT = args.split_wordlist
     BALANCE_CHOICE = args.balance_choice
     FIT_WORDLIST = args.fit_wordlist
     FLAT_REVIEW = args.flat_review

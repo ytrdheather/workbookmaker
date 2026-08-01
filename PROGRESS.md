@@ -7,11 +7,18 @@
 
 ### ⏭️ 바로 다음 할 일 (2026-08-01 중단 지점)
 
-**1. 30단어 교재 2종의 단어 목록을 2장으로 나누기 — 판매용 제본 대비**
-축소하면 본문이 8pt 아래로 내려가는 두 교재. `--fit-wordlist`를 끄고 단어 목록을
-2장으로 나눈 뒤 `make_print_ready.py`를 돌린다. 기본 꺼짐 옵션으로 추가할 것.
-- 능률 중등 고난도 7.9→7.4pt / Bricks 3900 8.2→7.7pt
-- 권수는 안 늘어남(분권은 `--split`이 정함). 권당 13~15쪽만 증가.
+**1. Bricks 3900 단어 목록 2장으로 나누기** — 중등 고난도와 같은 방식.
+```
+python build_workbook.py "excel/Bricks Vocabulary 3900.xlsx" --split 15 --split-wordlist 15 ... --answer
+python make_print_ready.py "output_new/Bricks Vocabulary 3900" --out "print_ready/Bricks Vocabulary 3900"
+```
+축소 후 8.2→7.7pt로 미달. 나머지 옵션은 기존 생성 명령 그대로 두고 `--split-wordlist 15`만 추가.
+(중등 고난도는 2026-08-01 완료 — 인쇄물 9.6pt 확보)
+
+**1-b. 나머지 교재 제본용 후처리** — 24~25단어 이하는 축소만 하면 됨(8.1pt 이상).
+```
+python make_print_ready.py "output_new/<교재>" --out "print_ready/<교재>"
+```
 
 **2. 24~25단어 교재는 그대로 제본 후처리만 하면 됨** (8.1pt로 버팀)
 ```
@@ -127,6 +134,10 @@ python make_print_ready.py "output_new/<교재>" --out "print_ready/<교재>"
 - `--balance-choice` 고르기가 두 장으로 나뉠 때 앞 장을 24칸까지 채우지 않고 고르게 나눔
   (24 + 나머지 2개 같은 지면 방지). **중등 고난도 전용.**
   ※ 고난도는 `--fit-choice`를 쓰지 않는다 — 28~30칸을 밀어 넣으면 항목 간격이 0이 돼 다 붙어 보인다.
+- `--split-wordlist N` 단어 목록을 N개씩 나눠 여러 장으로. 글자 13.5px·여백 9px 고정.
+  **판매용 제본 대비 전용** — `make_print_ready.py`가 93% 축소하므로 인쇄물에서 9pt를 넘기려면
+  축소 전 9.7pt(13px) 이상이어야 한다. 중등 고난도 30단어를 15+15로 나눠 인쇄물 9.6pt 확보.
+  ※ `--fit-wordlist`와 같이 쓰지 말 것(정반대 목적).
 - `--fit-wordlist` 단어 목록 여백/글자를 더 줄여 한 유닛을 한 장에. 예문·의미가 길어 마지막 1~2행이
   넘치던 교재용. **중등 고난도 전용.**
 - `--flat-review` 누적 복습 문제 칸을 넓혀 두 줄로 접히지 않게(최대 430px, 그래도 길면 글자 축소).
@@ -158,7 +169,7 @@ python make_print_ready.py "output_new/<교재>" --out "print_ready/<교재>"
 | 뜯어먹는 1200 | ✅ 완료 | 3권(20DAY), merge-choice, 페이지번호 O |
 | Bricks 1500 | ✅ 완료 | 2권(102·108p), Unit1-15 보강, merge-choice, 페이지번호 O |
 | Bricks 2300 | ✅ 완료 | 2권(138·147p), Unit1-15 보강, merge-choice, 페이지번호 O |
-| 능률VOCA 중등 고난도 | ✅ 점검·수정 완료 | 1200단어/40DAY → **3권(125·130·140p)**. merge-choice·balance-choice·write-split 15·memo-split 15·fit-wordlist·flat-review·fill-review |
+| 능률VOCA 중등 고난도 | ✅ **제본용 완료** | 1200단어/40DAY → **3권(138·143·154p)**. merge-choice·balance-choice·write-split 15·memo-split 15·**split-wordlist 15**·flat-review·fill-review<br>※ `--fit-wordlist` 폐기(인쇄물 7.4pt) → 단어 목록 2장으로. 인쇄물 9.6pt |
 
 **아직 페이지번호 없는 완료본**(능률 4종 + Bricks 3100/3900/4800): 페이지번호는 재생성해야 붙음.
 합치기 추천 — 능률 초등기본은 merge-choice, 나머지는 분리. 분권/합치기 최종안은 아래 '분권 재검토' 참고. 시간 될 때 일괄 재생성.
