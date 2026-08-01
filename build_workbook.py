@@ -83,10 +83,15 @@ def _text_w(s, fs):
     return sum((1.0 if ord(c) > 0x1100 else 0.55) for c in s) * fs
 
 
-# 단어 목록 표: 표머리 top ~ 로고 top = 913px, 표 머리 행 34px (둘 다 실측).
+# 단어 목록 표에 쓸 수 있는 높이(표머리 top ~ 로고 top). 실측하면 v1은 913px,
+# v2/logo-top 교재는 909px로 4px 빠듯하다. 둘 다 안전하도록 900으로 잡는다
+# (행당 0.4px 차이라 눈에 안 보인다). 표 머리 행 34px도 실측.
 # 열별 글자 폭은 실측 열 폭에서 좌우 여백 7px씩 뺀 값.
-WL_BODY_PX = 913
+WL_BODY_PX = 900
 WL_THEAD_PX = 34
+# 행 높이 계수. CSS line-height는 1.3이지만 셀 여백·테두리·줄바꿈 반올림이 더해져
+# 실제로는 더 든다. 넘치지 않는 쪽으로 잡은 실측 보정값(_wl_pad 주석 참고).
+WL_LINE_H = 1.45
 WL_COL_AVAIL = {"english": 67, "meaning": 135, "example": 272,
                 "antonyms": 65, "synonyms": 65}
 
@@ -97,9 +102,11 @@ def _wl_pad(words, fs, base=9, cap=24):
     나눈 뒤 남는 높이는 교재마다 다르다(고난도는 뜻이 길어 16mm, 3900은 짧아 87mm).
     한 값으로 박으면 한쪽은 넘치고 한쪽은 텅 빈다. 그래서 지면마다 계산한다.
 
-    글자폭 계수(한글 0.92 / 영문 0.41)와 행간 1.3은 두 교재 56장을 실측해 맞춘 값으로,
-    **절대 과소평가하지 않도록** 골랐다(실측 대비 +4~+93px). 남는 쪽으로 틀리므로
-    여백이 조금 모자랄 뿐 넘치지는 않는다. base 미만으로는 내리지 않는다."""
+    글자폭 계수(한글 0.92 / 영문 0.41)와 행간 1.45는 네 교재 300장을 실측해 맞춘 값으로,
+    **절대 과소평가하지 않도록** 골랐다(실측 대비 +10~+173px). 과소평가하면 여백을
+    과하게 줘서 표가 로고를 덮는다 — 실제로 행간 1.3으로 잡았을 때 Bricks 4800이
+    24px 모자라 1.4mm 겹쳤다. 남는 쪽으로 틀려야 안전하다.
+    base 미만으로는 내리지 않는다."""
     rows = 0
     for w in words:
         n = 1
@@ -109,7 +116,7 @@ def _wl_pad(words, fs, base=9, cap=24):
             n = max(n, math.ceil(px / avail) or 1)
         rows += n
     cnt = max(len(words), 1)
-    used = WL_THEAD_PX + rows * fs * 1.3 + cnt * (2 * base + 1)
+    used = WL_THEAD_PX + rows * fs * WL_LINE_H + cnt * (2 * base + 1)
     return int(max(base, min(cap, base + (WL_BODY_PX - used) / (2 * cnt))))
 
 # ---------------------------------------------------------------- 데이터 로드
