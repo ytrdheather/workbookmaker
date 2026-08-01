@@ -70,25 +70,27 @@ ol.fb li { margin-bottom:var(--fbm,17px); line-height:var(--fbl,1.7); page-break
 table.rv { width:100%; border-collapse:collapse; }
 table.rv td { border-bottom:1px solid var(--line); padding:var(--rvp,9px) 7px; font-size:var(--rvf,13px); }
 .rv-no { width:28px; text-align:center; color:var(--muted); }
-.rv-eng { font-weight:800; width:180px; color:var(--teal); }
-.rv-mean { width:180px; }
+/* --rvq: --flat-review에서 문제가 한 줄에 들어가도록 넓힌 문제 칸 너비(기본은 기존 180px) */
+.rv-eng { font-weight:800; width:var(--rvq,180px); color:var(--teal); }
+.rv-mean { width:var(--rvq,180px); }
 .rv-a { }
 .wline { display:inline-block; width:90%; border-bottom:1px solid var(--line); }
 
 /* 고르기 */
 /* 고르기 항목: <li>는 Chrome 인쇄에서 break-inside가 무시되므로 블록 div로 만든다 */
 .ch-list { margin:0; padding-left:4px; }
-.ch-item { margin-bottom:4px; padding-left:16px; text-indent:-16px;
+/* --chm/--chq/--cho/--chop: 항목이 많은 유닛에서 한 장에 넣기 위한 축소값(기본값 = 원래 크기) */
+.ch-item { margin-bottom:var(--chm,4px); padding-left:16px; text-indent:-16px;
   page-break-inside:avoid; break-inside:avoid; }
 .ch-item > * { text-indent:0; }
-.ch-no { color:var(--muted); font-size:11.5px; }
-.ch-q { font-size:11.5px; margin-bottom:1px; }
+.ch-no { color:var(--muted); font-size:var(--chq,11.5px); }
+.ch-q { font-size:var(--chq,11.5px); margin-bottom:1px; }
 .ch-q b { color:var(--teal); }
-.ch-mean { color:var(--muted); font-size:11px; font-weight:400; }
+.ch-mean { color:var(--muted); font-size:calc(var(--chq,11.5px) - 0.5px); font-weight:400; }
 /* flex를 쓰면 Chrome 인쇄에서 break-inside:avoid가 무시돼 문제/선택지가 갈라짐 -> inline-block */
 .ch-opts { display:block; page-break-inside:avoid; break-inside:avoid; }
 .opt { display:inline-block; border:1px solid var(--line); border-radius:5px;
-  padding:1px 8px; font-size:11px; margin:0 4px 2px 0; }
+  padding:var(--chop,1px) 8px; font-size:var(--cho,11px); margin:0 4px 2px 0; }
 .opt-ans { background:var(--sand-bg); border-color:var(--sand); color:#b06a2c; font-weight:800; }
 .empty { color:var(--muted); }
 .ch-sec { font-size:12.5px; font-weight:800; color:var(--teal); margin:7px 0 4px; }
@@ -117,7 +119,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:17px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -241,7 +243,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">There is a small slit in the box.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">hole, gap</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 01</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:17px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">vanish</td>
@@ -363,6 +380,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">big, main</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -712,6 +730,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">I am sitting on the front <span class="blank"></span>.</span> <span class="ans">porch</span>
         <span class="fb-mean">([명] 현관)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -814,6 +833,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>architect</b> <span class="ch-mean">([명] 건축가)</span></div>
         <div class="ch-opts"><span class="opt ">① telescope</span><span class="opt opt-ans">② designer</span><span class="opt ">③ vanish</span><span class="opt ">④ condition</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -880,6 +900,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">8.</span> <b>vanish</b> <span class="ch-mean">([동] (갑자기) 사라지다)</span></div>
         <div class="ch-opts"><span class="opt ">① subtract</span><span class="opt ">② telescope</span><span class="opt opt-ans">③ appear</span><span class="opt ">④ fantasy</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -888,7 +909,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:18px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -1012,7 +1033,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">The river is beyond those mountains.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">past</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 02</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:18px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">biography</td>
@@ -1134,6 +1170,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">call</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -1514,6 +1551,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[형] 주요한 [동] 전공하다</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -1645,6 +1683,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">The <span class="blank"></span> makes laws for people.</span> <span class="ans">government</span>
         <span class="fb-mean">([명] 정부)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -1747,6 +1786,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>violent</b> <span class="ch-mean">([형] 폭력적인, 난폭한)</span></div>
         <div class="ch-opts"><span class="opt ">① global</span><span class="opt ">② touch</span><span class="opt opt-ans">③ wild</span><span class="opt ">④ industry</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -1797,6 +1837,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">6.</span> <b>violent</b> <span class="ch-mean">([형] 폭력적인, 난폭한)</span></div>
         <div class="ch-opts"><span class="opt ">① guideline</span><span class="opt ">② contact</span><span class="opt opt-ans">③ gentle</span><span class="opt ">④ bark</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -1805,7 +1846,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -1929,7 +1970,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">The artist painted my portrait.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">picture</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 03</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:18px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">inform</td>
@@ -2051,6 +2107,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">type</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -2431,6 +2488,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">behave</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -2593,6 +2651,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">counsel</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -2724,6 +2783,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">Please <span class="blank"></span> me of the plan.</span> <span class="ans">inform</span>
         <span class="fb-mean">([동] 알리다)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -2826,6 +2886,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>thrill</b> <span class="ch-mean">([동] 흥분시키다)</span></div>
         <div class="ch-opts"><span class="opt opt-ans">① excite</span><span class="opt ">② cancel</span><span class="opt ">③ aware</span><span class="opt ">④ mathematician</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -2892,6 +2953,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">8.</span> <b>fake</b> <span class="ch-mean">([형] 가짜의)</span></div>
         <div class="ch-opts"><span class="opt ">① mathematician</span><span class="opt opt-ans">② real</span><span class="opt ">③ physics</span><span class="opt ">④ responsible</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -2900,7 +2962,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -3024,7 +3086,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">Fasten your seat belt in the car.</td>
         <td class="c-ant">loose</td>
         <td class="c-syn">tie, fix</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 04</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">react</td>
@@ -3146,6 +3223,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">respect</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -3526,6 +3604,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">snap</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -3688,6 +3767,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[형] 전 세계적인</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -3819,6 +3899,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">How did she <span class="blank"></span> to the news?</span> <span class="ans">react</span>
         <span class="fb-mean">([동] 반응하다)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -3921,6 +4002,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>miserable</b> <span class="ch-mean">([형] 비참한)</span></div>
         <div class="ch-opts"><span class="opt ">① biology</span><span class="opt opt-ans">② very sad</span><span class="opt ">③ kneel</span><span class="opt ">④ pleasant</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -3979,6 +4061,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">7.</span> <b>miserable</b> <span class="ch-mean">([형] 비참한)</span></div>
         <div class="ch-opts"><span class="opt ">① pleasant</span><span class="opt ">② admire</span><span class="opt ">③ demand</span><span class="opt opt-ans">④ happy</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -3987,7 +4070,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -4111,7 +4194,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">The stone pillar is very tall.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">post</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 05</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">pleasure</td>
@@ -4233,6 +4331,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">also</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -4613,6 +4712,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">aware</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -4775,6 +4875,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">fatal</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -4906,6 +5007,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">We had a hot <span class="blank"></span> in class.</span> <span class="ans">debate</span>
         <span class="fb-mean">([명] 토론)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -5008,6 +5110,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>embarrassed</b> <span class="ch-mean">([형] 당황스러운)</span></div>
         <div class="ch-opts"><span class="opt ">① debate</span><span class="opt ">② trust</span><span class="opt ">③ plot</span><span class="opt opt-ans">④ shy</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -5058,6 +5161,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">7.</span> <b>settle</b> <span class="ch-mean">([동] 정착하다)</span></div>
         <div class="ch-opts"><span class="opt ">① attitude</span><span class="opt opt-ans">② move</span><span class="opt ">③ patience</span><span class="opt ">④ command</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -5066,7 +5170,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -5190,7 +5294,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">My English is making good progress.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">growth</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 06</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">attend</td>
@@ -5312,6 +5431,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">wash</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -5692,6 +5812,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[형] 즐거운</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -5854,6 +5975,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[명] 정치인</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -5985,6 +6107,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">Be careful with this <span class="blank"></span> glass.</span> <span class="ans">fragile</span>
         <span class="fb-mean">([형] 부서지기 쉬운)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -6087,6 +6210,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>private</b> <span class="ch-mean">([형] 개인적인)</span></div>
         <div class="ch-opts"><span class="opt opt-ans">① personal</span><span class="opt ">② reality</span><span class="opt ">③ rough</span><span class="opt ">④ robe</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -6153,6 +6277,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">10.</span> <b>devil</b> <span class="ch-mean">([명] 악마)</span></div>
         <div class="ch-opts"><span class="opt ">① discussion</span><span class="opt ">② prayer</span><span class="opt opt-ans">③ angel</span><span class="opt ">④ request</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -6161,7 +6286,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:18px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -6285,7 +6410,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">I felt shame for my mistake.</td>
         <td class="c-ant">pride</td>
         <td class="c-syn">-</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 07</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">delay</td>
@@ -6407,6 +6547,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">take in</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -6787,6 +6928,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[동] 믿다</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -6949,6 +7091,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">process</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -7080,6 +7223,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">Can I <span class="blank"></span> your pencil, please?</span> <span class="ans">borrow</span>
         <span class="fb-mean">([동] 빌리다)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -7182,6 +7326,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>link</b> <span class="ch-mean">([동] 연결하다)</span></div>
         <div class="ch-opts"><span class="opt ">① borrow</span><span class="opt ">② publish</span><span class="opt ">③ adopt</span><span class="opt opt-ans">④ join</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -7248,6 +7393,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">9.</span> <b>aged</b> <span class="ch-mean">([형] 나이 든)</span></div>
         <div class="ch-opts"><span class="opt ">① resort</span><span class="opt opt-ans">② young</span><span class="opt ">③ secretary</span><span class="opt ">④ diligent</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -7256,7 +7402,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -7380,7 +7526,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">I suspect he took my pen.</td>
         <td class="c-ant">trust</td>
         <td class="c-syn">doubt</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 08</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">tend</td>
@@ -7502,6 +7663,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">correct</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -7882,6 +8044,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">spear</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -8044,6 +8207,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">index</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -8175,6 +8339,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">I <span class="blank"></span> to sleep late today.</span> <span class="ans">tend</span>
         <span class="fb-mean">([동] ~하기 쉽다)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -8277,6 +8442,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>mention</b> <span class="ch-mean">([동] 말하다)</span></div>
         <div class="ch-opts"><span class="opt ">① pregnant</span><span class="opt ">② tend</span><span class="opt ">③ playwright</span><span class="opt opt-ans">④ tell</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -8343,6 +8509,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">10.</span> <b>postpone</b> <span class="ch-mean">([동] 연기하다)</span></div>
         <div class="ch-opts"><span class="opt ">① mechanic</span><span class="opt ">② lunar</span><span class="opt opt-ans">③ hurry</span><span class="opt ">④ fume</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -8351,7 +8518,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -8475,7 +8642,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">Please transfer the file to me.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">move</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 09</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">oppose</td>
@@ -8597,6 +8779,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">come near</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -8977,6 +9160,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[접] 비록 ~일지라도</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -9139,6 +9323,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">decision</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -9270,6 +9455,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">Please <span class="blank"></span> the file to me.</span> <span class="ans">transfer</span>
         <span class="fb-mean">([동] 옮기다)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -9372,6 +9558,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>voluntary</b> <span class="ch-mean">([형] 자발적인)</span></div>
         <div class="ch-opts"><span class="opt ">① universal</span><span class="opt ">② mature</span><span class="opt ">③ occur</span><span class="opt opt-ans">④ free</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -9426,6 +9613,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">7.</span> <b>mature</b> <span class="ch-mean">([형] 성숙한)</span></div>
         <div class="ch-opts"><span class="opt opt-ans">① babyish</span><span class="opt ">② transfer</span><span class="opt ">③ population</span><span class="opt ">④ fright</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -9434,7 +9622,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -9558,7 +9746,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">The stars are sparkling at night.</td>
         <td class="c-ant">dull</td>
         <td class="c-syn">bright</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 10</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">fearless</td>
@@ -9680,6 +9883,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">-</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -10060,6 +10264,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">loss</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -10222,6 +10427,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">mature</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -10353,6 +10559,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">Your health is my main <span class="blank"></span>.</span> <span class="ans">concern</span>
         <span class="fb-mean">([동] 걱정하다)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -10451,6 +10658,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">22.</span> <b>necessary</b> <span class="ch-mean">([형] 필요한)</span></div>
         <div class="ch-opts"><span class="opt ">① flood</span><span class="opt opt-ans">② needed</span><span class="opt ">③ possess</span><span class="opt ">④ chemical</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -10501,6 +10709,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">10.</span> <b>luxurious</b> <span class="ch-mean">([형] 호화로운)</span></div>
         <div class="ch-opts"><span class="opt ">① anxious</span><span class="opt ">② possess</span><span class="opt ">③ boil</span><span class="opt opt-ans">④ cheap</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -10509,7 +10718,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:18px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -10633,7 +10842,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">The Mars rover takes many pictures.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">-</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 11</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">attach</td>
@@ -10755,6 +10979,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">-</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -11135,6 +11360,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[명] 묶음</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -11297,6 +11523,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[동] 투자하다</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -11428,6 +11655,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">Call for help in an <span class="blank"></span>.</span> <span class="ans">emergency</span>
         <span class="fb-mean">([명] 비상)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -11526,6 +11754,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">2.</span> <b>possible</b> <span class="ch-mean">([형] 가능한)</span></div>
         <div class="ch-opts"><span class="opt ">① rover</span><span class="opt ">② logical</span><span class="opt ">③ determine</span><span class="opt opt-ans">④ impossible</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -11552,6 +11781,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">6.</span> <b>physical</b> <span class="ch-mean">([형] 신체의)</span></div>
         <div class="ch-opts"><span class="opt opt-ans">① mental</span><span class="opt ">② sphere</span><span class="opt ">③ emergency</span><span class="opt ">④ sprinkle</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -11560,7 +11790,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -11684,7 +11914,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">Wear proper clothes for the party.</td>
         <td class="c-ant">wrong</td>
         <td class="c-syn">right</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 12</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">recall</td>
@@ -11806,6 +12051,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">thank</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -12186,6 +12432,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">characteristic</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -12348,6 +12595,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[동] 명확하게 하다</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -12479,6 +12727,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">We must get rid of <span class="blank"></span>s.</span> <span class="ans">pest</span>
         <span class="fb-mean">([명] 해충)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -12577,6 +12826,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">4.</span> <b>relaxation</b> <span class="ch-mean">([명] 휴식)</span></div>
         <div class="ch-opts"><span class="opt opt-ans">① work</span><span class="opt ">② represent</span><span class="opt ">③ appreciate</span><span class="opt ">④ protective</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -12599,6 +12849,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">7.</span> <b>recall</b> <span class="ch-mean">([동] 기억해 내다)</span></div>
         <div class="ch-opts"><span class="opt ">① relaxation</span><span class="opt ">② material</span><span class="opt ">③ mimic</span><span class="opt opt-ans">④ forget</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -12607,7 +12858,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -12731,7 +12982,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">This fabric feels very soft and nice.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">cloth</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 13</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">drown</td>
@@ -12853,6 +13119,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">-</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -13233,6 +13500,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[동] 다시 사용하다</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -13395,6 +13663,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[명] 방어</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -13526,6 +13795,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">This house is from a past <span class="blank"></span>.</span> <span class="ans">era</span>
         <span class="fb-mean">([명] 시대)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -13628,6 +13898,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>standard</b> <span class="ch-mean">([명] 표준, 기준)</span></div>
         <div class="ch-opts"><span class="opt ">① narrow</span><span class="opt opt-ans">② level</span><span class="opt ">③ soul</span><span class="opt ">④ value</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -13658,6 +13929,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">4.</span> <b>selfish</b> <span class="ch-mean">([형] 이기적인)</span></div>
         <div class="ch-opts"><span class="opt ">① remarkable</span><span class="opt ">② drown</span><span class="opt ">③ soul</span><span class="opt opt-ans">④ kind</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -13666,7 +13938,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -13790,7 +14062,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">My sister is very sociable.</td>
         <td class="c-ant">shy</td>
         <td class="c-syn">friendly</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 14</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">achieve</td>
@@ -13912,6 +14199,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">fix, fit</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -14292,6 +14580,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[동] 고마워하다</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -14454,6 +14743,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[명] 단백질</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -14585,6 +14875,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">He has a strong <span class="blank"></span>.</span> <span class="ans">grip</span>
         <span class="fb-mean">([명] 꽉 붙잡음)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -14687,6 +14978,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>kettle</b> <span class="ch-mean">([명] 주전자)</span></div>
         <div class="ch-opts"><span class="opt ">① criticize</span><span class="opt ">② install</span><span class="opt opt-ans">③ pot</span><span class="opt ">④ transform</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -14741,6 +15033,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">9.</span> <b>export</b> <span class="ch-mean">([동] 수출하다)</span></div>
         <div class="ch-opts"><span class="opt opt-ans">① import</span><span class="opt ">② harmony</span><span class="opt ">③ impossible</span><span class="opt ">④ install</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -14749,7 +15042,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
       <div class="ph-title"><span class="pt-ko">단어 목록</span><span class="pt-en">Word List</span></div>
       <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
     </div>
-    <table class="wl" style="--wlp:4px; --wlf:11px">
+    <table class="wl" style="--wlp:20px; --wlf:13.5px">
       <thead>
         <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
       </thead>
@@ -14873,7 +15166,22 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-ex">The narrator told a funny story.</td>
         <td class="c-ant">-</td>
         <td class="c-syn">speaker</td>
-      </tr>
+      </tr></tbody>
+    </table>
+    
+  </section>
+  <section class="page">
+    
+    <div class="phead">
+      <div class="ph-day">Unit 15</div>
+      <div class="ph-title"><span class="pt-ko">단어 목록 (계속)</span><span class="pt-en">Word List</span></div>
+      <div class="ph-name">학습한 날짜 : <span class="nline"></span></div>
+    </div>
+    <table class="wl" style="--wlp:19px; --wlf:13.5px">
+      <thead>
+        <tr><th>No.</th><th>단어</th><th>의미</th><th>예문</th><th>반의어</th><th>동의어</th></tr>
+      </thead>
+      <tbody>
       <tr>
         <td class="c-no">16</td>
         <td class="c-eng">grassland</td>
@@ -14995,6 +15303,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="c-syn">number</td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -15375,6 +15684,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">[명] 상황</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -15537,6 +15847,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <td class="rv-a"><span class="ans">irritate</span></td>
       </tr></tbody>
     </table>
+    
   </section>
   <section class="page">
     
@@ -15668,6 +15979,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <span class="fb-sent">The <span class="blank"></span> hit the center target.</span> <span class="ans">bullet</span>
         <span class="fb-mean">([명] 총알)</span>
       </li></ol>
+    
   </section>
   <section class="page">
     
@@ -15770,6 +16082,7 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">23.</span> <b>demonstrate</b> <span class="ch-mean">([동] 증명하다)</span></div>
         <div class="ch-opts"><span class="opt ">① fare</span><span class="opt opt-ans">② show</span><span class="opt ">③ puzzled</span><span class="opt ">④ depict</span></div>
       </div></div>
+    
   </section>
   <section class="page">
     
@@ -15792,4 +16105,5 @@ table.mz tr:nth-child(even) td { background:var(--teal-bg2); }
         <div class="ch-q"><span class="ch-no">3.</span> <b>distinct</b> <span class="ch-mean">([형] 뚜렷한)</span></div>
         <div class="ch-opts"><span class="opt ">① cruise</span><span class="opt ">② predator</span><span class="opt ">③ terribly</span><span class="opt opt-ans">④ vague</span></div>
       </div></div>
+    
   </section></body></html>

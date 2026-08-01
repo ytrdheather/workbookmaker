@@ -82,6 +82,36 @@ def _text_w(s, fs):
     """문자열의 대략적인 렌더 폭(px). 한글·전각은 1em, 그 외는 0.55em으로 잡는다."""
     return sum((1.0 if ord(c) > 0x1100 else 0.55) for c in s) * fs
 
+
+# 단어 목록 표: 표머리 top ~ 로고 top = 913px, 표 머리 행 34px (둘 다 실측).
+# 열별 글자 폭은 실측 열 폭에서 좌우 여백 7px씩 뺀 값.
+WL_BODY_PX = 913
+WL_THEAD_PX = 34
+WL_COL_AVAIL = {"english": 67, "meaning": 135, "example": 272,
+                "antonyms": 65, "synonyms": 65}
+
+
+def _wl_pad(words, fs, base=9, cap=24):
+    """--split-wordlist 지면에서 남는 높이를 셀 여백으로 돌려준다.
+
+    나눈 뒤 남는 높이는 교재마다 다르다(고난도는 뜻이 길어 16mm, 3900은 짧아 87mm).
+    한 값으로 박으면 한쪽은 넘치고 한쪽은 텅 빈다. 그래서 지면마다 계산한다.
+
+    글자폭 계수(한글 0.92 / 영문 0.41)와 행간 1.3은 두 교재 56장을 실측해 맞춘 값으로,
+    **절대 과소평가하지 않도록** 골랐다(실측 대비 +4~+93px). 남는 쪽으로 틀리므로
+    여백이 조금 모자랄 뿐 넘치지는 않는다. base 미만으로는 내리지 않는다."""
+    rows = 0
+    for w in words:
+        n = 1
+        for key, avail in WL_COL_AVAIL.items():
+            t = w.get(key) or "-"
+            px = sum((0.92 if ord(c) > 0x1100 else 0.41) for c in t) * fs
+            n = max(n, math.ceil(px / avail) or 1)
+        rows += n
+    cnt = max(len(words), 1)
+    used = WL_THEAD_PX + rows * fs * 1.3 + cnt * (2 * base + 1)
+    return int(max(base, min(cap, base + (WL_BODY_PX - used) / (2 * cnt))))
+
 # ---------------------------------------------------------------- 데이터 로드
 def load_words(xlsx_path):
     wb = openpyxl.load_workbook(xlsx_path, read_only=True, data_only=True)
@@ -173,7 +203,9 @@ def _wordlist_page(day_name, words, ci=0):
     if WORDLIST_SPLIT:
         # 판매용 제본 대비. make_print_ready.py가 93% 축소하므로 인쇄물에서 9pt를
         # 넘기려면 축소 전 9.7pt(약 13px) 이상이어야 한다. 나눠서 행이 줄었으니 여유 있음.
-        wlp, wlf = 9, 13.5
+        # 남는 높이는 지면마다 달라서 여백으로 돌려준다(_wl_pad 주석 참고).
+        wlf = 13.5
+        wlp = _wl_pad(words, wlf)
     elif LAYOUT2:   # 하단 로고 자리를 비워도 여유가 있어 오히려 키움
         wlp = 7 if n <= 20 else (6 if n <= 25 else 5)
         wlf = 12.5 if n <= 20 else (12 if n <= 25 else 11.5)
