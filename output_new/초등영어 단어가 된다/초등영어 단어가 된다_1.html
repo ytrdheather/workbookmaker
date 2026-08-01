@@ -8,7 +8,12 @@
 :root{
   --teal:#32bfb6; --teal-lt:#94e1da; --ink:#2f302f; --sand:#dfc0aa;
   --teal-bg:#eafaf8; --teal-bg2:#f4fbfa; --sand-bg:#f7efe6;
-  --line:#d9d9d6; --muted:#8a8f8d; --ghost:#c9cfce;
+  --line:#d9d9d6; --muted:#8a8f8d;
+  /* 덧쓰기 글씨. 보조선(--fl-aux)과 밝기가 같으면(대비 1.04:1) 연필이 얹히는 순간
+     구분이 안 된다. 선보다 한 단계 진하게 둔다. */
+  --ghost:#b9c0bf;
+  /* 4선지: 보조선은 베이지그레이 한 색으로, 글자를 앉히는 기준선만 민트 굵게 */
+  --fl-aux:#d6d1c9; --fl-base:var(--teal);
 }
 @page { size: A4; margin: 13mm 11mm 13mm 11mm; }
 * { box-sizing: border-box; }
@@ -63,10 +68,12 @@ body { font-family:'Pretendard','Malgun Gothic',sans-serif; color:var(--ink); ma
 .tr-rows { display:flex; flex-wrap:nowrap; gap:8px; margin-top:5px; }
 .fl { position:relative; height:var(--flh); flex:1 1 0; min-width:0; }
 .fl-l1,.fl-l2,.fl-l3,.fl-l4 { position:absolute; left:0; right:0; }
-.fl-l1 { top:0; border-top:1px solid var(--teal-lt); }
-.fl-l2 { top:33.3%; border-top:1px dashed var(--teal-lt); }
-.fl-l3 { top:66.6%; border-top:1.6px solid var(--teal); }
-.fl-l4 { bottom:0; border-top:1px solid var(--teal-lt); }
+/* 보조선 3개는 같은 베이지그레이 — 색이 섞이면 어디에 맞춰 쓸지 헷갈린다.
+   기준선(l3)만 민트로 굵게 해서 "여기에 글자를 앉혀라"가 한눈에 보이게. */
+.fl-l1 { top:0; border-top:1px solid var(--fl-aux); }
+.fl-l2 { top:33.3%; border-top:1px dashed var(--fl-aux); }
+.fl-l3 { top:66.6%; border-top:2.2px solid var(--fl-base); }
+.fl-l4 { bottom:0; border-top:1px solid var(--fl-aux); }
 .fl-tx { position:absolute; left:5px; right:2px; top:0; overflow:hidden; height:66.6%; display:flex; align-items:flex-end;
   font-size:var(--flf); font-weight:600; line-height:1; letter-spacing:1px; }
 .tr-ghost { color:var(--ghost); }
